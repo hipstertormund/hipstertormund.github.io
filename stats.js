@@ -24,6 +24,9 @@ function boss()
 	var maco = (attack1+20);
 	var msaveo = Math.round(saveo-10);
 	var mdamageo = Math.round(hpo*.5)+" (Including all attacks and Legendary actions)";
+
+
+	//Write results to area of page
 	element = document.createElement("p");
 	element.innerHTML = typo+"<br>"+"CR: "+cro+"<br>HP: "+mhpo+"<br>AC: "+maco+"<br>Proficient Saves: +"+msaveo+"<br>To Hit: +"+tho+"<br>Average DPR: "+mdamageo+"<br>"+aoeo;
 	document.getElementById("results").innerHTML = element.innerHTML;
@@ -59,23 +62,18 @@ function minion()
 function search()
   {
   	var damageo = document.getElementById("damage").value;
-    var diceo = document.getElementById("dices").value;
-    if (diceo == "d4") {
-      dicep = "1";
-    } else if (diceo == "d6") {
-      dicep = "2";
-    } else if (diceo == "d8") {
-      dicep = "3";
-    } else if (diceo == "d10") {
-      dicep = "4";
-    } else if (diceo == "d12") {
-      dicep = "5";
-    }
+
 
   var table = document.getElementById('dicetable');
   var oCells = table.rows.item(damageo).cells;
-  var cellVal = oCells.item(dicep).innerHTML;
+  var cellVal = oCells.item("1").innerHTML;
+	var cellVal1 = oCells.item("2").innerHTML;
+	var cellVal2 = oCells.item("3").innerHTML;
+	var cellVal3 = oCells.item("4").innerHTML;
+	var cellVal4 = oCells.item("5").innerHTML;
+	var diceo = cellVal+", "+cellVal1+", "+cellVal2+", "+cellVal3+", "+cellVal4;
+
   element = document.createElement("p");
-  element.innerHTML = "Estimated Dice: "+cellVal;
+  element.innerHTML = "Estimated Dice: "+diceo;
   document.getElementById("results").innerHTML = element.innerHTML;
 }
