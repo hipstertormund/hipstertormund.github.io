@@ -4,7 +4,7 @@
     /* Set additional styling options for the columns*/
     .column {
     float: left;
-    width: 50%;
+    width: 25%;
     }
 
     .row:after {
@@ -12,3 +12,12 @@
     display: table;
     clear: both;
     }
+
+.topnav * {
+  text-decoration: none;
+  margin: 10px;
+  font-size: 20px !important;
+  width: 5%;
+  /*box-shadow: 0 0 25px 0 black;
+
+}
