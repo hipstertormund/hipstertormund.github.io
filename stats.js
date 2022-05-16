@@ -12,7 +12,7 @@ function boss()
 	var saveo = document.getElementById("save").value;
   var combato = document.getElementById("combat").value;
 //Monster Stats variables
-  var typo = document.getElementById("type").value;
+  var typo = "<h3>Stat Block</h3> "+document.getElementById("type").value;
   if (document.getElementById("aoe").checked) {
     var aoeo = "Area of Effect Damage: "+Math.round(hpo*.95)+" (Cone, Line, or Radius)";
   } else {
