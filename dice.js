@@ -20,7 +20,4 @@ function search()
   element = document.createElement("p");
   element.innerHTML = "Estimated Dice: "+cellVal;
   document.getElementById("results").innerHTML = element.innerHTML;
-            //alert(table.rows[r].cells[c].innerHTML);
-
-
 }
