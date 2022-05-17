@@ -36,30 +36,46 @@ function boss()
   }
 	var cro = Math.round(levelo);
 	var mhpo = Math.round(partyo*damageo*combato)
-	var tho = Math.round(aco-10);
-	var maco = (attack1+20);
-	var msaveo = Math.round(saveo-10);
+
+	if (aco == "") {
+		var tho = "";
+	} else {
+		var tho = "+"+Math.round(aco-9);
+	}
+
+
+	var maco = (attack1+21);
+
+	if (saveo == "") {
+		var msaveo = "";
+	} else {
+		var msaveo = "+"+Math.round(saveo-9);
+	}
 	var mdamageo = Math.round(hpo*.5);
 
-	var table = document.getElementById('dicetable');
-  var oCells = table.rows.item(mdamageo).cells;
-  var cellVal = oCells.item("1").innerHTML;
-	var cellVal1 = oCells.item("2").innerHTML;
-	var cellVal2 = oCells.item("3").innerHTML;
-	var cellVal3 = oCells.item("4").innerHTML;
-	var cellVal4 = oCells.item("5").innerHTML;
-	var diceo = cellVal+", "+cellVal1+", "+cellVal2+", "+cellVal3+", "+cellVal4;
-
+	if (hpo == "") {
+		var diceo = "";
+	} else {
+		var table = document.getElementById('dicetable');
+		var oCells = table.rows.item(mdamageo).cells;
+		var cellVal = oCells.item("1").innerHTML;
+		var cellVal1 = oCells.item("2").innerHTML;
+		var cellVal2 = oCells.item("3").innerHTML;
+		var cellVal3 = oCells.item("4").innerHTML;
+		var cellVal4 = oCells.item("5").innerHTML;
+		var diceo = "Dice: "+cellVal+", "+cellVal1+", "+cellVal2+", "+cellVal3+", "+cellVal4;
+	}
 
 	//Write results to area of page
 	element = document.createElement("p");
-	element.innerHTML = typep+
+	element.innerHTML = "<h3> Stat Block:</h3>"+
+	typep+
 	"<br>CR: "+cro+
 	"<br>HP: "+mhpo+
 	"<br>AC: "+maco+
-	"<br>Proficient Saves: +"+msaveo+
-	"<br>To Hit: +"+tho+
-	"<br><br>Average DPR: "+mdamageo+" (Including all attacks and Legendary actions)<br>Dice: "+
+	"<br>Proficient Saves: "+msaveo+
+	"<br><br>To Hit: "+tho+
+	"<br>Average DPR: "+mdamageo+" (Including all attacks and Legendary actions)<br>"+
 	diceo+"<br>"+
 	aoeo;
 	document.getElementById("results").innerHTML = element.innerHTML;
@@ -94,13 +110,25 @@ function minion()
 	var maco = (attack1+15);
 	var msaveo = Math.round(saveo-15);
 	var mdamageo = Math.round(hpo*.25);
+
+	var table = document.getElementById('dicetable');
+	var oCells = table.rows.item(mdamageo).cells;
+	var cellVal = oCells.item("1").innerHTML;
+	var cellVal1 = oCells.item("2").innerHTML;
+	var cellVal2 = oCells.item("3").innerHTML;
+	var cellVal3 = oCells.item("4").innerHTML;
+	var cellVal4 = oCells.item("5").innerHTML;
+	var diceo = cellVal+", "+cellVal1+", "+cellVal2+", "+cellVal3+", "+cellVal4;
+
+
 	element = document.createElement("p");
 	element.innerHTML = typep+
 	"<br>CR: "+cro+
 	"<br>HP: "+mhpo+
 	"<br>AC: "+maco+
-	"<br>To Hit: +"+tho+
-	"<br><br>Average DPR: "+mdamageo;
+	"<br><br>To Hit: +"+tho+
+	"<br>Average DPR: "+mdamageo+
+	"<br>"+diceo;
 	document.getElementById("results").innerHTML = element.innerHTML;
 
 }
