@@ -14,7 +14,16 @@ function boss()
 //Monster Stats variables
   var typo = "<h3>Stat Block</h3> "+document.getElementById("type").value;
   if (document.getElementById("aoe").checked) {
-    var aoeo = "Area of Effect Damage: "+Math.round(hpo*.95)+" (Cone, Line, or Radius)";
+    var daoeo = Math.round(hpo*.85);
+		var table = document.getElementById('dicetable');
+	  var aoeod = table.rows.item(daoeo).cells;
+	  var dVal = aoeod.item("1").innerHTML;
+		var dVal1 = aoeod.item("2").innerHTML;
+		var dVal2 = aoeod.item("3").innerHTML;
+		var dVal3 = aoeod.item("4").innerHTML;
+		var dVal4 = aoeod.item("5").innerHTML;
+		var diceo2 = dVal+", "+dVal1+", "+dVal2+", "+dVal3+", "+dVal4;
+		var aoeo = "Area of Effect Damage: "+daoeo+" (Cone, Line, or Radius)<br>AoE Dice: "+diceo2;
   } else {
     var aoeo = "";
   }
@@ -23,12 +32,21 @@ function boss()
 	var tho = Math.round(aco-10);
 	var maco = (attack1+20);
 	var msaveo = Math.round(saveo-10);
-	var mdamageo = Math.round(hpo*.5)+" (Including all attacks and Legendary actions)";
+	var mdamageo = Math.round(hpo*.5);
+
+	var table = document.getElementById('dicetable');
+  var oCells = table.rows.item(mdamageo).cells;
+  var cellVal = oCells.item("1").innerHTML;
+	var cellVal1 = oCells.item("2").innerHTML;
+	var cellVal2 = oCells.item("3").innerHTML;
+	var cellVal3 = oCells.item("4").innerHTML;
+	var cellVal4 = oCells.item("5").innerHTML;
+	var diceo = cellVal+", "+cellVal1+", "+cellVal2+", "+cellVal3+", "+cellVal4;
 
 
 	//Write results to area of page
 	element = document.createElement("p");
-	element.innerHTML = typo+"<br>"+"CR: "+cro+"<br>HP: "+mhpo+"<br>AC: "+maco+"<br>Proficient Saves: +"+msaveo+"<br>To Hit: +"+tho+"<br>Average DPR: "+mdamageo+"<br>"+aoeo;
+	element.innerHTML = typo+"<br>"+"CR: "+cro+"<br>HP: "+mhpo+"<br>AC: "+maco+"<br>Proficient Saves: +"+msaveo+"<br>To Hit: +"+tho+"<br>Average DPR: "+mdamageo+" (Including all attacks and Legendary actions)<br>Dice: "+diceo+"<br>"+aoeo;
 	document.getElementById("results").innerHTML = element.innerHTML;
 
 }
@@ -62,6 +80,25 @@ function minion()
 function search()
   {
   	var damageo = document.getElementById("damage").value;
+
+
+  var table = document.getElementById('dicetable');
+  var oCells = table.rows.item(damageo).cells;
+  var cellVal = oCells.item("1").innerHTML;
+	var cellVal1 = oCells.item("2").innerHTML;
+	var cellVal2 = oCells.item("3").innerHTML;
+	var cellVal3 = oCells.item("4").innerHTML;
+	var cellVal4 = oCells.item("5").innerHTML;
+	var diceo = cellVal+", "+cellVal1+", "+cellVal2+", "+cellVal3+", "+cellVal4;
+
+  element = document.createElement("p");
+  element.innerHTML = "Estimated Dice: "+diceo;
+  document.getElementById("results").innerHTML = element.innerHTML;
+}
+
+function search2()
+  {
+  	var damageo = 2
 
 
   var table = document.getElementById('dicetable');
