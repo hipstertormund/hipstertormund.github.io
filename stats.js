@@ -12,7 +12,14 @@ function boss()
 	var saveo = document.getElementById("save").value;
   var combato = document.getElementById("combat").value;
 //Monster Stats variables
-  var typo = "<h3>Stat Block</h3> "+document.getElementById("type").value;
+	var typo2 = document.getElementById("type").value;
+
+	if (typo2 == "Null") {
+		typep = "";
+	} else {
+		typep = "Creature Type: "+typo2+"<br>";
+	}
+
   if (document.getElementById("aoe").checked) {
     var daoeo = Math.round(hpo*.85);
 		var table = document.getElementById('dicetable');
@@ -23,7 +30,7 @@ function boss()
 		var dVal3 = aoeod.item("4").innerHTML;
 		var dVal4 = aoeod.item("5").innerHTML;
 		var diceo2 = dVal+", "+dVal1+", "+dVal2+", "+dVal3+", "+dVal4;
-		var aoeo = "Area of Effect Damage: "+daoeo+" (Cone, Line, or Radius)<br>AoE Dice: "+diceo2;
+		var aoeo = "<br>Area of Effect Damage: "+daoeo+" (Cone, Line, or Radius)<br>AoE Dice: "+diceo2;
   } else {
     var aoeo = "";
   }
@@ -46,7 +53,15 @@ function boss()
 
 	//Write results to area of page
 	element = document.createElement("p");
-	element.innerHTML = typo+"<br>"+"CR: "+cro+"<br>HP: "+mhpo+"<br>AC: "+maco+"<br>Proficient Saves: +"+msaveo+"<br>To Hit: +"+tho+"<br>Average DPR: "+mdamageo+" (Including all attacks and Legendary actions)<br>Dice: "+diceo+"<br>"+aoeo;
+	element.innerHTML = typep+
+	"<br>CR: "+cro+
+	"<br>HP: "+mhpo+
+	"<br>AC: "+maco+
+	"<br>Proficient Saves: +"+msaveo+
+	"<br>To Hit: +"+tho+
+	"<br><br>Average DPR: "+mdamageo+" (Including all attacks and Legendary actions)<br>Dice: "+
+	diceo+"<br>"+
+	aoeo;
 	document.getElementById("results").innerHTML = element.innerHTML;
 
 }
@@ -64,7 +79,15 @@ function minion()
 	var saveo = document.getElementById("save").value;
   var combato = document.getElementById("combat").value;
 //Monster Stats variables
-  var typo = document.getElementById("type").value;
+	var typo2 = document.getElementById("type").value;
+
+	if (typo2 == "Null") {
+		typep = "";
+	} else {
+		typep = "Creature Type: "+typo2+"<br>";
+	}
+
+
 	var cro = Math.round(levelo*.25);
 	var mhpo = Math.round(damageo*.5)
 	var tho = Math.round(aco-15);
@@ -72,7 +95,12 @@ function minion()
 	var msaveo = Math.round(saveo-15);
 	var mdamageo = Math.round(hpo*.25);
 	element = document.createElement("p");
-	element.innerHTML = typo+"<br>"+"CR: "+cro+"<br>HP: "+mhpo+"<br>AC: "+maco+"<br>To Hit: +"+tho+"<br>Average DPR: "+mdamageo;
+	element.innerHTML = typep+
+	"<br>CR: "+cro+
+	"<br>HP: "+mhpo+
+	"<br>AC: "+maco+
+	"<br>To Hit: +"+tho+
+	"<br><br>Average DPR: "+mdamageo;
 	document.getElementById("results").innerHTML = element.innerHTML;
 
 }

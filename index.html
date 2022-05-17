@@ -6,6 +6,7 @@
 <div class="topnav">
 	<a class="active" href="#home">Stats</a>
 	<a href="dice.html">Dice</a>
+	<a href="resistances.html">Resistances</a>
 </div>
 <link rel="stylesheet" href="mystyle.css">
 
@@ -36,7 +37,6 @@
 <input type="number" id="save" name="save" min="10" max="22">
 <br>
 <h3>Creature Variables</h3>
-<br>
 <label for="combat">Rounds of Combat: </label>
 <input type="number" id="combat" name="combat" min="1" max="20">
 <br>
@@ -62,9 +62,11 @@
 <label for="aoe">Include Area of Effect Ability</label>
 <input type="checkbox" id="aoe" name="aoe" value="aoe">
 <br>
+<label for="resist">Include Resistances</label>
+<input type="checkbox" id="resist" name="resist" value="resist">
+<br>
 	<button onclick="boss()" id = "btn1">Generate Boss</button>
 	<button onclick="minion()" id = "btn2">Generate Minion</button>
-	<button onclick="search2()" id="btn3">Dice</button>
 
 </div>
 
