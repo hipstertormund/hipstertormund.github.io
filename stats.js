@@ -12,12 +12,12 @@ function boss()
 	var saveo = document.getElementById("save").value;
   var combato = document.getElementById("combat").value;
 //Monster Stats variables
-	var typo2 = document.getElementById("type").value;
+	var typo = document.getElementById("type").value;
 
-	if (typo2 == "Null") {
+	if (typo == "Null") {
 		typep = "";
 	} else {
-		typep = "Creature Type: "+typo2+"<br>";
+		typep = "Creature Type: "+typo+"<br>";
 	}
 
   if (document.getElementById("aoe").checked) {
@@ -66,12 +66,85 @@ function boss()
 		var diceo = "Dice: "+cellVal+", "+cellVal1+", "+cellVal2+", "+cellVal3+", "+cellVal4;
 	}
 
+	if (typo == "Null") {
+		var i = 0;
+	} else if (typo == "Aberration") {
+	  var i = 1;
+		var j = 1;
+	} else if (typo == "Beast") {
+	  var i = 2;
+	} else if (typo == "Celestial") {
+	  var i = 3;
+	} else if (typo == "Construct") {
+	  var i = 4;
+	} else if (typo == "Dragon") {
+	  var i = 5;
+	} else if (typo == "Elemental") {
+	  var i = 6;
+	} else if (typo == "Fey") {
+	  var i = 7;
+	} else if (typo == "Fiend") {
+	  var i = 8;
+	} else if (typo == "Giant") {
+	  var i = 9;
+	} else if (typo == "Humanoid") {
+	  var i = 10;
+	} else if (typo == "Monstrosity") {
+	  var i = 11
+	} else if (typo == "Ooze") {
+	  var i = 12;
+	} else if (typo == "Plant") {
+	  var i = 13;
+	} else if (typo == "Undead") {
+	  var i = 14;
+	}
+
+	const resistArray = [
+		document.getElementById("resist").checked,
+		typo != "Null",
+	]
+
+	if (!resistArray.includes(false)) {
+	  var table = document.getElementById('resisttable');
+	  var resistd = table.rows.item(i).cells;
+	  var dVal = resistd.item(1).innerHTML;
+		var dVal2 = resistd.item(2).innerHTML;
+		var dVal3 = resistd.item(3).innerHTML;
+		var dVal4 = resistd.item(4).innerHTML;
+		var dVal5 = resistd.item(5).innerHTML;
+		var dVal6 = resistd.item(6).innerHTML;
+		var dVal7 = resistd.item(7).innerHTML;
+		var dVal8 = resistd.item(8).innerHTML;
+		var dVal9 = resistd.item(9).innerHTML;
+		var dVal10 = resistd.item(10).innerHTML;
+		var dVal11 = resistd.item(11).innerHTML;
+		var dVal12 = resistd.item(12).innerHTML;
+		var dVal13 = resistd.item(13).innerHTML;
+		var dVal14 = resistd.item(14).innerHTML;
+		var dVal15 = resistd.item(15).innerHTML;
+
+		const resistp2 = [dVal, dVal2, dVal3, dVal4, dVal5, dVal6, dVal7, dVal8, dVal9, dVal10, dVal11, dVal11, dVal12, dVal13, dVal14, dVal15];
+		const resistResults2 = [];
+
+		resistp2.forEach(element => {
+			if (element !== "") {
+				resistResults2.push(element);
+			}
+		});
+		const resistResults = resistResults2.join(", ");
+	  var resisto = "<br>Possible Condition/Damage Immunities/Resistances: <br>"+resistResults+"<br>";
+	} else {
+	  var resisto = "";
+	}
+
+
 	//Write results to area of page
 	element = document.createElement("p");
 	element.innerHTML = "<h3> Stat Block:</h3>"+
 	typep+
 	"<br>CR: "+cro+
-	"<br>HP: "+mhpo+
+	"<br>HP: "+mhpo+"<br>"+
+	resisto+
 	"<br>AC: "+maco+
 	"<br>Proficient Saves: "+msaveo+
 	"<br><br>To Hit: "+tho+

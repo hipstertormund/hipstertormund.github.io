@@ -5,6 +5,7 @@
     .column {
     float: left;
     width: 30%;
+    word-wrap: break-word;
     }
 
     .row:after {
