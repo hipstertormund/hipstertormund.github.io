@@ -13,6 +13,16 @@
     display: table;
     clear: both;
     }
+/*.results {
+  background-image: url("background.jpg");
+  color: black;
+  border-radius: 10px;
+}
+
+body {
+  background-color: black;
+  color: white;
+}*/
 
 .topnav * {
   text-decoration: none;
@@ -49,4 +59,4 @@
 }
   /*box-shadow: 0 0 25px 0 black;
 
-}
+}*/

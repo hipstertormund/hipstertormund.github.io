@@ -105,6 +105,7 @@ function boss()
 	]
 
 	if (!resistArray.includes(false)) {
+		var mhpo2 = Math.round(mhpo*.75);
 	  var table = document.getElementById('resisttable');
 	  var resistd = table.rows.item(i).cells;
 	  var dVal = resistd.item(1).innerHTML;
@@ -135,6 +136,7 @@ function boss()
 	  var resisto = "<br>Possible Condition/Damage Immunities/Resistances: <br>"+resistResults+"<br>";
 	} else {
 	  var resisto = "";
+		var mhpo2 = mhpo;
 	}
 
 
@@ -143,7 +145,7 @@ function boss()
 	element.innerHTML = "<h3> Stat Block:</h3>"+
 	typep+
 	"<br>CR: "+cro+
-	"<br>HP: "+mhpo+"<br>"+
+	"<br>HP: "+mhpo2+"<br>"+
 	resisto+
 	"<br>AC: "+maco+
 	"<br>Proficient Saves: "+msaveo+
