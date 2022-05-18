@@ -6,8 +6,8 @@ function boss()
 	var levelo = document.getElementById("level").value;
 	var hpo = document.getElementById("hp").value;
 	var aco = document.getElementById("ac").value;
-	var attacko = document.getElementById("attack").value;
-	var attack1 = (attacko-10)
+	var attacko = Number(document.getElementById("attack").value);
+	//var attack1 = (attacko-10)
 	var damageo = document.getElementById("damage").value;
 	var saveo = document.getElementById("save").value;
   var combato = document.getElementById("combat").value;
@@ -40,11 +40,11 @@ function boss()
 	if (aco == "") {
 		var tho = "";
 	} else {
-		var tho = "+"+Math.round(aco-9);
+		var tho = "+"+Math.round(aco-8);
 	}
 
 
-	var maco = (attack1+21);
+	var maco = (attacko+11);
 
 	if (saveo == "") {
 		var msaveo = "";
@@ -165,8 +165,8 @@ function minion()
 	var levelo = document.getElementById("level").value;
 	var hpo = document.getElementById("hp").value;
 	var aco = document.getElementById("ac").value;
-	var attacko = document.getElementById("attack").value;
-	var attack1 = (attacko-10)
+	var attacko = Number(document.getElementById("attack").value);
+	//var attack1 = (attacko-10)
 	var damageo = document.getElementById("damage").value;
 	var saveo = document.getElementById("save").value;
   var combato = document.getElementById("combat").value;
@@ -182,13 +182,13 @@ function minion()
 	if (aco == "") {
 		var tho = "";
 	} else {
-		var tho = "+"+Math.round(aco-15);
+		var tho = "+"+Math.round(aco-10);
 	}
 
 
 	var cro = Math.round(levelo*.25);
 	var mhpo = Math.round(damageo*.75);
-	var maco = (attack1+15);
+	var maco = (attacko+7);
 	var msaveo = Math.round(saveo-15);
 	var mdamageo = Math.round(hpo*.5);
 
