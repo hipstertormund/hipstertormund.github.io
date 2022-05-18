@@ -14,9 +14,29 @@
 <body>
 
 <label for="damage">Average Damage: </label>
-<input type="number" id="damage" name="damage" min="1" max="100">
+<input type="number" id="damage" name="damage" min="1" max="100" value="1">
+<button onclick="search()" id = "btn1">Get Dice</button>
+<br>
+<label for="dicedamage">Damage Per Turn (DPT): </label>
+<select class="dicedamage" id = "dicedamage" name="dicedamage">
+	<option value="null">-</option>
+	<option value="1d4">1d4</option>
+	<option value="2d4">2d4</option>
+	<option value="1d6">1d6</option>
+	<option value="2d6">2d6</option>
+	<option value="1d8">1d8</option>
+	<option value="2d8">2d8</option>
+	<option value="1d10">1d10</option>
+	<option value="2d10">2d10</option>
+	<option value="1d12">1d12</option>
+	<option value="2d12">2d12</option>
+</select>
+<label for="modifier">Modifier Damage</label>
+<input type="number" id="modifier" name="modifier" min="-5" max="6" value="0">
+<label for="attacknum">Number of Attacks</label>
+<input type="number" name="attacknum" id="attacknum" min="1" max="10" value="1">
+<button onclick="search2()" id = "btn2">Get Damage</button>
 
-<button onclick="search()" id = "btn1">Search</button>
 <br>
 <p id="results"></p>
 <br>

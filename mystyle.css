@@ -43,6 +43,7 @@ body {
 
 .topnav a {
   color: white;
+  text-decoration: none;
 }
 
 .topnav a:hover {

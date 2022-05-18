@@ -143,6 +143,7 @@ function boss()
 	//Write results to area of page
 	element = document.createElement("p");
 	element.innerHTML = "<h3> Stat Block:</h3>"+
+	"Quantity: 1-2<br>"+
 	typep+
 	"<br>CR: "+cro+
 	"<br>HP: "+mhpo2+"<br>"+
@@ -178,30 +179,40 @@ function minion()
 		typep = "Creature Type: "+typo2+"<br>";
 	}
 
+	if (aco == "") {
+		var tho = "";
+	} else {
+		var tho = "+"+Math.round(aco-15);
+	}
+
 
 	var cro = Math.round(levelo*.25);
-	var mhpo = Math.round(damageo*.5)
-	var tho = Math.round(aco-15);
+	var mhpo = Math.round(damageo*.75);
 	var maco = (attack1+15);
 	var msaveo = Math.round(saveo-15);
-	var mdamageo = Math.round(hpo*.25);
+	var mdamageo = Math.round(hpo*.5);
 
-	var table = document.getElementById('dicetable');
-	var oCells = table.rows.item(mdamageo).cells;
-	var cellVal = oCells.item("1").innerHTML;
-	var cellVal1 = oCells.item("2").innerHTML;
-	var cellVal2 = oCells.item("3").innerHTML;
-	var cellVal3 = oCells.item("4").innerHTML;
-	var cellVal4 = oCells.item("5").innerHTML;
-	var diceo = cellVal+", "+cellVal1+", "+cellVal2+", "+cellVal3+", "+cellVal4;
+	if (hpo == "") {
+		var diceo = "";
+	} else {
+		var table = document.getElementById('dicetable');
+		var oCells = table.rows.item(mdamageo).cells;
+		var cellVal = oCells.item("1").innerHTML;
+		var cellVal1 = oCells.item("2").innerHTML;
+		var cellVal2 = oCells.item("3").innerHTML;
+		var cellVal3 = oCells.item("4").innerHTML;
+		var cellVal4 = oCells.item("5").innerHTML;
+		var diceo = "Dice: "+cellVal+", "+cellVal1+", "+cellVal2+", "+cellVal3+", "+cellVal4;
+	}
 
 
 	element = document.createElement("p");
-	element.innerHTML = typep+
+	element.innerHTML = "Quantity: 2-4<br>"+
+	typep+
 	"<br>CR: "+cro+
 	"<br>HP: "+mhpo+
 	"<br>AC: "+maco+
-	"<br><br>To Hit: +"+tho+
+	"<br><br>To Hit: "+tho+
 	"<br>Average DPR: "+mdamageo+
 	"<br>"+diceo;
 	document.getElementById("results").innerHTML = element.innerHTML;
@@ -229,19 +240,42 @@ function search()
 
 function search2()
   {
-  	var damageo = 2
+		var dicedamage = document.getElementById('dicedamage').value;
+		var modifier = Number(document.getElementById('modifier').value);
+		var attacknum = Number(document.getElementById('attacknum').value);
+		if (dicedamage == "1d4"){
+				var dicep = 2;
+		} else if (dicedamage == "2d4") {
+				var dicep = 5;
+		}	else if (dicedamage == "1d6") {
+				var dicep = 3;
+		} else if (dicedamage == "2d6") {
+				var dicep = 7;
+		} else if (dicedamage == "1d8") {
+				var dicep = 4;
+		} else if (dicedamage == "2d8") {
+				var dicep = 9;
+		} else if (dicedamage == "1d10") {
+				var dicep = 5;
+		} else if (dicedamage == "2d10") {
+				var dicep = 11;
+		} else if (dicedamage == "1d12") {
+				var dicep = 6;
+		} else if (dicedamage == "2d12") {
+				var dicep = 13;
+		}	else {
+			dicep = 1;
+		}
 
+	var diceOutput1 = Math.round(dicep*attacknum+modifier*attacknum);
 
-  var table = document.getElementById('dicetable');
-  var oCells = table.rows.item(damageo).cells;
-  var cellVal = oCells.item("1").innerHTML;
-	var cellVal1 = oCells.item("2").innerHTML;
-	var cellVal2 = oCells.item("3").innerHTML;
-	var cellVal3 = oCells.item("4").innerHTML;
-	var cellVal4 = oCells.item("5").innerHTML;
-	var diceo = cellVal+", "+cellVal1+", "+cellVal2+", "+cellVal3+", "+cellVal4;
+	if (diceOutput1 < 0) {
+		var diceOutput = 0;
+	} else {
+		var diceOutput = diceOutput1;
+	}
 
   element = document.createElement("p");
-  element.innerHTML = "Estimated Dice: "+diceo;
+  element.innerHTML = "Average Damage: "+diceOutput;
   document.getElementById("results").innerHTML = element.innerHTML;
 }
