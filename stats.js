@@ -142,7 +142,7 @@ function boss()
 
 	//Write results to area of page
 	element = document.createElement("p");
-	element.innerHTML = "<h3> Stat Block:</h3>"+
+	element.innerHTML = "<h3> Boss Monster(s):</h3>"+
 	"Quantity: 1-2<br>"+
 	typep+
 	"<br>CR: "+cro+
@@ -207,7 +207,8 @@ function minion()
 
 
 	element = document.createElement("p");
-	element.innerHTML = "Quantity: 2-4<br>"+
+	element.innerHTML = "<h3>Minor Enemies</h3>"+
+	"Quantity: 2-4<br>"+
 	typep+
 	"<br>CR: "+cro+
 	"<br>HP: "+mhpo+
