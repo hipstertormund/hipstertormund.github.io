@@ -51,7 +51,7 @@ function boss()
 	} else {
 		var msaveo = "+"+Math.round(saveo-9);
 	}
-	var mdamageo = Math.round(hpo*.5);
+	var mdamageo = Math.round(hpo*.75);
 
 	if (hpo == "") {
 		var diceo = "";
@@ -121,10 +121,8 @@ function boss()
 		var dVal11 = resistd.item(11).innerHTML;
 		var dVal12 = resistd.item(12).innerHTML;
 		var dVal13 = resistd.item(13).innerHTML;
-		var dVal14 = resistd.item(14).innerHTML;
-		var dVal15 = resistd.item(15).innerHTML;
 
-		const resistp2 = [dVal, dVal2, dVal3, dVal4, dVal5, dVal6, dVal7, dVal8, dVal9, dVal10, dVal11, dVal11, dVal12, dVal13, dVal14, dVal15];
+		const resistp2 = [dVal, dVal2, dVal3, dVal4, dVal5, dVal6, dVal7, dVal8, dVal9, dVal10, dVal11, dVal11, dVal12, dVal13];
 		const resistResults2 = [];
 
 		resistp2.forEach(element => {
@@ -133,7 +131,9 @@ function boss()
 			}
 		});
 		const resistResults = resistResults2.join(", ");
-	  var resisto = "<br>Possible Condition/Damage Immunities/Resistances: <br>"+resistResults+"<br>";
+		const shuffled = resistResults2.sort(() => 0.5 - Math.random());
+		let selected = shuffled.slice(0, 3);
+	  var resisto = "<br>Resistances: <br>"+selected+"<br>";
 	} else {
 	  var resisto = "";
 		var mhpo2 = mhpo;
@@ -190,7 +190,7 @@ function minion()
 	var mhpo = Math.round(damageo*.75);
 	var maco = (attacko+7);
 	var msaveo = Math.round(saveo-15);
-	var mdamageo = Math.round(hpo*.5);
+	var mdamageo = Math.round(hpo*.4);
 
 	if (hpo == "") {
 		var diceo = "";
@@ -208,7 +208,7 @@ function minion()
 
 	element = document.createElement("p");
 	element.innerHTML = "<h3>Minor Enemies</h3>"+
-	"Quantity: 2-4<br>"+
+	"Quantity: 2-6<br>"+
 	typep+
 	"<br>CR: "+cro+
 	"<br>HP: "+mhpo+
