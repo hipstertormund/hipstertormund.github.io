@@ -139,11 +139,24 @@ function boss()
 		var mhpo2 = mhpo;
 	}
 
+	var difficulty = document.getElementById("difficulty").value;
+
+	if (difficulty == "easy") {
+		var quantity = "Quantity: 0-1 (consider using minor enemies for easy encounters)<br>";
+	} else if (difficulty == "medium") {
+		var quantity = "Quantity: 1-2<br>";
+	} else if (difficulty == "hard") {
+		var quantity = "Quantity: 2-3<br>";
+	} else if (difficulty == "deadly") {
+		var quantity = "Quantity: 3-4<br>";
+	} else {
+		var quantity = "";
+	}
 
 	//Write results to area of page
 	element = document.createElement("p");
 	element.innerHTML = "<h3> Boss Monster(s):</h3>"+
-	"Quantity: 1-2<br>"+
+	quantity+
 	typep+
 	"<br>CR: "+cro+
 	"<br>HP: "+mhpo2+"<br>"+
@@ -205,10 +218,23 @@ function minion()
 		var diceo = "Dice: "+cellVal+", "+cellVal1+", "+cellVal2+", "+cellVal3+", "+cellVal4;
 	}
 
+	var difficulty = document.getElementById("difficulty").value;
+
+	if (difficulty == "easy") {
+		var quantity = "Quantity: 1-2<br>";
+	} else if (difficulty == "medium") {
+		var quantity = "Quantity: 3-4<br>";
+	} else if (difficulty == "hard") {
+		var quantity = "Quantity: 5-6<br>";
+	} else if (difficulty == "deadly") {
+		var quantity = "Quantity: 6-8<br>";
+	} else {
+		var quantity = "";
+	}
 
 	element = document.createElement("p");
 	element.innerHTML = "<h3>Minor Enemies</h3>"+
-	"Quantity: 2-6<br>"+
+	quantity+
 	typep+
 	"<br>CR: "+cro+
 	"<br>HP: "+mhpo+
