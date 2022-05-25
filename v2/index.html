@@ -1,0 +1,72 @@
+<html>
+<script src="scripts.js">
+</script>
+<link rel="stylesheet" href="mystyle.css">
+
+
+<div class="topbar">
+<h1> Creature Brew </h1>
+</div>
+<div class="row">
+  <div class="column1">
+    <h3>Party Members</h3>
+    <p>Party Members</p>
+<div class="partyinput">
+<div class="partyinput" id="partyinput0">
+    Class:
+  <select onchange="partyVariablesHP()" class="pclass" name="pclass" id="pclass0">
+    <option value="null">-</option>
+    <option value="artificer">Artificer</option>
+    <option value="barbarian">Barbarian</option>
+    <option value="bard">Bard</option>
+    <option value="cleric">Cleric</option>
+    <option value="druid">Druid</option>
+    <option value="fighter">Fighter</option>
+    <option value="monk">Monk</option>
+    <option value="paladin">Paladin</option>
+    <option value="ranger">Ranger</option>
+    <option value="rogue">Rogue</option>
+    <option value="sorcerer">Sorcerer</option>
+    <option value="warlock">Warlock</option>
+    <option value="Wizard">Wizard</option>
+  </select>
+  Level:<input onchange="partyVariablesHP()" type="number" name="level" value="1" min="1" max="20" id="level0">
+  HP:<input onchange="generateHP()" type="number" name="hp" value="6" min="6" id="hp0">
+  AC:<input onchange="partyVariablesAC()" type="number" name="ac" value="10" min="5" max="30" id="ac0">
+  <div class="damage" id="damage0">
+  Damage: <input onchange="partyVariablesDamage()" type="number" name="ndice" value="1" id="ndice0">
+  <select onchange="partyVariablesDamage()" class="ddice" name="ddice" id="ddice0">
+    <option value="null">-</option>
+    <option value="oned4">d4</option>
+    <option value="oned6">d6</option>
+    <option value="oned8">d8</option>
+    <option value="oned10">d10</option>
+    <option value="oned12">d12</option>
+  </select>
+  +<input onchange="partyVariablesDamage()" type="number" name="modifier" value="0" min="0" max="10" id="modifier0">
+  <button onclick="addDice()" type="button" name="button" id="button0">Add dice</button>
+</div>
+</div>
+</div>
+<div class="button" id="btn1">
+<button onclick="duplicate()" name="btn1">Add Member</button>
+<button onclick="generate()" name="btn2">Generate Monster</button>
+</div>
+<p>Encounter Variables</p>
+Rounds: <input onchange="generateDamage()" type="number" class="rounds" name="rounds" id="rounds" min="1" max="20" value="3">
+Area of Effect: <input onchange="aoe()" type="checkbox" id="aoe" name="aoe" value="aoe">
+</div>
+<div class="column2">
+<div class="statblock">
+  <h3>Statblock</h3>
+  <p id="statblock"></p>
+  <p id="mhp">HP: 10</p>
+  <p id='mac'>AC: 12</p>
+  <p id='mtohit'>To Hit: +1</p>
+  <p id='mdamage'>Damage: -</p>
+  <p id='mactions'>Actions: -</p>
+  <p id='maoe'></p>
+</div>
+</div>
+</div>
+</html>

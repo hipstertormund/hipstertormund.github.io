@@ -1,0 +1,57 @@
+/*General Styling*/
+html {
+
+}
+
+{
+        box-sizing: border-box;
+    }
+    /* Set additional styling options for the columns*/
+    .column1 {
+    float: left;
+    word-wrap: break-word;
+    background-color: white;
+    padding: 30px;
+    }
+
+    .column2 {
+      float: left;
+      padding: 30px;
+    }
+
+    .damage {
+      float: right;
+    }
+
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+
+
+/*Styling for top bar*/
+.topbar {
+  font-size: 29px !important;
+  background-color: green;
+  text-align: center;
+  position: relative;
+  top: 30px;
+}
+
+/*Styling for Party Input area*/
+input {
+  width: 40px;
+  position: relative;
+  z-index: 999;
+}
+
+select {
+  position: relative;
+  z-index: 999;
+}
+
+.statblock {
+  position: relative;
+  font-style: italic;
+}
