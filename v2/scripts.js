@@ -56,6 +56,7 @@ function duplicate() {
     ++members;
     }
 
+//Adds additional damage dice to configuration
 function addDice() {
     //Set variables
     var original = document.getElementById('partyinput' + i);
@@ -95,6 +96,28 @@ function addDice() {
     childrenac.remove();
 
 }
+
+//Generates list of Condition Immunities
+function conditions() {
+     if (document.getElementById('conditions').checked) {
+       document.getElementById('conditionsOutput').style.display = 'block';
+       document.getElementById('conditionsTitle').style.display = 'block';
+     } else {
+       document.getElementById('conditionsOutput').style.display = 'none';
+       document.getElementById('conditionsTitle').style.display = 'none';
+     }
+  }
+
+//Generates list of Damage Resistances
+function resistances() {
+     if (document.getElementById('resistances').checked) {
+       document.getElementById('resistancesOutput').style.display = 'block';
+       document.getElementById('resistanceTitle').style.display = 'block';
+     } else {
+         document.getElementById('resistancesOutput').style.display = 'none';
+         document.getElementById('resistanceTitle').style.display = 'none';
+       }
+    }
 
 //Sets AoE Damage
 function aoe() {
@@ -387,4 +410,31 @@ function generateDamage() {
   element2 = document.createElement('p');
   element2.innerHTML = "AC: "+Number(averageTohit+10);
   document.getElementById('mac').innerHTML = element2.innerHTML;
+}
+
+//Add selected Conditions to statblock
+function generateConditions() {
+  var conditions = [];
+  for (var option of document.getElementById('conditionsOutput').options) {
+    if (option.selected) {
+      conditions.push(option.value);
+    }
+  }
+
+  element = document.createElement('p');
+  element.innerHTML = "Condition Immunities<br>"+conditions;
+  document.getElementById('mconditions').innerHTML = element.innerHTML;
+}
+
+//Add selected Resistances to statblock
+function generateResistances() {
+  var resistances = [];
+  for (var option of document.getElementById('resistancesOutput').options) {
+    if (option.selected) {
+      resistances.push(option.value);
+    }
+  }
+  element = document.createElement('p');
+  element.innerHTML = "Resistances<br>"+resistances;
+  document.getElementById('mresistances').innerHTML = element.innerHTML;
 }

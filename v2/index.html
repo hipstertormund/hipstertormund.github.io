@@ -53,6 +53,40 @@
 <p>Encounter Variables</p>
 Rounds: <input onchange="generateDamage()" type="number" class="rounds" name="rounds" id="rounds" min="1" max="20" value="3">
 Area of Effect: <input onchange="aoe()" type="checkbox" id="aoe" name="aoe" value="aoe">
+Condition Immunities: <input onchange="conditions()" type="checkbox" id="conditions" name=conditions>
+Resistances: <input onchange="resistances()" type="checkbox" id="resistances">
+<br>
+<p hidden id='conditionsTitle'>Conditions</p>
+<select hidden multiple onchange="generateConditions()" id="conditionsOutput">
+  <option value="Blinded">Blinded</option>
+  <option value="Charmed">Charmed</option>
+  <option value="Deafened">Deafened</option>
+  <option value="Exhaustion">Exhaustion</option>
+  <option value="Frightened">Frightened</option>
+  <option value="Grappled">Grappled</option>
+  <option value="Paralyzed">Paralyzed</option>
+  <option value="Petrified">Petrified</option>
+  <option value="Poisoned">Poisoned</option>
+  <option value="Prone">Prone</option>
+  <option value="Restrained">Restrained</option>
+  <option value="Stunned">Stunned</option>
+</select>
+<p hidden id='resistanceTitle'>Resistances</p>
+<select hidden id='resistancesOutput' onchange="generateResistances()" multiple>
+  <option value="Acid">Acid</option>
+  <option value="Cold">Cold</option>
+  <option value="Fire">Fire</option>
+  <option value="Force">Force</option>
+  <option value="Lightning">Lightning</option>
+  <option value="Necrotic">Necrotic</option>
+  <option value="Poison">Poison</option>
+  <option value="Psychic">Psychic</option>
+  <option value="Radiant">Radiant</option>
+  <option value="Thunder">Thunder</option>
+  <option value="Bludgeoning">Bludgeoning</option>
+  <option value="Piercing">Piercing</option>
+  <option value="Slashing">Slashing</option>
+</select>
 </div>
 <div class="column2">
 <div class="statblock">
@@ -60,6 +94,8 @@ Area of Effect: <input onchange="aoe()" type="checkbox" id="aoe" name="aoe" valu
   <p id="statblock"></p>
   <p id="mhp">HP: 10</p>
   <p id='mac'>AC: 12</p>
+  <p id='mresistances'></p>
+  <p id='mconditions'></p>
   <p id='mtohit'>To Hit: +1</p>
   <p id='mdamage'>Damage: -</p>
   <p id='mactions'>Actions: -</p>
