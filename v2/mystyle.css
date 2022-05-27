@@ -1,5 +1,8 @@
 /*General Styling*/
-
+body {
+  background-color: 063C52;
+  color: EEEEEE
+}
 
 {
         box-sizing: border-box;
@@ -8,13 +11,17 @@
     .column1 {
     float: left;
     word-wrap: break-word;
-    background-color: white;
+    background-color: 063C52;
     padding: 30px;
+    border-radius: 30px;
     }
 
     .column2 {
       float: left;
       padding: 30px;
+      background-color: F2D2A2;
+      color: black;
+      border-radius: 30px 50px;
     }
 
     .damage {
@@ -31,8 +38,9 @@
 /*Styling for top bar*/
 .topbar {
   font-size: 29px !important;
-  background-color: green;
-  text-align: center;
+/*  background-color: 5B95AA; */
+  color: 5B95AA;
+  text-align: left;
   position: relative;
   top: 30px;
 }
@@ -40,10 +48,15 @@
 .conditionsOutput {
   float: left;
   padding-right: 50px;
+  /*background-color: 5B95AA;*/
+  border-radius: 50px 50px 50px 50px;
 }
 
 .resistancesOutput {
   float: left;
+/*  background-color: 5B95AA;*/
+  border-radius: 10px;
+  border-radius: 50px 50px 50px 50px;
 }
 
 /*Styling for Party Input area*/
@@ -51,15 +64,24 @@ input {
   width: 40px;
   position: relative;
   z-index: 999;
+  background-color: B9D6BC;
+}
+
+button {
+  5B95AA
+  background-color: 5B95AA;
 }
 
 select {
   position: relative;
   z-index: 999;
+  background-color: B9D6BC;
+
 }
 
 .statblock {
   position: relative;
   font-style: italic;
   word-wrap: break-word;
+  font-size: 20px;
 }

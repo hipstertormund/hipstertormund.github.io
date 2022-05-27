@@ -8,7 +8,6 @@ var hitdie12 = ["barbarian"];
 
 var multiattack = ["barbarian", "monk", "paladin", "ranger"];
 
-
 //Dice arrays
 var xd4 = ["d4", "2", "5", "7", "10", "12"];
 var xd6 = ["d6", "3", "7", "10", "14", "17", "21", "24", "28", "31", "35", "38", "42", "45", "49", "52", "56", "59", "63", "66", "70", "73", "77", "80", "84", "87", "90", "94", "97", "100"];
@@ -229,11 +228,21 @@ function generateHP() {
     averagedpr = Math.round(averagehp1*.73);
 
     if (averagedpr > 85) {
+      if (members < 4) {
+      var multiattack = 3+members;
+      var actions = "3 Attacks, "+members+" Legendary Actions<br>Per Attack: "+Math.round(averagedpr/multiattack);
+    } else {
       var multiattack = 6;
       var actions = "3 Attacks, 3 Legendary Actions<br>Per Attack: "+Math.round(averagedpr/multiattack);
+    }
     } else if (averagedpr > 68) {
-      var multiattack = 5;
-      var actions = "3 Attacks, 2 Legendary Actions<br>Per Attack: "+Math.round(averagedpr/multiattack);
+        if (members < 3) {
+          var multiattack = 3+members;
+          var actions = "3 Attacks, "+members+" Legendary Actions<br>Per Attack: "+Math.round(averagedpr/multiattack);
+      } else {
+          var multiattack = 5;
+            var actions = "3 Attacks, 2 Legendary Actions<br>Per Attack: "+Math.round(averagedpr/multiattack);
+          }
     } else if (averagedpr > 51) {
       var multiattack = 4;
       var actions = "3 Attacks, 1 Legendary Actions<br>Per Attack: "+Math.round(averagedpr/multiattack);
@@ -440,4 +449,46 @@ function generateResistances() {
   element = document.createElement('p');
   element.innerHTML = "Resistances<br>"+resistances.join(', ');
   document.getElementById('mresistances').innerHTML = element.innerHTML;
+}
+
+function randomConditions() {
+  const randomConditions = [];
+  const select2 = [];
+  var randomCondit = document.getElementById('randomCondit').value;
+  parent = document.getElementById('conditionsOutput');
+    for (z = 0; z < 24; z++) {
+      if (parent.children[z].type == 'checkbox') {
+        randomConditions.push(parent.children[z].value);
+      }
+    }
+    a = 0;
+    while (a < randomCondit) {
+      selected = randomConditions[Math.floor(Math.random() * randomConditions.length)];
+      select2.push(selected);
+      a++;
+    }
+    element = document.createElement('p');
+    element.innerHTML = "Condition Immunities<br>"+select2.join(', ');
+    document.getElementById('mconditions').innerHTML = element.innerHTML;
+}
+
+function randomResistances() {
+  const randomResistances = [];
+  const select2 = [];
+  var randomResist = document.getElementById('randomResist').value;
+  parent = document.getElementById('resistancesOutput');
+    for (z = 0; z < 22; z++) {
+      if (parent.children[z].type == 'checkbox') {
+        randomResistances.push(parent.children[z].value);
+      }
+    }
+    a = 0;
+    while (a < randomResist) {
+      selected = randomResistances[Math.floor(Math.random() * randomResistances.length)];
+      select2.push(selected);
+      a++;
+    }
+    element = document.createElement('p');
+    element.innerHTML = "Resistances<br>"+select2.join(', ');
+    document.getElementById('mresistances').innerHTML = element.innerHTML;
 }
