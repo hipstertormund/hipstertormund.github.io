@@ -10,11 +10,10 @@
 <div class="row">
   <div class="column1">
     <h3>Party Members</h3>
-    <p>Party Members</p>
 <div class="partyinput">
 <div class="partyinput" id="partyinput0">
     Class:
-  <select onchange="partyVariablesHP()" class="pclass" name="pclass" id="pclass0">
+  <select onchange="partyVariablesHP(this)" class="pclass" name="pclass" id="pclass0">
     <option value="null">-</option>
     <option value="artificer">Artificer</option>
     <option value="barbarian">Barbarian</option>
@@ -30,8 +29,8 @@
     <option value="warlock">Warlock</option>
     <option value="Wizard">Wizard</option>
   </select>
-  Level:<input onchange="partyVariablesHP()" type="number" name="level" value="1" min="1" max="20" id="level0">
-  HP:<input onchange="generateHP()" type="number" name="hp" value="6" min="6" id="hp0">
+  Level:<input onchange="partyVariablesHP(this)" type="number" name="level" value="1" min="1" max="20" id="level0">
+  HP:<input onchange="generateHP(this)" type="number" name="hp" value="6" min="6" id="hp0">
   AC:<input onchange="partyVariablesAC()" type="number" name="ac" value="10" min="5" max="30" id="ac0">
   <div class="damage" id="damage0">
   Damage: <input onchange="partyVariablesDamage()" type="number" name="ndice" value="1" id="ndice0">

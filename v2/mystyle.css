@@ -65,18 +65,17 @@ input {
   position: relative;
   z-index: 999;
   background-color: B9D6BC;
+  border-radius: 1px 3px;
 }
 
 button {
-  5B95AA
   background-color: 5B95AA;
+  border-radius: 5px;
 }
 
 select {
   position: relative;
-  z-index: 999;
   background-color: B9D6BC;
-
 }
 
 .statblock {

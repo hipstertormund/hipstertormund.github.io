@@ -151,12 +151,14 @@ function aoe() {
 }
 
 //Grabs all HP values of party and updates defaults by class
-function partyVariablesHP() {
+function partyVariablesHP(clicked) {
+  var id = clicked.id;
 
   for (let k = 0; k < members; k++) {
     pclass1 = document.getElementById('pclass' + k).value;
     level1 = Number(document.getElementById('level' + k).value);
     hp1 = Number(document.getElementById('hp' + k).value);
+    if (id == 'pclass' + k) {
     if (hitdie8.includes(pclass1)) {
       document.getElementById('hp' + k).value = 8*level1;
     } else if (hitdie10.includes(pclass1)) {
@@ -166,7 +168,30 @@ function partyVariablesHP() {
     } else {
       document.getElementById('hp' + k).value = 6*level1;
     }
+  } else if (id == 'hp' + k) {
+    if (hitdie8.includes(pclass1)) {
+      document.getElementById('hp' + k).value = 8*level1;
+    } else if (hitdie10.includes(pclass1)) {
+      document.getElementById('hp' + k).value = 10*level1;
+    } else if (hitdie12.includes (pclass1)) {
+      document.getElementById('hp' + k).value = 12*level1;
+    } else {
+      document.getElementById('hp' + k).value = 6*level1;
+    }
+  } else if (id == 'level' + k) {
+    if (hitdie8.includes(pclass1)) {
+      document.getElementById('hp' + k).value = 8*level1;
+    } else if (hitdie10.includes(pclass1)) {
+      document.getElementById('hp' + k).value = 10*level1;
+    } else if (hitdie12.includes (pclass1)) {
+      document.getElementById('hp' + k).value = 12*level1;
+    } else {
+      document.getElementById('hp' + k).value = 6*level1;
+    }
+  } else {
+
   }
+}
     generateHP();
   }
 
@@ -217,7 +242,9 @@ function partyVariablesDamage() {
 }
 
 //Generates monsters DPR based on party HP
-function generateHP() {
+function generateHP(clicked) {
+  var id = clicked.id;
+
   totalhp = 0;
   j = 0;
 
