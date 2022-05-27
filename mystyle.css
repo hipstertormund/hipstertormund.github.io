@@ -13,6 +13,7 @@
     display: table;
     clear: both;
     }
+
 .results {
   background-image: url("background.jpg");
   color: black;
@@ -78,4 +79,4 @@ body {
 }
   /*box-shadow: 0 0 25px 0 black;
 
-}*/
+}

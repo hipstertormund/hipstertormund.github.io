@@ -56,37 +56,42 @@ Area of Effect: <input onchange="aoe()" type="checkbox" id="aoe" name="aoe" valu
 Condition Immunities: <input onchange="conditions()" type="checkbox" id="conditions" name=conditions>
 Resistances: <input onchange="resistances()" type="checkbox" id="resistances">
 <br>
-<p hidden id='conditionsTitle'>Conditions</p>
-<select hidden multiple onchange="generateConditions()" id="conditionsOutput">
-  <option value="Blinded">Blinded</option>
-  <option value="Charmed">Charmed</option>
-  <option value="Deafened">Deafened</option>
-  <option value="Exhaustion">Exhaustion</option>
-  <option value="Frightened">Frightened</option>
-  <option value="Grappled">Grappled</option>
-  <option value="Paralyzed">Paralyzed</option>
-  <option value="Petrified">Petrified</option>
-  <option value="Poisoned">Poisoned</option>
-  <option value="Prone">Prone</option>
-  <option value="Restrained">Restrained</option>
-  <option value="Stunned">Stunned</option>
-</select>
-<p hidden id='resistanceTitle'>Resistances</p>
-<select hidden id='resistancesOutput' onchange="generateResistances()" multiple>
-  <option value="Acid">Acid</option>
-  <option value="Cold">Cold</option>
-  <option value="Fire">Fire</option>
-  <option value="Force">Force</option>
-  <option value="Lightning">Lightning</option>
-  <option value="Necrotic">Necrotic</option>
-  <option value="Poison">Poison</option>
-  <option value="Psychic">Psychic</option>
-  <option value="Radiant">Radiant</option>
-  <option value="Thunder">Thunder</option>
-  <option value="Bludgeoning">Bludgeoning</option>
-  <option value="Piercing">Piercing</option>
-  <option value="Slashing">Slashing</option>
-</select>
+
+<div hidden onchange="generateConditions()" id='conditionsOutput' name='conditionsOutput' class='conditionsOutput'>
+  <p style="font-weight: bold;" hidden id='conditionsTitle'>Condition Immunities</p>
+  <input type="checkbox" value="Blinded">Blinded<br>
+  <input type="checkbox" value="Charmed">Charmed<br>
+  <input type="checkbox" value="Deafened">Deafened<br>
+  <input type="checkbox" value="Exhaustion">Exhaustion<br>
+  <input type="checkbox" value="Frightened">Frightened<br>
+  <input type="checkbox" value="Grappled">Grappled<br>
+  <input type="checkbox" value="Paralyzed">Paralyzed<br>
+  <input type="checkbox" value="Petrified">Petrified<br>
+  <input type="checkbox" value="Poisoned">Poisoned<br>
+  <input type="checkbox" value="Prone">Prone<br>
+  <input type="checkbox" value="Restrained">Restrained<br>
+  <input type="checkbox" value="Stunned">Stunned
+</div>
+<div hidden onchange="generateResistances()" id="resistancesOutput" class="resistancesOutput">
+  <p style="font-weight: bold;" hidden id='resistanceTitle'>Resistances</p>
+  <input type="checkbox" value="Acid">Acid
+  <br>
+  <input type="checkbox" value="Cold">Cold
+  <br>
+  <input type="checkbox" value="Fire">Fire
+  <br>
+  <input type="checkbox" value="Force">Force
+  <br>
+  <input type="checkbox" value="Lightning">Lightning
+  <br>
+  <input type="checkbox" value="Necrotic">Necrotic
+  <br>
+  <input type="checkbox" value="Poison">Poison<br>
+  <input type="checkbox" value="Psychic">Psychic<br>
+  <input type="checkbox" value="Radiant">Radiant<br>
+  <input type="checkbox" value="Thunder">Thunder<br>
+  <input type="checkbox" value="Non Magical Bludgeoning, Piercing or Slashing">Non Magical Bludgeoning, Piercing or Slashing<br>
+</div>
 </div>
 <div class="column2">
 <div class="statblock">

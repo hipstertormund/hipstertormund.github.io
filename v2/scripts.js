@@ -404,7 +404,7 @@ function generateDamage() {
   var rounds = document.getElementById('rounds').value;
 
   element = document.createElement('p');
-  element.innerHTML = "HP: "+Math.round(averagedpr*rounds);
+  element.innerHTML = "HP: "+Math.round(totaldamage*rounds);
   document.getElementById('mhp').innerHTML = element.innerHTML;
 
   element2 = document.createElement('p');
@@ -414,27 +414,30 @@ function generateDamage() {
 
 //Add selected Conditions to statblock
 function generateConditions() {
-  var conditions = [];
-  for (var option of document.getElementById('conditionsOutput').options) {
-    if (option.selected) {
-      conditions.push(option.value);
+  const conditions = [];
+  parent = document.getElementById('conditionsOutput');
+    for (z = 0; z < 24; z++) {
+      if (parent.children[z].checked == true) {
+        conditions.push(parent.children[z].value);
+      }
     }
-  }
 
   element = document.createElement('p');
-  element.innerHTML = "Condition Immunities<br>"+conditions;
+  element.innerHTML = "Condition Immunities<br>"+conditions.join(', ');
   document.getElementById('mconditions').innerHTML = element.innerHTML;
 }
 
 //Add selected Resistances to statblock
 function generateResistances() {
-  var resistances = [];
-  for (var option of document.getElementById('resistancesOutput').options) {
-    if (option.selected) {
-      resistances.push(option.value);
+  const resistances = [];
+  parent = document.getElementById('resistancesOutput');
+    for (z = 0; z < 22; z++) {
+      if (parent.children[z].checked == true) {
+        resistances.push(parent.children[z].value);
+        //resistances.join(' ');
+      }
     }
-  }
   element = document.createElement('p');
-  element.innerHTML = "Resistances<br>"+resistances;
+  element.innerHTML = "Resistances<br>"+resistances.join(', ');
   document.getElementById('mresistances').innerHTML = element.innerHTML;
 }

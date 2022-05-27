@@ -1,7 +1,5 @@
 /*General Styling*/
-html {
 
-}
 
 {
         box-sizing: border-box;
@@ -39,6 +37,15 @@ html {
   top: 30px;
 }
 
+.conditionsOutput {
+  float: left;
+  padding-right: 50px;
+}
+
+.resistancesOutput {
+  float: left;
+}
+
 /*Styling for Party Input area*/
 input {
   width: 40px;
@@ -54,4 +61,5 @@ select {
 .statblock {
   position: relative;
   font-style: italic;
+  word-wrap: break-word;
 }
