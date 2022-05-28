@@ -417,7 +417,7 @@ function generateHP(clicked) {
   document.getElementById('mdamage').innerHTML = element.innerHTML;
 
   element2 = document.createElement('p');
-  element2.innerHTML = "Actions: <br>"+actions+"<br>Best Dice: "+bestd4+", "+bestd6+", "+bestd8+", "+bestd10+", "+bestd12;
+  element2.innerHTML = "Actions: <br>"+actions+"<br>Best Dice: "+bestd4+"<br>"+bestd6+"<br>"+bestd8+"<br>"+bestd10+"<br>"+bestd12;
   document.getElementById('mactions').innerHTML = element2.innerHTML;
 
   aoe();
@@ -498,9 +498,24 @@ function generateDamage() {
     }
   var rounds = document.getElementById('rounds').value;
   totaldamage2 = totaldamage + totaldamageAdd;
+  mhp = Math.round(totaldamage2*rounds);
+
+//  z = 1;
+
+//  if (mhp < 13) {
+//    var conindex = xd4[z];
+//    while (mhp > conindex) {
+  //    var conindex = xd4[z];
+    //  z++;
+    //}
+  //} else if (mhp < )
+
+  //var conmodifier = mhp-conindex;
+  //document.getElementById('con').value = conmodifier+10;
+
 
   element = document.createElement('p');
-  element.innerHTML = "HP: "+Math.round(totaldamage2*rounds);
+  element.innerHTML = "HP: "+mhp;
   document.getElementById('mhp').innerHTML = element.innerHTML;
 
   element2 = document.createElement('p');
@@ -582,9 +597,130 @@ function creaturetype() {
   if (creature == "null") {
     creatureOutput = "";
   } else {
-    creatureOutput = "Type: "+creature;
+    creatureOutput = "Type: "+creature+"<br>";
   }
   element = document.createElement('p');
   element.innerHTML = creatureOutput;
   document.getElementById('creatureOutput').innerHTML = element.innerHTML;
+}
+
+function generateSTR() {
+  var str = document.getElementById('str').value;
+    if (str > 10) {
+      var mSTR1 = Math.round(str-10);
+      var mSTR = Math.floor(mSTR1/2);
+      if (mSTR > 0) {
+        var mSTR = "+"+mSTR;
+      }
+
+    } else if (str < 10) {
+        var mSTR1 = str-10;
+        var mSTR = Math.floor(mSTR1/2);
+    } else {
+      mSTR = 0;
+    }
+    element = document.createElement('p');
+    element.innerHTML = mSTR;
+    document.getElementById('strOutput').innerHTML = element.innerHTML;
+
+
+}
+
+function generateDEX() {
+  var dex = document.getElementById('dex').value;
+    if (dex > 10) {
+      var mDEX1 = Math.round(dex-10);
+      var mDEX = Math.floor(mDEX1/2);
+      if (mDEX > 0) {
+        var mDEX = "+"+mDEX;
+      }
+    } else if (dex < 10) {
+        var mDEX1 = dex-10;
+        var mDEX = Math.floor(mDEX1/2);
+    } else {
+      mDEX = 0;
+    }
+    element = document.createElement('p');
+    element.innerHTML = mDEX;
+    document.getElementById('dexOutput').innerHTML = element.innerHTML;
+
+}
+
+function generateCON() {
+  var con = document.getElementById('con').value;
+    if (con > 10) {
+      var mCON1 = Math.round(con-10);
+      var mCON = Math.floor(mCON1/2);
+      if (mCON > 0) {
+        var mCON = "+"+mCON;
+      }
+    } else if (con < 10) {
+        var mCON1 = con-10;
+        var mCON = Math.floor(mCON1/2);
+    } else {
+      mCON = 0;
+    }
+    element = document.createElement('p');
+    element.innerHTML = mCON;
+    document.getElementById('conOutput').innerHTML = element.innerHTML;
+
+}
+
+function generateINT() {
+  var int = document.getElementById('int').value;
+    if (int > 10) {
+      var mINT1 = Math.round(int-10);
+      var mINT = Math.floor(mINT1/2);
+      if (mINT > 0) {
+        var mINT = "+"+mINT;
+      }
+    } else if (int < 10) {
+        var mINT1 = int-10;
+        var mINT = Math.floor(mINT1/2);
+    } else {
+      mINT = 0;
+    }
+    element = document.createElement('p');
+    element.innerHTML = mINT;
+    document.getElementById('intOutput').innerHTML = element.innerHTML;
+}
+
+function generateWIS() {
+  var wis = document.getElementById('wis').value;
+    if (wis > 10) {
+      var mWIS1 = Math.round(wis-10);
+      var mWIS = Math.floor(mWIS1/2);
+      if (mWIS > 0) {
+        var mWIS = "+"+mWIS;
+      }
+
+    } else if (wis < 10) {
+        var mWIS1 = wis-10;
+        var mWIS = Math.floor(mWIS1/2);
+    } else {
+      mWIS = 0;
+    }
+    element = document.createElement('p');
+    element.innerHTML = mWIS;
+    document.getElementById('wisOutput').innerHTML = element.innerHTML;
+}
+
+function generateCHA() {
+  var cha = document.getElementById('cha').value;
+    if (cha > 10) {
+      var mCHA1 = Math.round(cha-10);
+      var mCHA = Math.floor(mCHA1/2);
+      if (mCHA > 0) {
+        var mCHA = "+"+mCHA;
+      }
+
+    } else if (cha < 10) {
+        var mCHA1 = cha-10;
+        var mCHA = Math.floor(mCHA1/2);
+    } else {
+      mCHA = 0;
+    }
+    element = document.createElement('p');
+    element.innerHTML = mCHA;
+    document.getElementById('chaOutput').innerHTML = element.innerHTML;
 }

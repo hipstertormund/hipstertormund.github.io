@@ -104,3 +104,31 @@ select {
   word-wrap: break-word;
   font-size: 20px;
 }
+
+.statblock p {
+  display: inline;
+}
+
+.strOutput {
+  padding-left: 15px;
+}
+
+.dexOutput {
+  padding-left: 70px;
+}
+
+.conOutput {
+  padding-left: 70px;
+}
+
+.intOutput {
+  padding-left: 70px;
+}
+
+.wisOutput {
+  padding-left: 70px;
+}
+
+.chaOutput {
+  padding-left: 70px;
+}

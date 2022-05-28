@@ -161,14 +161,42 @@ Resistances: <input onchange="resistances()" type="checkbox" id="resistances">
 <div class="statblock">
   <h3>Statblock</h3>
   <p id=creatureOutput></p>
+  <br>
   <p id="statblock"></p>
   <p id="mhp">HP: 10</p>
+  <br>
   <p id='mac'>AC: 12</p>
+  <br>
+  <br>
+  <p id='strStats'>
+  STR <input onchange="generateSTR()" type="number" name="str" value="10" min='1' max='30' id='str'></p>
+  <p id='dexStats'>
+  DEX <input onchange="generateDEX()" type="number" name="dex" value="10" min="1" max="30" id='dex'></p>
+  <p id='conStats'>
+  CON <input onchange="generateCON()" type="number" name="con" value="10" min="1" max="30" id='con'></p>
+  <p id='intStats'>
+  INT <input onchange="generateINT()" type="number" name="int" value="10" min="1" max="30" id='int'></p>
+  <p id=wisStats>
+  WIS <input onchange="generateWIS()" type="number" name="wis" value="10" min="1" max="30" id='wis'></p>
+  <p id='chaStats'>
+  CHA <input onchange="generateCHA()" type="number" name="cha" value="10" min="1" max="30" id='cha'></p>
+  <br>
+  <p id='strOutput' class='strOutput'>0</p>
+  <p id='dexOutput' class='dexOutput'>0</p>
+  <p id='conOutput' class='conOutput'>0</p>
+  <p id='intOutput' class='intOutput'>0</p>
+  <p id='wisOutput' class='wisOutput'>0</p>
+  <p id='chaOutput' class='chaOutput'>0</p>
+  <br>
+  <br>
   <p id='mresistances'></p>
   <p id='mconditions'></p>
   <p id='mtohit'>To Hit: +1</p>
+  <br>
   <p id='mdamage'>Damage: -</p>
+  <br>
   <p id='mactions'>Actions: -</p>
+  <br>
   <p id='maoe'></p>
 </div>
 </div>
