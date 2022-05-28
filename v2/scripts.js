@@ -18,6 +18,8 @@ var xd8 = ["d8", "4", "9", "13", "18", "22"];
 var xd10 = ["d10", "5", "11", "16", "22", "27"];
 var xd12 = ["d12", "6", "13", "19", "26", "32"];
 
+var totaldamageAdd = 0;
+
 
 //Adds party member field
 function duplicate() {
@@ -469,7 +471,7 @@ function generateDamage() {
       }
     var damageAdd = Math.round(ndiceAdd*diceAdd);
     var totaldamageAdd1 = damageAdd+modifierAdd;
-    totaldamageAdd = totaldamageAdd1;
+    totaldamageAdd = totaldamageAdd+totaldamageAdd1;
   }
 
   while (j < members) {
