@@ -11,8 +11,46 @@
   <div class="column1">
     <h3>Party Members</h3>
 <div class="partyinput">
+  <div hidden class="partyinput" id="partyinputMaster">
+    <label>Class:</label>
+    <select onchange="partyVariablesHP(this)" class="pclass" name="pclass" id="pclassMASTER">
+      <option value="null">-</option>
+      <option value="artificer">Artificer</option>
+      <option value="barbarian">Barbarian</option>
+      <option value="bard">Bard</option>
+      <option value="cleric">Cleric</option>
+      <option value="druid">Druid</option>
+      <option value="fighter">Fighter</option>
+      <option value="monk">Monk</option>
+      <option value="paladin">Paladin</option>
+      <option value="ranger">Ranger</option>
+      <option value="rogue">Rogue</option>
+      <option value="sorcerer">Sorcerer</option>
+      <option value="warlock">Warlock</option>
+      <option value="Wizard">Wizard</option>
+    </select>
+    <label>Level:</label>
+    <input onchange="partyVariablesHP(this)" type="number" name="level" value="1" min="1" max="20" id="levelMASTER">
+    <label>HP:</label>
+    <input onchange="generateHP(this)" type="number" name="hp" value="6" min="6" id="hpMASTER">
+    <label>AC:</label>
+    <input onchange="partyVariablesAC()" type="number" name="ac" value="10" min="5" max="30" id="acMASTER">
+    <div class="damage" id="damage0">
+    Damage: <input onchange="partyVariablesDamage()" type="number" name="ndice" value="1" id="ndiceMASTER">
+    <select onchange="partyVariablesDamage()" class="ddice" name="ddice" id="ddiceMASTER">
+      <option value="null">-</option>
+      <option value="oned4">d4</option>
+      <option value="oned6">d6</option>
+      <option value="oned8">d8</option>
+      <option value="oned10">d10</option>
+      <option value="oned12">d12</option>
+    </select>
+    +<input onchange="partyVariablesDamage()" type="number" name="modifier" value="0" min="0" max="10" id="modifierMASTER">
+    <button onclick="addDice(this)" type="button" name="button" id='0' class='addDice'>+</button>
+  </div>
+  </div>
 <div class="partyinput" id="partyinput0">
-    Class:
+  <label>Class:</label>
   <select onchange="partyVariablesHP(this)" class="pclass" name="pclass" id="pclass0">
     <option value="null">-</option>
     <option value="artificer">Artificer</option>
@@ -29,9 +67,12 @@
     <option value="warlock">Warlock</option>
     <option value="Wizard">Wizard</option>
   </select>
-  Level:<input onchange="partyVariablesHP(this)" type="number" name="level" value="1" min="1" max="20" id="level0">
-  HP:<input onchange="generateHP(this)" type="number" name="hp" value="6" min="6" id="hp0">
-  AC:<input onchange="partyVariablesAC()" type="number" name="ac" value="10" min="5" max="30" id="ac0">
+  <label>Level:</label>
+  <input onchange="partyVariablesHP(this)" type="number" name="level" value="1" min="1" max="20" id="level0">
+  <label>HP:</label>
+  <input onchange="generateHP(this)" type="number" name="hp" value="6" min="6" id="hp0">
+  <label>AC:</label>
+  <input onchange="partyVariablesAC()" type="number" name="ac" value="10" min="5" max="30" id="ac0">
   <div class="damage" id="damage0">
   Damage: <input onchange="partyVariablesDamage()" type="number" name="ndice" value="1" id="ndice0">
   <select onchange="partyVariablesDamage()" class="ddice" name="ddice" id="ddice0">
@@ -43,13 +84,33 @@
     <option value="oned12">d12</option>
   </select>
   +<input onchange="partyVariablesDamage()" type="number" name="modifier" value="0" min="0" max="10" id="modifier0">
+  <button onclick="addDice(this)" type="button" name="button" id='0' class='addDice'>+</button>
 </div>
 </div>
 </div>
 <div class="button" id="btn1">
 <button onclick="duplicate()" name="btn1">Add Member</button>
 </div>
-<p>Encounter Variables</p>
+<h3>Encounter Variables</h3>
+Creature Type:
+<select onchange="creaturetype()" class="creaturetype" name="creaturetype" id="creaturetype">
+  <option value="null">-</option>
+  <option value="Aberration">Aberration</option>
+  <option value="Beast">Beast</option>
+  <option value="Celestial">Celestial</option>
+  <option value="Construct">Construct</option>
+  <option value="Dragon">Dragon</option>
+  <option value="Elemental">Elemental</option>
+  <option value="Fey">Fey</option>
+  <option value="Fiend">Fiend</option>
+  <option value="Giant">Giant</option>
+  <option value="Humanoid">Humanoid</option>
+  <option value="Monstrosity">Monstrosity</option>
+  <option value="Ooze">Ooze</option>
+  <option value="Plant">Plant</option>
+  <option value="Undead">Undead</option>
+</select>
+<br>
 Rounds: <input onchange="generateDamage()" type="number" class="rounds" name="rounds" id="rounds" min="1" max="20" value="3">
 Area of Effect: <input onchange="aoe()" type="checkbox" id="aoe" name="aoe" value="aoe">
 Condition Immunities: <input onchange="conditions()" type="checkbox" id="conditions" name=conditions>
@@ -99,6 +160,7 @@ Resistances: <input onchange="resistances()" type="checkbox" id="resistances">
 <div class="column2">
 <div class="statblock">
   <h3>Statblock</h3>
+  <p id=creatureOutput></p>
   <p id="statblock"></p>
   <p id="mhp">HP: 10</p>
   <p id='mac'>AC: 12</p>

@@ -1,5 +1,8 @@
 var i = 0;
-var j = 0;
+//var j = 0;
+var id;
+var a = 0;
+var c = 0;
 var members = 1;
 var hitdie6 = ["sorcerer", "wizard"];
 var hitdie8 = ["artificer", "bard", "cleric", "druid", "monk", "rogue", "warlock"];
@@ -19,21 +22,29 @@ var xd12 = ["d12", "6", "13", "19", "26", "32"];
 //Adds party member field
 function duplicate() {
     //Set variables
-    var original = document.getElementById('partyinput' + i);
-    //increment i by 1
-    ++i;
+    var original = document.getElementById('partyinputMaster');
+    var appendage = document.getElementById('partyinput' + i);
+    appendageParent = appendage.parentNode;
+    i++
     //Set clone parameters
     var clone = original.cloneNode(true); // "deep" clone
     clone.id = "partyinput" + i; // there can only be one element with an ID
-    original.parentNode.appendChild(clone);
+    appendage.parentNode.appendChild(clone);
 
     parent = document.getElementById('partyinput' + i);
 
-    childpclass = parent.children[0];
-    childlevel = parent.children[1];
-    childrenhp = parent.children[2];
-    childrenac = parent.children[3];
-    childrendamage = parent.children[4];
+    parent.style.display = 'block';
+
+    pclassLabel = parent.children[0];
+    childpclass = parent.children[1];
+    levelLabel = parent.children[2]
+    childlevel = parent.children[3];
+    hpLabel = parent.children[4];
+    childrenhp = parent.children[5];
+    acLabel = parent.children[6];
+    childrenac = parent.children[7];
+    childrendamage = parent.children[8];
+
 
 
     parentdamage = childrendamage;
@@ -41,7 +52,7 @@ function duplicate() {
     childrenndice = parentdamage.children[0];
     childrenddice = parentdamage.children[1];
     childrenmodifier = parentdamage.children[2];
-    childrenbutton = parentdamage.children[3];
+    childbutton = parentdamage.children[3];
 
     childpclass.id = "pclass" + i;
     childlevel.id = "level" + i;
@@ -51,48 +62,69 @@ function duplicate() {
     childrenndice.id = "ndice" + i;
     childrenddice.id = "ddice" + i;
     childrenmodifier.id = "modifier" + i;
+    childbutton.id = i;
+
 
     ++members;
     }
 
 //Adds additional damage dice to configuration
-function addDice() {
+function addDice(clicked) {
+    id = clicked.id;
+    clickedParent = clicked.parentNode;
     //Set variables
-    var original = document.getElementById('partyinput' + i);
-    //increment i by 1
-    ++i;
+    var original = document.getElementById('partyinputMaster');
+    var appendage = document.getElementById('partyinput' + id);
     //Set clone parameters
     var clone = original.cloneNode(true); // "deep" clone
-    clone.id = "partyinput" + i; // there can only be one element with an ID
-    original.parentNode.appendChild(clone);
+    clone.id = "partyinputx" +c; // there can only be one element with an ID
+    //clone.className = "partyinputx"
+    appendage.append(clone);
 
-    parent = document.getElementById('partyinput' + i);
-    childpclass = parent.children[0];
-    childlevel = parent.children[1];
-    childrenhp = parent.children[2];
-    childrenac = parent.children[3];
-    childrendamage = parent.children[4];
+
+    parent = document.getElementById(clone.id);
+
+    pclassLabel = parent.children[0];
+    childpclass = parent.children[1];
+    levelLabel = parent.children[2]
+    childlevel = parent.children[3];
+    hpLabel = parent.children[4];
+    childrenhp = parent.children[5];
+    acLabel = parent.children[6];
+    childrenac = parent.children[7];
+    childrendamage = parent.children[8];
+
 
     parentdamage = childrendamage;
 
     childrenndice = parentdamage.children[0];
     childrenddice = parentdamage.children[1];
     childrenmodifier = parentdamage.children[2];
-    childrenbutton = parentdamage.children[3];
+    childbutton = parentdamage.children[3];
 
-    childpclass.id = "pclass" + i;
-    childlevel.id = "level" + i;
-    childrenhp.id = "hp" + i;
-    childrenac.id = "ac" + i;
-    childrendamage.id = "damage" + i;
-    childrenndice.id = "ndice" + i;
-    childrenddice.id = "ddice" + i;
-    childrenmodifier.id = "modifier" + i;
+    childpclass.id = "pclassx" + c;
+    childlevel.id = "levelx" + c;
+    childrenhp.id = "hpx" + c;
+    childrenac.id = "acx" + c;
+    childrendamage.id = "damagex" + c;
+    childrenndice.id = "ndicex" + c;
+    childrenddice.id = "ddicex" + c;
+    childrenmodifier.id = "modifierx" + c;
 
-    childpclass.remove();
-    childlevel.remove();
-    childrenhp.remove();
-    childrenac.remove();
+    childrendamage.className = 'damagex';
+
+    clone.style.display = 'block';
+    pclassLabel.style.display = 'none';
+    levelLabel.style.display = 'none';
+    hpLabel.style.display = 'none';
+    acLabel.style.display = 'none';
+    childpclass.style.display = 'none';
+    childlevel.style.display = 'none';
+    childrenhp.style.display = 'none';
+    childrenac.style.display = 'none';
+    childbutton.style.display = 'none';
+
+    c++;
 
 }
 
@@ -206,6 +238,7 @@ function partyVariablesAC() {
 //Grabs all DPR values
 function partyVariablesDamage() {
 
+
     for (let k = 0; k < members; k++) {
       pclass1 = document.getElementById('pclass' + k).value;
       level1 = document.getElementById('level' + k).value;
@@ -239,7 +272,8 @@ function partyVariablesDamage() {
       }
       generateDamage();
   }
-}
+
+  }
 
 //Generates monsters DPR based on party HP
 function generateHP(clicked) {
@@ -411,7 +445,32 @@ function generateDamage() {
   proficiency = 0;
   totaldamage = 0;
   totalTohit = 0;
+  totaldamageAdd = 0;
   j = 0;
+
+  for (k = 0; k < c; k++) {
+    ndiceAdd = Number(document.getElementById('ndicex' + k).value);
+    ddiceAdd = document.getElementById('ddicex' + k).value;
+    modifierAdd = Number(document.getElementById('modifierx' + k).value);
+      if (ddiceAdd == "oned4") {
+        diceAdd = 2;
+      } else if (ddiceAdd == "oned6") {
+        diceAdd = 3;
+      } else if (ddiceAdd == "oned8") {
+        diceAdd = 4;
+      } else if (ddiceAdd == "oned10") {
+        diceAdd = 5;
+      } else if (ddiceAdd == "oned12") {
+        diceAdd = 6;
+      } else if (ddiceAdd == "twod6") {
+        diceAdd = 7;
+      } else {
+        diceAdd = 0;
+      }
+    var damageAdd = Math.round(ndiceAdd*diceAdd);
+    var totaldamageAdd1 = damageAdd+modifierAdd;
+    totaldamageAdd = totaldamageAdd1;
+  }
 
   while (j < members) {
     modifier1 = Number(document.getElementById('modifier' + j).value);
@@ -420,7 +479,6 @@ function generateDamage() {
     damage2 = damage3*attacks;
     totaldamage = totaldamage+damage2;
     averagedpr = totaldamage/members;
-
     if (level1 > 16) {
       proficiency = 6;
     } else if (level1 > 12) {
@@ -434,13 +492,13 @@ function generateDamage() {
     }
     totalTohit = totalTohit + modifier1 + proficiency;
     averageTohit = Math.round(totalTohit/members);
-
-    ++j;
+    j++;
     }
   var rounds = document.getElementById('rounds').value;
+  totaldamage2 = totaldamage + totaldamageAdd;
 
   element = document.createElement('p');
-  element.innerHTML = "HP: "+Math.round(totaldamage*rounds);
+  element.innerHTML = "HP: "+Math.round(totaldamage2*rounds);
   document.getElementById('mhp').innerHTML = element.innerHTML;
 
   element2 = document.createElement('p');
@@ -478,6 +536,7 @@ function generateResistances() {
   document.getElementById('mresistances').innerHTML = element.innerHTML;
 }
 
+//Generate Random Condition Immunities
 function randomConditions() {
   const randomConditions = [];
   const select2 = [];
@@ -488,17 +547,15 @@ function randomConditions() {
         randomConditions.push(parent.children[z].value);
       }
     }
-    a = 0;
-    while (a < randomCondit) {
-      selected = randomConditions[Math.floor(Math.random() * randomConditions.length)];
-      select2.push(selected);
-      a++;
-    }
+    const shuffled = randomConditions.sort(() => 0.5 - Math.random());
+    let selected = shuffled.slice(0, randomCondit);
+
     element = document.createElement('p');
-    element.innerHTML = "Condition Immunities<br>"+select2.join(', ');
+    element.innerHTML = "Condition Immunities<br>"+selected.join(', ');
     document.getElementById('mconditions').innerHTML = element.innerHTML;
 }
 
+//Generate Random Damage Resistances
 function randomResistances() {
   const randomResistances = [];
   const select2 = [];
@@ -509,13 +566,23 @@ function randomResistances() {
         randomResistances.push(parent.children[z].value);
       }
     }
-    a = 0;
-    while (a < randomResist) {
-      selected = randomResistances[Math.floor(Math.random() * randomResistances.length)];
-      select2.push(selected);
-      a++;
-    }
+    const shuffled = randomResistances.sort(() => 0.5 - Math.random());
+    let selected = shuffled.slice(0, randomResist);
+
     element = document.createElement('p');
-    element.innerHTML = "Resistances<br>"+select2.join(', ');
+    element.innerHTML = "Resistances<br>"+selected.join(', ');
     document.getElementById('mresistances').innerHTML = element.innerHTML;
+}
+
+//Select Creature Type for stat block
+function creaturetype() {
+  creature = document.getElementById('creaturetype').value;
+  if (creature == "null") {
+    creatureOutput = "";
+  } else {
+    creatureOutput = "Type: "+creature;
+  }
+  element = document.createElement('p');
+  element.innerHTML = creatureOutput;
+  document.getElementById('creatureOutput').innerHTML = element.innerHTML;
 }
