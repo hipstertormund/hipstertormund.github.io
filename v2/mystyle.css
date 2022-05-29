@@ -105,7 +105,11 @@ select {
   font-size: 20px;
 }
 
-.statblock p {
+.stats p {
+  display: inline;
+}
+
+.statsOutput p {
   display: inline;
 }
 

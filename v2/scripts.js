@@ -20,6 +20,8 @@ var xd12 = ["d12", "6", "13", "19", "26", "32"];
 
 var totaldamageAdd = 0;
 
+var monsterHP = ["0", "85", "100", "115", "130", "145", "160", "175", "190", "205", "220", "235", "250", "265", "280", "295", "310", "325", "340", "355", "400", "445", "490", "535", "580", "625", "670", "715", "760", "805", "850"]
+
 
 //Adds party member field
 function duplicate() {
@@ -279,7 +281,6 @@ function partyVariablesDamage() {
 
 //Generates monsters DPR based on party HP
 function generateHP(clicked) {
-  var id = clicked.id;
 
   totalhp = 0;
   j = 0;
@@ -500,19 +501,24 @@ function generateDamage() {
   totaldamage2 = totaldamage + totaldamageAdd;
   mhp = Math.round(totaldamage2*rounds);
 
-//  z = 1;
+  z=1;
+  mcr = monsterHP[z];
 
-//  if (mhp < 13) {
-//    var conindex = xd4[z];
-//    while (mhp > conindex) {
-  //    var conindex = xd4[z];
-    //  z++;
-    //}
-  //} else if (mhp < )
-
-  //var conmodifier = mhp-conindex;
-  //document.getElementById('con').value = conmodifier+10;
-
+  if (mhp <= 6) {
+    mcr1 = "0";
+  } else if (mhp <= 35) {
+    mcr1 = "1/8";
+  } else if (mhp <= 49) {
+    mcr1 = "1/4"
+  } else if (mhp <= 70) {
+    mcr1 = "1/2";
+  } else {
+    while (mcr <= mhp) {
+      mcr = monsterHP[z];
+      z++;
+      mcr1 = z;
+    }
+  }
 
   element = document.createElement('p');
   element.innerHTML = "HP: "+mhp;
@@ -521,6 +527,10 @@ function generateDamage() {
   element2 = document.createElement('p');
   element2.innerHTML = "AC: "+Number(averageTohit+10);
   document.getElementById('mac').innerHTML = element2.innerHTML;
+
+  element3 = document.createElement('p');
+  element3.innerHTML = "CR: "+mcr1;
+  document.getElementById('mcr').innerHTML = element3.innerHTML;
 }
 
 //Add selected Conditions to statblock
