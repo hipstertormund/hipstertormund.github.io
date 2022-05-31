@@ -92,6 +92,16 @@
 <button onclick="duplicate()" name="btn1" class="addMember">Add Member</button>
 </div>
 <h3>Encounter Variables</h3>
+Creature Size:
+<select onChange="generateSize()" class="creatureSize" name="creatureSize" id="creatureSize">
+  <option value="null">-</option>
+  <option value="Tiny">Tiny</option>
+  <option value="Small">Small</option>
+  <option value="Medium">Medium</option>
+  <option value="Large">Large</option>
+  <option value="Huge">Huge</option>
+  <option value="Gargantuan">Gargantuan</option>
+</select>
 Creature Type:
 <select onchange="creaturetype()" class="creaturetype" name="creaturetype" id="creaturetype">
   <option value="null">-</option>
@@ -160,7 +170,10 @@ Resistances: <input onchange="resistances()" type="checkbox" id="resistances">
 <div class="column2">
 <div class="statblock">
   <h3>Statblock</h3>
+<div class='creaturemisc'>
+  <p id="sizeOutput"></p>
   <p id=creatureOutput></p>
+</div>
   <p id="statblock"></p>
   <p id='mcr'>CR: -</p>
   <p id="mhp">HP: 10</p>
@@ -190,6 +203,7 @@ Resistances: <input onchange="resistances()" type="checkbox" id="resistances">
 </div>
   <p id='mresistances'></p>
   <p id='mconditions'></p>
+  <p id='saveDC'></p>
   <p id='mtohit'>To Hit: +1</p>
   <p id='mdamage'>Damage: -</p>
   <p id='mactions'>Actions: -</p>

@@ -20,7 +20,12 @@ var xd12 = ["d12", "6", "13", "19", "26", "32"];
 
 var totaldamageAdd = 0;
 
-var monsterHP = ["0", "85", "100", "115", "130", "145", "160", "175", "190", "205", "220", "235", "250", "265", "280", "295", "310", "325", "340", "355", "400", "445", "490", "535", "580", "625", "670", "715", "760", "805", "850"]
+var monsterHP = ["0", "85", "100", "115", "130", "145", "160", "175", "190", "205", "220", "235", "250", "265", "280", "295", "310", "325", "340", "355", "400", "445", "490", "535", "580", "625", "670", "715", "760", "805", "850"];
+var monsterAC = ["13", "13", "13", "14", "15", "15", "15", "16", "16", "17", "17", "17", "18", "18", "18", "18", "19", "19", "19", "19", "20", "20", "20", "20", "21", "21", "21", "21", "22", "22", "22", "22", "23"];
+var monsterAB = ["3", "3", "4", "5", "6", "6", "6", "7", "7", "7", "8", "8", "8", "8", "8", "9", "10", "10", "10", "10", "11", "11", "11", "12", "12", "12", "13", "13", "13", "14"]
+var monsterDPR = ["8", "14", "20", "26", "32", "38", "44", "50", "56", "62", "68", "74", "80", "86", "92", "98", "104", "110", "116", "122", "140", "158", "176", "194", "212", "230", "248", "266", "284", "302", "320"];
+
+var monsterDC = ["13", "13", "13", "13", "14", "15", "15", "15", "16", "16", "17", "17", "18", "18", "18", "18", "19", "19", "19", "19", "20", "20", "20", "21", "21", "21", "22", "22", "22", "23"];
 
 
 //Adds party member field
@@ -281,7 +286,6 @@ function partyVariablesDamage() {
 
 //Generates monsters DPR based on party HP
 function generateHP(clicked) {
-
   totalhp = 0;
   j = 0;
 
@@ -289,7 +293,7 @@ function generateHP(clicked) {
     hp2 = Number(document.getElementById('hp' + j).value);
     totalhp = totalhp + hp2;
     averagehp1 = Math.round(totalhp/members);
-    averagedpr = Math.round(averagehp1*.73);
+    averagedpr = Math.round(averagehp1*.5);
 
     if (averagedpr > 85) {
       if (members < 4) {
@@ -436,8 +440,10 @@ function generateAC() {
     ++j;
   }
 
+  mtohit = Number(averageac-8);
+
   element = document.createElement('p');
-  element.innerHTML = "To Hit: +"+Number(averageac-8);
+  element.innerHTML = "To Hit: +"+mtohit;
   document.getElementById('mtohit').innerHTML = element.innerHTML;
 
 
@@ -505,13 +511,13 @@ function generateDamage() {
   mcr = monsterHP[z];
 
   if (mhp <= 6) {
-    mcr1 = "0";
+    mcr1 = 0;
   } else if (mhp <= 35) {
-    mcr1 = "1/8";
+    mcr1 = 0.125;
   } else if (mhp <= 49) {
-    mcr1 = "1/4"
+    mcr1 = .25;
   } else if (mhp <= 70) {
-    mcr1 = "1/2";
+    mcr1 = .5;
   } else {
     while (mcr <= mhp) {
       mcr = monsterHP[z];
@@ -519,18 +525,76 @@ function generateDamage() {
       mcr1 = z;
     }
   }
+  mAC = Number(averageTohit+10);
+
 
   element = document.createElement('p');
   element.innerHTML = "HP: "+mhp;
   document.getElementById('mhp').innerHTML = element.innerHTML;
 
   element2 = document.createElement('p');
-  element2.innerHTML = "AC: "+Number(averageTohit+10);
+  element2.innerHTML = "AC: "+mAC;
   document.getElementById('mac').innerHTML = element2.innerHTML;
 
+  generateCR();
+}
+
+//Generate creature CR by calculating Offensive and Defensive CR
+function generateCR() {
+
+  var hpCR = mcr1;
+
+  z = 0;
+  var acCR = 0;
+    while (mAC > monsterAC[z]) {
+    z++;
+    dcr = monsterAC[z];
+    acCR = z;
+  }
+
+  z = 0;
+  var abCR = 0;
+  while (mtohit > monsterAB[z]) {
+    z++;
+    ocr1 = monsterAB[z];
+    abCR = z;
+  }
+
+  var averagedprCR = averagehp1*.5;
+  z = 0;
+  var dprCR = 0;
+  while (averagedprCR > monsterDPR[z]) {
+    z++;
+    ocr2 = monsterDPR[z];
+    dprCR = z;
+  }
+
+  var totalCR = Number(hpCR)+Number(acCR)+Number(abCR)+Number(dprCR);
+  var totalCR1 = Math.round(totalCR/4);
+
+  var mDC = monsterDC[totalCR1];
+
+  element = document.createElement('p');
+  element.innerHTML = "Save DC: "+mDC;
+  document.getElementById('saveDC').innerHTML = element.innerHTML;
+
   element3 = document.createElement('p');
-  element3.innerHTML = "CR: "+mcr1;
+  element3.innerHTML = "CR: "+totalCR1;
   document.getElementById('mcr').innerHTML = element3.innerHTML;
+}
+
+//Generate Creature size based on input
+function generateSize() {
+
+  if (creatureSize != "null") {
+    var creatureSize = document.getElementById('creatureSize').value;
+  } else {
+    creatureSize = "";
+  }
+
+  element = document.createElement('p');
+  element.innerHTML = creatureSize;
+  document.getElementById('sizeOutput').innerHTML = element.innerHTML;
 }
 
 //Add selected Conditions to statblock
@@ -607,13 +671,14 @@ function creaturetype() {
   if (creature == "null") {
     creatureOutput = "";
   } else {
-    creatureOutput = "Type: "+creature+"<br>";
+    creatureOutput = creature;
   }
   element = document.createElement('p');
   element.innerHTML = creatureOutput;
   document.getElementById('creatureOutput').innerHTML = element.innerHTML;
 }
 
+//Update Strength Modifier by strength score
 function generateSTR() {
   var str = document.getElementById('str').value;
     if (str > 10) {
@@ -636,6 +701,7 @@ function generateSTR() {
 
 }
 
+//Update Dexterity Modifier by dexterity score
 function generateDEX() {
   var dex = document.getElementById('dex').value;
     if (dex > 10) {
@@ -656,6 +722,7 @@ function generateDEX() {
 
 }
 
+//Update Constitution Modifier by con score
 function generateCON() {
   var con = document.getElementById('con').value;
     if (con > 10) {
@@ -676,6 +743,7 @@ function generateCON() {
 
 }
 
+//Update intelligence modifier by int score
 function generateINT() {
   var int = document.getElementById('int').value;
     if (int > 10) {
@@ -695,6 +763,7 @@ function generateINT() {
     document.getElementById('intOutput').innerHTML = element.innerHTML;
 }
 
+//Update wisdom modifier by wis score
 function generateWIS() {
   var wis = document.getElementById('wis').value;
     if (wis > 10) {
@@ -715,6 +784,7 @@ function generateWIS() {
     document.getElementById('wisOutput').innerHTML = element.innerHTML;
 }
 
+//update charisma modifier by charisma score
 function generateCHA() {
   var cha = document.getElementById('cha').value;
     if (cha > 10) {

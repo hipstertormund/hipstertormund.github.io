@@ -113,6 +113,10 @@ select {
   display: inline;
 }
 
+.creaturemisc p {
+  display: inline;
+}
+
 .strOutput {
   padding-left: 15px;
 }
