@@ -574,6 +574,14 @@ function generateCR() {
 
   var mDC = monsterDC[totalCR1];
 
+  var example = totalCR1+4;
+  var exampleCR = "https://www.dndbeyond.com/monsters?filter-cr-max="+example+"&filter-cr-min="+example+"&filter-search=&filter-type=0";
+
+  link = document.createElement('a');
+  link.innerHTML = "Example";
+  document.getElementById('examples').innerHTML = '<a target="_blank" href="'+exampleCR+'">'+link.innerHTML+'</a>';
+
+
   element = document.createElement('p');
   element.innerHTML = "Save DC: "+mDC;
   document.getElementById('saveDC').innerHTML = element.innerHTML;
@@ -586,7 +594,7 @@ function generateCR() {
 //Generate Creature size based on input
 function generateSize() {
 
-  if (creatureSize != "null") {
+if (creatureSize != "null") {
     var creatureSize = document.getElementById('creatureSize').value;
   } else {
     creatureSize = "";
