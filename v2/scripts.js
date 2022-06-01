@@ -390,6 +390,18 @@ function generateHP(clicked) {
       var multiattack = 1;
       var actions = "1 attack<br>Per Attack: "+Math.round(averagedpr/multiattack);
     }
+
+    var difficulty = document.getElementById('difficulty').value;
+    if (difficulty <= 78) {
+      averagedpr = Math.round(averagedpr*.5);
+    } else if (difficulty <= 156) {
+      averagedpr = averagedpr*1;
+    } else if (difficulty <= 234) {
+      averagedpr = Math.round(averagedpr*1.5);
+    } else if (difficulty <= 310) {
+      averagedpr = Math.round(averagedpr*2);
+    }
+
     dprtest = Math.round(averagedpr/multiattack);
 //D4 Calculations
     x = 1;
@@ -583,6 +595,17 @@ function generateDamage() {
     }
   }
   mAC = Number(averageTohit+10);
+
+  var difficulty = document.getElementById('difficulty').value;
+  if (difficulty <= 78) {
+    mhp = Math.round(mhp*.5);
+  } else if (difficulty <= 156) {
+    mhp = mhp*1;
+  } else if (difficulty <= 234) {
+    mhp = Math.round(mhp*1.5);
+  } else if (difficulty <= 310) {
+    mhp = Math.round(mhp*2);
+  }
 
 
   element = document.createElement('p');
@@ -930,16 +953,16 @@ function generateDifficulty() {
 
   if (difficulty <= 78) {
     difficulty = "Easy";
-    document.getElementById('rounds').value = 1;
+    //document.getElementById('rounds').value = 1;
   } else if (difficulty <= 156) {
     difficulty = "Medium";
-    document.getElementById('rounds').value = 3;
+    //document.getElementById('rounds').value = 3;
   } else if (difficulty <= 234) {
     difficulty = "Hard";
-    document.getElementById('rounds').value = 5;
+    //document.getElementById('rounds').value = 5;
   } else if (difficulty <= 310) {
     difficulty = "Deadly";
-    document.getElementById('rounds').value = 8;
+    //document.getElementById('rounds').value = 8;
   }
 
   element = document.createElement('p');
