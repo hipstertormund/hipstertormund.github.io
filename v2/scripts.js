@@ -12,11 +12,12 @@ var hitdie12 = ["barbarian"];
 var multiattack = ["barbarian", "monk", "paladin", "ranger"];
 
 //Dice arrays
-var xd4 = ["d4", "2", "5", "7", "10", "12"];
-var xd6 = ["d6", "3", "7", "10", "14", "17", "21", "24", "28", "31", "35", "38", "42", "45", "49", "52", "56", "59", "63", "66", "70", "73", "77", "80", "84", "87", "90", "94", "97", "100"];
-var xd8 = ["d8", "4", "9", "13", "18", "22"];
-var xd10 = ["d10", "5", "11", "16", "22", "27"];
-var xd12 = ["d12", "6", "13", "19", "26", "32"];
+var xd4 = ["d4", "2", "5", "7", "10", "12", "15", "17", "20", "22", "25", "27", "30", "32", "35", "37", "40", "42", "45", "47", "50", "52", "55", "57", "60", "62", "65", "67", "70", "72"];
+var xd6 = ["d6", "3", "7", "10", "14", "17", "21", "24", "28", "31", "35", "38", "42", "45", "49", "52", "56", "59", "63", "66", "70", "73", "77", "80", "84", "87", "91", "94", "98", "101", "105"];
+var xd8 = ["d8", "4", "9", "13", "18", "22", "27", "31", "36", "40", "45", "49", "54", "58", "63", "67", "72", "76", "81", "85", "90", "94", "99", "103", "108", "112", "117", "121", "126", "130"];
+var xd10 = ["d10", "5", "11", "16", "22", "27", "33", "38", "44", "49", "55", "60", "66", "71", "77", "82", "88", "93", "99", "104", "110", "115", "121", "126", "132", "137", "143", "148", "154", "159"];
+var xd12 = ["d12", "6", "13", "19", "26", "32", "39", "45", "52", "58", "65", "71", "78", "84", "91", "97", "104", "110", "117", "123", "130", "136", "143", "149", "156", "162", "169", "175", "182", "188"];
+var xd20 = [];
 
 var totaldamageAdd = 0;
 
@@ -26,6 +27,18 @@ var monsterAB = ["3", "3", "4", "5", "6", "6", "6", "7", "7", "7", "8", "8", "8"
 var monsterDPR = ["8", "14", "20", "26", "32", "38", "44", "50", "56", "62", "68", "74", "80", "86", "92", "98", "104", "110", "116", "122", "140", "158", "176", "194", "212", "230", "248", "266", "284", "302", "320"];
 
 var monsterDC = ["13", "13", "13", "13", "14", "15", "15", "15", "16", "16", "17", "17", "18", "18", "18", "18", "19", "19", "19", "19", "20", "20", "20", "21", "21", "21", "22", "22", "22", "23"];
+
+var totalCR1 = 0;
+
+var s = 0;
+
+var pclassStorage = {};
+var levelStorage = {};
+var hpStorage = {};
+var acStorage = {};
+var ndiceStorage = {};
+var ddiceStorage = {};
+var modifierStorage = {};
 
 
 //Adds party member field
@@ -235,6 +248,50 @@ function partyVariablesHP(clicked) {
 }
     generateHP();
   }
+
+function partyVariablesHP2() {
+
+    for (let k = 0; k < members; k++) {
+      pclass1 = document.getElementById('pclass' + k).value;
+      level1 = Number(document.getElementById('level' + k).value);
+      hp1 = Number(document.getElementById('hp' + k).value);
+      if (id == 'pclass' + k) {
+      if (hitdie8.includes(pclass1)) {
+        document.getElementById('hp' + k).value = 8*level1;
+      } else if (hitdie10.includes(pclass1)) {
+        document.getElementById('hp' + k).value = 10*level1;
+      } else if (hitdie12.includes (pclass1)) {
+        document.getElementById('hp' + k).value = 12*level1;
+      } else {
+        document.getElementById('hp' + k).value = 6*level1;
+      }
+    } else if (id == 'hp' + k) {
+      if (hitdie8.includes(pclass1)) {
+        document.getElementById('hp' + k).value = 8*level1;
+      } else if (hitdie10.includes(pclass1)) {
+        document.getElementById('hp' + k).value = 10*level1;
+      } else if (hitdie12.includes (pclass1)) {
+        document.getElementById('hp' + k).value = 12*level1;
+      } else {
+        document.getElementById('hp' + k).value = 6*level1;
+      }
+    } else if (id == 'level' + k) {
+      if (hitdie8.includes(pclass1)) {
+        document.getElementById('hp' + k).value = 8*level1;
+      } else if (hitdie10.includes(pclass1)) {
+        document.getElementById('hp' + k).value = 10*level1;
+      } else if (hitdie12.includes (pclass1)) {
+        document.getElementById('hp' + k).value = 12*level1;
+      } else {
+        document.getElementById('hp' + k).value = 6*level1;
+      }
+    } else {
+
+    }
+  }
+      generateHP();
+    }
+
 
 //Grabs all AC values
 function partyVariablesAC() {
@@ -570,7 +627,7 @@ function generateCR() {
   }
 
   var totalCR = Number(hpCR)+Number(acCR)+Number(abCR)+Number(dprCR);
-  var totalCR1 = Math.round(totalCR/4);
+  totalCR1 = Math.round(totalCR/4);
 
   var mDC = monsterDC[totalCR1];
 
@@ -599,6 +656,26 @@ if (creatureSize != "null") {
   } else {
     creatureSize = "";
   }
+
+if (creatureSize == 'Tiny') {
+  mhitdie = totalCR1+xd4[0];
+  var hpaddition = mhp-xd4[totalCR1];
+} else if (creatureSize == 'Small') {
+  mhitdie = totalCR1+xd6[0];
+  var hpaddition = mhp-xd6[totalCR1];
+} else if (creatureSize == 'Medium') {
+  mhitdie = totalCR1+xd8[0];
+  var hpaddition = mhp-xd8[totalCR1];
+} else if (creatureSize == 'Large') {
+  mhitdie = totalCR1+xd10[0];
+  var hpaddition = mhp-xd10[totalCR1];
+} else if (creatureSize == 'Huge') {
+  mhitdie = totalCR1+xd12[0];
+  var hpaddition = mhp-xd12[totalCR1];
+} else {
+  mhitdie = "";
+  var hpaddition = "";
+}
 
   element = document.createElement('p');
   element.innerHTML = creatureSize;
@@ -811,4 +888,89 @@ function generateCHA() {
     element = document.createElement('p');
     element.innerHTML = mCHA;
     document.getElementById('chaOutput').innerHTML = element.innerHTML;
+}
+
+//Adjust monster on difficulty slider
+function generateDifficulty() {
+  var difficulty = document.getElementById('difficulty').value;
+
+  if (difficulty == 1) {
+    difficulty = "Very Easy";
+    document.getElementById('rounds').value = 1;
+  } else if (difficulty == 2) {
+    difficulty = "Easy";
+    document.getElementById('rounds').value = 3;
+  } else if (difficulty == 3) {
+    difficulty = "Medium";
+    document.getElementById('rounds').value = 5;
+  } else if (difficulty == 4) {
+    difficulty = "Hard";
+    document.getElementById('rounds').value = 8;
+  } else if (difficulty == 5) {
+    difficulty = "Deadly";
+    document.getElementById('rounds').value = 10;
+  }
+
+  generateDamage();
+
+}
+
+//Save Data to local Storage
+function saveData() {
+s=0;
+
+while (s < members) {
+
+  pclassStorage[s] = document.getElementById('pclass' +s).value;
+  levelStorage[s] = document.getElementById('level' +s).value;
+  hpStorage[s] = document.getElementById('hp' +s).value;
+  acStorage[s] = document.getElementById('ac' +s).value;
+  ndiceStorage[s] = document.getElementById('ndice' +s).value;
+  ddiceStorage[s] = document.getElementById('ddice' +s).value;
+  modifierStorage[s] = document.getElementById('modifier' +s).value;
+
+
+  localStorage.setItem('membersnumber', members);
+  localStorage.setItem("memberpclass"+s, pclassStorage[s]);
+  localStorage.setItem('memberlevel'+s, levelStorage[s]);
+  localStorage.setItem('memberhp'+s, hpStorage[s]);
+  localStorage.setItem('memberac'+s, acStorage[s]);
+  localStorage.setItem('memberndice'+s, ndiceStorage[s]);
+  localStorage.setItem('memberddice'+s, ddiceStorage[s]);
+  localStorage.setItem('membermodifier'+s, modifierStorage[s]);
+
+  s++;
+}
+}
+
+//Load data from local storage
+function loadData() {
+  var storage = 0;
+if (localStorage.getItem('membersnumber') != null) {
+
+  while (localStorage.getItem('membersnumber') > members) {
+    duplicate();
+  }
+
+  while (s < members) {
+  document.getElementById('pclass'+s).value = localStorage.getItem('memberpclass'+s);
+  document.getElementById('level'+s).value = localStorage.getItem('memberlevel'+s);
+  document.getElementById('hp'+s).value = localStorage.getItem('memberhp'+s);
+  document.getElementById('ac'+s).value = localStorage.getItem('memberac'+s);
+  document.getElementById('ndice'+s).value = localStorage.getItem('memberndice'+s);
+  document.getElementById('ddice'+s).value = localStorage.getItem('memberddice'+s);
+  document.getElementById('modifier'+s).value = localStorage.getItem('membermodifier'+s);
+
+  s++;
+}
+
+partyVariablesHP2();
+partyVariablesAC();
+partyVariablesDamage();
+}
+}
+//Clear Local Storage and reload page
+function resetData() {
+  localStorage.clear();
+  location.reload();
 }

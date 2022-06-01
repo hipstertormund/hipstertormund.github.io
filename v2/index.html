@@ -9,7 +9,8 @@
 </div>
 <div class="row">
   <div class="column1">
-    <h3>Party Members</h3>
+    <h3 >Party Members</h3>
+<body onload="loadData()">
 <div class="partyinput">
   <div hidden class="partyinput" id="partyinputMaster">
     <label>Class:</label>
@@ -88,10 +89,15 @@
 </div>
 </div>
 </div>
-<div class="button" id="btn1">
+<div class="buttons">
 <button onclick="duplicate()" name="btn1" class="addMember">Add Member</button>
+<button onclick='saveData()' name='btn2' class="saveData">Save Party</button>
+<button onclick='resetData()' name='btn3' class='resetData'>Reset</button>
 </div>
 <h3>Encounter Variables</h3>
+Difficulty:
+<input onclick="generateDifficulty()" onchange="generateDifficulty()" data-hover="" type="range" class="slider" id="difficulty" min="1" max="5" value="3">
+<br>
 Creature Size:
 <select onChange="generateSize()" class="creatureSize" name="creatureSize" id="creatureSize">
   <option value="null">-</option>
@@ -121,7 +127,7 @@ Creature Type:
   <option value="Undead">Undead</option>
 </select>
 <br>
-Rounds: <input onchange="generateDamage()" type="number" class="rounds" name="rounds" id="rounds" min="1" max="20" value="3">
+Rounds: <input onchange="generateDamage()" type="number" class="rounds" name="rounds" id="rounds" min="1" max="20" value="5">
 Area of Effect: <input onchange="aoe()" type="checkbox" id="aoe" name="aoe" value="aoe">
 Condition Immunities: <input onchange="conditions()" type="checkbox" id="conditions" name=conditions>
 Resistances: <input onchange="resistances()" type="checkbox" id="resistances">
@@ -214,4 +220,5 @@ Resistances: <input onchange="resistances()" type="checkbox" id="resistances">
 </div>
 </div>
 </div>
+</body>
 </html>

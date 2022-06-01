@@ -39,10 +39,16 @@ body {
       float: right;
     }
 
-    .addMember {
+    .buttons {
       position: relative;
       bottom: 35px;
       left: 45px;
+    }
+
+    .slider {
+      overflow: hidden;
+      width: 50%;
+      color: 5B95AA;
     }
 
     .partyinput {
