@@ -175,8 +175,18 @@ function resistances() {
 
 //Sets AoE Damage
 function aoe() {
+  var difficulty = document.getElementById('difficulty').value;
   if (document.getElementById('aoe').checked) {
     aoedamage = Math.round(averagehp1*.45);
+    if (difficulty <= 78) {
+      aoedamage = Math.round(aoedamage*.5);
+    } else if (difficulty <= 156) {
+      aoedamage = aoedamage*1;
+    } else if (difficulty <= 234) {
+      aoedamage = Math.round(aoedamage*1.5);
+    } else if (difficulty <= 310) {
+      aoedamage = Math.round(aoedamage*2);
+    }
     x = 1;
     index = xd6[x];
     while (aoedamage > index) {
@@ -352,6 +362,17 @@ function generateHP(clicked) {
     averagehp1 = Math.round(totalhp/members);
     averagedpr = Math.round(averagehp1*.5);
 
+    var difficulty = document.getElementById('difficulty').value;
+    if (difficulty <= 78) {
+      averagedpr = Math.round(averagedpr*.5);
+    } else if (difficulty <= 156) {
+      averagedpr = averagedpr*1;
+    } else if (difficulty <= 234) {
+      averagedpr = Math.round(averagedpr*1.5);
+    } else if (difficulty <= 310) {
+      averagedpr = Math.round(averagedpr*2);
+    }
+
     if (averagedpr > 85) {
       if (members < 4) {
       var multiattack = 3+members;
@@ -389,17 +410,6 @@ function generateHP(clicked) {
     } else {
       var multiattack = 1;
       var actions = "1 attack<br>Per Attack: "+Math.round(averagedpr/multiattack);
-    }
-
-    var difficulty = document.getElementById('difficulty').value;
-    if (difficulty <= 78) {
-      averagedpr = Math.round(averagedpr*.5);
-    } else if (difficulty <= 156) {
-      averagedpr = averagedpr*1;
-    } else if (difficulty <= 234) {
-      averagedpr = Math.round(averagedpr*1.5);
-    } else if (difficulty <= 310) {
-      averagedpr = Math.round(averagedpr*2);
     }
 
     dprtest = Math.round(averagedpr/multiattack);
@@ -1027,6 +1037,7 @@ if (localStorage.getItem('membersnumber') != null) {
 partyVariablesHP2();
 partyVariablesAC();
 partyVariablesDamage();
+generateSpeed();
 }
 }
 //Clear Local Storage and reload page
