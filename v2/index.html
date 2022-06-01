@@ -96,7 +96,9 @@
 </div>
 <h3>Encounter Variables</h3>
 Difficulty:
-<input onclick="generateDifficulty()" onchange="generateDifficulty()" data-hover="" type="range" class="slider" id="difficulty" min="1" max="5" value="3">
+<a id='difficultyRating' class="difficultya">Hard</a>
+<br>
+<input onclick="generateDifficulty()" onchange="generateDifficulty()" type="range" class="slider" id="difficulty" min="1" max="5" value="3">
 <br>
 Creature Size:
 <select onChange="generateSize()" class="creatureSize" name="creatureSize" id="creatureSize">
@@ -126,6 +128,8 @@ Creature Type:
   <option value="Plant">Plant</option>
   <option value="Undead">Undead</option>
 </select>
+Speed:
+<input onchange="generateSpeed()" type="number" value="30" id="speed">
 <br>
 Rounds: <input onchange="generateDamage()" type="number" class="rounds" name="rounds" id="rounds" min="1" max="20" value="5">
 Area of Effect: <input onchange="aoe()" type="checkbox" id="aoe" name="aoe" value="aoe">
@@ -180,12 +184,17 @@ Resistances: <input onchange="resistances()" type="checkbox" id="resistances">
   <p id="sizeOutput"></p>
   <p id=creatureOutput></p>
 </div>
+  <p id='creaturespeed'></p>
   <p id="statblock"></p>
 <div class='monstercr'>
   <p id='mcr'>CR: -</p>
   <a id='examples'></a>
 </div>
+<br>
+<div class="monsterHP">
   <p id="mhp">HP: 10</p>
+  <p id='mhitdie'></p>
+</div>
   <p id='mac'>AC: 12</p>
   <div class="stats">
   <p id='strStats'>

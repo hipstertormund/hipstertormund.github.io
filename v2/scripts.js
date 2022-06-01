@@ -17,7 +17,7 @@ var xd6 = ["d6", "3", "7", "10", "14", "17", "21", "24", "28", "31", "35", "38",
 var xd8 = ["d8", "4", "9", "13", "18", "22", "27", "31", "36", "40", "45", "49", "54", "58", "63", "67", "72", "76", "81", "85", "90", "94", "99", "103", "108", "112", "117", "121", "126", "130"];
 var xd10 = ["d10", "5", "11", "16", "22", "27", "33", "38", "44", "49", "55", "60", "66", "71", "77", "82", "88", "93", "99", "104", "110", "115", "121", "126", "132", "137", "143", "148", "154", "159"];
 var xd12 = ["d12", "6", "13", "19", "26", "32", "39", "45", "52", "58", "65", "71", "78", "84", "91", "97", "104", "110", "117", "123", "130", "136", "143", "149", "156", "162", "169", "175", "182", "188"];
-var xd20 = [];
+var xd20 = ["d20", "10", '21', '31', '42', '52', '63', '73', '84', '94', '105', '115', '126', '136', '147', '157', '168', '178', '189', '199', '210', '220', '231', '241', '252', '262', '273', '283', '294', '304', '315'];
 
 var totaldamageAdd = 0;
 
@@ -25,6 +25,7 @@ var monsterHP = ["0", "85", "100", "115", "130", "145", "160", "175", "190", "20
 var monsterAC = ["13", "13", "13", "14", "15", "15", "15", "16", "16", "17", "17", "17", "18", "18", "18", "18", "19", "19", "19", "19", "20", "20", "20", "20", "21", "21", "21", "21", "22", "22", "22", "22", "23"];
 var monsterAB = ["3", "3", "4", "5", "6", "6", "6", "7", "7", "7", "8", "8", "8", "8", "8", "9", "10", "10", "10", "10", "11", "11", "11", "12", "12", "12", "13", "13", "13", "14"]
 var monsterDPR = ["8", "14", "20", "26", "32", "38", "44", "50", "56", "62", "68", "74", "80", "86", "92", "98", "104", "110", "116", "122", "140", "158", "176", "194", "212", "230", "248", "266", "284", "302", "320"];
+var monsterProf = ["2", "2", "2", '2', '2', '3', '3', '3', '3', '4', '4', '4', '4', '5', '5', '5', '5', '6', '6', '6', '6', '7', '7', '7', '7', '8', '8', '8', '8', '9', '9'];
 
 var monsterDC = ["13", "13", "13", "13", "14", "15", "15", "15", "16", "16", "17", "17", "18", "18", "18", "18", "19", "19", "19", "19", "20", "20", "20", "21", "21", "21", "22", "22", "22", "23"];
 
@@ -206,22 +207,22 @@ function aoe() {
 
 //Grabs all HP values of party and updates defaults by class
 function partyVariablesHP(clicked) {
-  var id = clicked.id;
+var id = clicked.id;
 
-  for (let k = 0; k < members; k++) {
-    pclass1 = document.getElementById('pclass' + k).value;
-    level1 = Number(document.getElementById('level' + k).value);
-    hp1 = Number(document.getElementById('hp' + k).value);
-    if (id == 'pclass' + k) {
-    if (hitdie8.includes(pclass1)) {
-      document.getElementById('hp' + k).value = 8*level1;
-    } else if (hitdie10.includes(pclass1)) {
-      document.getElementById('hp' + k).value = 10*level1;
-    } else if (hitdie12.includes (pclass1)) {
-      document.getElementById('hp' + k).value = 12*level1;
-    } else {
-      document.getElementById('hp' + k).value = 6*level1;
-    }
+for (let k = 0; k < members; k++) {
+pclass1 = document.getElementById('pclass' + k).value;
+level1 = Number(document.getElementById('level' + k).value);
+hp1 = Number(document.getElementById('hp' + k).value);
+if (id == 'pclass' + k) {
+  if (hitdie8.includes(pclass1)) {
+    document.getElementById('hp' + k).value = 8*level1;
+  } else if (hitdie10.includes(pclass1)) {
+    document.getElementById('hp' + k).value = 10*level1;
+  } else if (hitdie12.includes (pclass1)) {
+    document.getElementById('hp' + k).value = 12*level1;
+  } else {
+    document.getElementById('hp' + k).value = 6*level1;
+  }
   } else if (id == 'hp' + k) {
     if (hitdie8.includes(pclass1)) {
       document.getElementById('hp' + k).value = 8*level1;
@@ -247,50 +248,49 @@ function partyVariablesHP(clicked) {
   }
 }
     generateHP();
-  }
+}
 
 function partyVariablesHP2() {
 
-    for (let k = 0; k < members; k++) {
-      pclass1 = document.getElementById('pclass' + k).value;
-      level1 = Number(document.getElementById('level' + k).value);
-      hp1 = Number(document.getElementById('hp' + k).value);
-      if (id == 'pclass' + k) {
-      if (hitdie8.includes(pclass1)) {
-        document.getElementById('hp' + k).value = 8*level1;
-      } else if (hitdie10.includes(pclass1)) {
-        document.getElementById('hp' + k).value = 10*level1;
-      } else if (hitdie12.includes (pclass1)) {
-        document.getElementById('hp' + k).value = 12*level1;
-      } else {
-        document.getElementById('hp' + k).value = 6*level1;
-      }
-    } else if (id == 'hp' + k) {
-      if (hitdie8.includes(pclass1)) {
-        document.getElementById('hp' + k).value = 8*level1;
-      } else if (hitdie10.includes(pclass1)) {
-        document.getElementById('hp' + k).value = 10*level1;
-      } else if (hitdie12.includes (pclass1)) {
-        document.getElementById('hp' + k).value = 12*level1;
-      } else {
-        document.getElementById('hp' + k).value = 6*level1;
-      }
-    } else if (id == 'level' + k) {
-      if (hitdie8.includes(pclass1)) {
-        document.getElementById('hp' + k).value = 8*level1;
-      } else if (hitdie10.includes(pclass1)) {
-        document.getElementById('hp' + k).value = 10*level1;
-      } else if (hitdie12.includes (pclass1)) {
-        document.getElementById('hp' + k).value = 12*level1;
-      } else {
-        document.getElementById('hp' + k).value = 6*level1;
-      }
-    } else {
-
-    }
+for (let k = 0; k < members; k++) {
+  pclass1 = document.getElementById('pclass' + k).value;
+  level1 = Number(document.getElementById('level' + k).value);
+  hp1 = Number(document.getElementById('hp' + k).value);
+  if (id == 'pclass' + k) {
+  if (hitdie8.includes(pclass1)) {
+    document.getElementById('hp' + k).value = 8*level1;
+  } else if (hitdie10.includes(pclass1)) {
+    document.getElementById('hp' + k).value = 10*level1;
+  } else if (hitdie12.includes (pclass1)) {
+    document.getElementById('hp' + k).value = 12*level1;
+  } else {
+    document.getElementById('hp' + k).value = 6*level1;
   }
-      generateHP();
-    }
+} else if (id == 'hp' + k) {
+  if (hitdie8.includes(pclass1)) {
+    document.getElementById('hp' + k).value = 8*level1;
+  } else if (hitdie10.includes(pclass1)) {
+    document.getElementById('hp' + k).value = 10*level1;
+  } else if (hitdie12.includes (pclass1)) {
+    document.getElementById('hp' + k).value = 12*level1;
+  } else {
+    document.getElementById('hp' + k).value = 6*level1;
+  }
+} else if (id == 'level' + k) {
+  if (hitdie8.includes(pclass1)) {
+    document.getElementById('hp' + k).value = 8*level1;
+  } else if (hitdie10.includes(pclass1)) {
+    document.getElementById('hp' + k).value = 10*level1;
+  } else if (hitdie12.includes (pclass1)) {
+    document.getElementById('hp' + k).value = 12*level1;
+  } else {
+    document.getElementById('hp' + k).value = 6*level1;
+  }
+} else {
+  }
+}
+generateHP();
+}
 
 
 //Grabs all AC values
@@ -657,25 +657,57 @@ if (creatureSize != "null") {
     creatureSize = "";
   }
 
-if (creatureSize == 'Tiny') {
-  mhitdie = totalCR1+xd4[0];
-  var hpaddition = mhp-xd4[totalCR1];
-} else if (creatureSize == 'Small') {
-  mhitdie = totalCR1+xd6[0];
-  var hpaddition = mhp-xd6[totalCR1];
-} else if (creatureSize == 'Medium') {
-  mhitdie = totalCR1+xd8[0];
-  var hpaddition = mhp-xd8[totalCR1];
-} else if (creatureSize == 'Large') {
-  mhitdie = totalCR1+xd10[0];
-  var hpaddition = mhp-xd10[totalCR1];
-} else if (creatureSize == 'Huge') {
-  mhitdie = totalCR1+xd12[0];
-  var hpaddition = mhp-xd12[totalCR1];
-} else {
-  mhitdie = "";
-  var hpaddition = "";
-}
+  var atkmodifier = mtohit-monsterProf[totalCR1];
+
+  if (creatureSize == 'Tiny') {
+    var mhitdie = xd4[totalCR1];
+    var mdexmod = mAC;
+    var monsterHitdie = "d4";
+    var strmmodifier = Math.floor(atkmodifier*1.5);
+  } else if (creatureSize == 'Small') {
+    var mhitdie = xd6[totalCR1];
+    var mdexmod = mAC-3;
+    var monsterHitdie = "d6";
+    var strmmodifier = Math.floor(3+atkmodifier*1.5);
+  } else if (creatureSize == 'Medium') {
+    var mhitdie = xd8[totalCR1];
+    var mdexmod = mAC-5;
+    var monsterHitdie = "d8";
+    var strmmodifier = Math.floor(5+atkmodifier*1.5);
+  } else if (creatureSize == 'Large') {
+    var mhitdie = xd10[totalCR1];
+    var mdexmod = mAC-7;
+    var monsterHitdie = "d10";
+    var strmmodifier = Math.floor(10+atkmodifier*1.5);
+  } else if (creatureSize == 'Huge') {
+    var mhitdie = xd12[totalCR1];
+    var mdexmod = mAC-12;
+    var monsterHitdie = "d12";
+    var strmmodifier = Math.floor(12+atkmodifier*1.5);
+  } else if (creatureSize == 'Gargantuan') {
+    var mhitdie = xd20[totalCR1];
+    var mdexmod = mAC-14;
+    var monsterHitdie = "d20";
+    var strmmodifier = 15+atkmodifier*2;
+  } else {
+    var mhitdie = 0;
+    var mdexmod = mAC-10;
+    var monsterHitdie = "";
+  }
+
+  document.getElementById('str').value = strmmodifier;
+  generateSTR();
+
+  var conmodifier = Math.round(mhitdie/totalCR1);
+  document.getElementById('con').value = 10+conmodifier*2;
+  generateCON();
+
+  document.getElementById('dex').value = mdexmod;
+  generateDEX();
+
+  element2 = document.createElement('a');
+  element2.innerHTML = "("+totalCR1+monsterHitdie+"+"+mhitdie+")";
+  document.getElementById('mhitdie').innerHTML = element2.innerHTML;
 
   element = document.createElement('p');
   element.innerHTML = creatureSize;
@@ -895,24 +927,30 @@ function generateDifficulty() {
   var difficulty = document.getElementById('difficulty').value;
 
   if (difficulty == 1) {
-    difficulty = "Very Easy";
-    document.getElementById('rounds').value = 1;    
-  } else if (difficulty == 2) {
     difficulty = "Easy";
+    document.getElementById('rounds').value = 1;
+  } else if (difficulty == 2) {
+    difficulty = "Medium";
     document.getElementById('rounds').value = 3;
   } else if (difficulty == 3) {
-    difficulty = "Medium";
+    difficulty = "Hard";
     document.getElementById('rounds').value = 5;
   } else if (difficulty == 4) {
-    difficulty = "Hard";
+    difficulty = "Deadly";
     document.getElementById('rounds').value = 8;
   } else if (difficulty == 5) {
-    difficulty = "Deadly";
+    difficulty = "Very Deadly";
     document.getElementById('rounds').value = 10;
   }
 
-  generateDamage();
+  element = document.createElement('p');
+  element.innerHTML = difficulty;
+  document.getElementById('difficultyRating').innerHTML = element.innerHTML;
 
+  generateDamage();
+  generateHP();
+  generateCR();
+  generateSize();
 }
 
 //Save Data to local Storage
@@ -973,4 +1011,13 @@ partyVariablesDamage();
 function resetData() {
   localStorage.clear();
   location.reload();
+}
+
+function generateSpeed() {
+  var speed = document.getElementById('speed').value;
+
+  element = document.createElement('p');
+  element.innerHTML = speed+" ft.";
+  document.getElementById('creaturespeed').innerHTML = element.innerHTML;
+
 }

@@ -48,7 +48,13 @@ body {
     .slider {
       overflow: hidden;
       width: 50%;
-      color: 5B95AA;
+      background: #5B95AA;
+      cursor: pointer;
+      border-radius: 0;
+    }
+
+    .monsterHP p {
+      display: inline;
     }
 
     .partyinput {
