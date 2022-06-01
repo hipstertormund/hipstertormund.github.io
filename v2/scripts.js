@@ -896,7 +896,7 @@ function generateDifficulty() {
 
   if (difficulty == 1) {
     difficulty = "Very Easy";
-    document.getElementById('rounds').value = 1;
+    document.getElementById('rounds').value = 1;    
   } else if (difficulty == 2) {
     difficulty = "Easy";
     document.getElementById('rounds').value = 3;
