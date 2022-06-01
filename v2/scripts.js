@@ -654,7 +654,7 @@ function generateSize() {
 if (creatureSize != "null") {
     var creatureSize = document.getElementById('creatureSize').value;
   } else {
-    creatureSize = "";
+    var creatureSize = "";
   }
 
   var atkmodifier = mtohit-monsterProf[totalCR1];
@@ -690,6 +690,7 @@ if (creatureSize != "null") {
     var monsterHitdie = "d20";
     var strmmodifier = 15+atkmodifier*2;
   } else {
+    var creatureSize = "";
     var mhitdie = 0;
     var mdexmod = mAC-10;
     var monsterHitdie = "";
@@ -926,21 +927,19 @@ function generateCHA() {
 function generateDifficulty() {
   var difficulty = document.getElementById('difficulty').value;
 
-  if (difficulty == 1) {
+
+  if (difficulty <= 78) {
     difficulty = "Easy";
     document.getElementById('rounds').value = 1;
-  } else if (difficulty == 2) {
+  } else if (difficulty <= 156) {
     difficulty = "Medium";
     document.getElementById('rounds').value = 3;
-  } else if (difficulty == 3) {
+  } else if (difficulty <= 234) {
     difficulty = "Hard";
     document.getElementById('rounds').value = 5;
-  } else if (difficulty == 4) {
+  } else if (difficulty <= 310) {
     difficulty = "Deadly";
     document.getElementById('rounds').value = 8;
-  } else if (difficulty == 5) {
-    difficulty = "Very Deadly";
-    document.getElementById('rounds').value = 10;
   }
 
   element = document.createElement('p');
