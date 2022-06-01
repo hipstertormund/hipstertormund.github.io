@@ -178,13 +178,13 @@ function aoe() {
   var difficulty = document.getElementById('difficulty').value;
   if (document.getElementById('aoe').checked) {
     aoedamage = Math.round(averagehp1*.45);
-    if (difficulty <= 78) {
+    if (difficulty <= 1) {
       aoedamage = Math.round(aoedamage*.5);
-    } else if (difficulty <= 156) {
+    } else if (difficulty <= 2) {
       aoedamage = aoedamage*1;
-    } else if (difficulty <= 234) {
+    } else if (difficulty <= 3) {
       aoedamage = Math.round(aoedamage*1.5);
-    } else if (difficulty <= 310) {
+    } else if (difficulty <= 4) {
       aoedamage = Math.round(aoedamage*2);
     }
     x = 1;
@@ -363,13 +363,13 @@ function generateHP(clicked) {
     averagedpr = Math.round(averagehp1*.5);
 
     var difficulty = document.getElementById('difficulty').value;
-    if (difficulty <= 78) {
+    if (difficulty <= 1) {
       averagedpr = Math.round(averagedpr*.5);
-    } else if (difficulty <= 156) {
+    } else if (difficulty <= 2) {
       averagedpr = averagedpr*1;
-    } else if (difficulty <= 234) {
+    } else if (difficulty <= 3) {
       averagedpr = Math.round(averagedpr*1.5);
-    } else if (difficulty <= 310) {
+    } else if (difficulty <= 4) {
       averagedpr = Math.round(averagedpr*2);
     }
 
@@ -607,13 +607,13 @@ function generateDamage() {
   mAC = Number(averageTohit+10);
 
   var difficulty = document.getElementById('difficulty').value;
-  if (difficulty <= 78) {
+  if (difficulty <= 1) {
     mhp = Math.round(mhp*.5);
-  } else if (difficulty <= 156) {
+  } else if (difficulty <= 2) {
     mhp = mhp*1;
-  } else if (difficulty <= 234) {
+  } else if (difficulty <= 3) {
     mhp = Math.round(mhp*1.5);
-  } else if (difficulty <= 310) {
+  } else if (difficulty <= 4) {
     mhp = Math.round(mhp*2);
   }
 
@@ -727,6 +727,7 @@ if (creatureSize != "null") {
     var mhitdie = 0;
     var mdexmod = mAC-10;
     var monsterHitdie = "";
+    var strmmodifier = 10;
   }
 
   document.getElementById('str').value = strmmodifier;
@@ -960,17 +961,16 @@ function generateCHA() {
 function generateDifficulty() {
   var difficulty = document.getElementById('difficulty').value;
 
-
-  if (difficulty <= 78) {
+  if (difficulty <= 1) {
     difficulty = "Easy";
     //document.getElementById('rounds').value = 1;
-  } else if (difficulty <= 156) {
+  } else if (difficulty <= 2) {
     difficulty = "Medium";
     //document.getElementById('rounds').value = 3;
-  } else if (difficulty <= 234) {
+  } else if (difficulty <= 3) {
     difficulty = "Hard";
     //document.getElementById('rounds').value = 5;
-  } else if (difficulty <= 310) {
+  } else if (difficulty <= 4) {
     difficulty = "Deadly";
     //document.getElementById('rounds').value = 8;
   }

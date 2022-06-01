@@ -98,7 +98,18 @@
 Difficulty:
 <a id='difficultyRating' class="difficultya">Medium</a>
 <br>
-<input onclick="generateDifficulty()" onchange="generateDifficulty()" type="range" class="slider" id="difficulty" min="1" max="310" value="148">
+<div class='ticks'>
+<p class='tick1'>|</p>
+<p class='tick2'>|</p>
+<p class='tick3'>|</p>
+</div>
+<br>
+<input onclick="generateDifficulty()" onchange="generateDifficulty()" type="range" class="slider" id="difficulty" step=".01" min="0" max="4" value="1.5" list='tickmarks'>
+<datalist id='tickmarks'>
+  <option value="1"></option>
+  <option value="2"></option>
+  <option value="3"></option>
+</datalist>
 <br>
 Creature Size:
 <select onChange="generateSize()" class="creatureSize" name="creatureSize" id="creatureSize">

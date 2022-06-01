@@ -45,76 +45,119 @@ body {
       left: 45px;
     }
 
-/*    .slider {
-      overflow: hidden;
-      width: 50%;
-      background: #5B95AA;
-      cursor: pointer;
-      border-radius: 0;
+    .slidecontainer {
+    width: 50%; /* Width of the outside container */
     }
-*/
 
-.slidecontainer {
-width: 50%; /* Width of the outside container */
-}
+    /* The slider itself */
+    .slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    position: relative; bottom: 21px;
+    width: 50%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #5B95AA; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    z-index: 50;
+    border-radius: 25px 25px;
+    }
 
-/* The slider itself */
-.slider {
--webkit-appearance: none;  /* Override default CSS styles */
-appearance: none;
-width: 50%; /* Full-width */
-height: 25px; /* Specified height */
-background: #5B95AA; /* Grey background */
-outline: none; /* Remove outline */
-opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
--webkit-transition: .2s; /* 0.2 seconds transition on hover */
-transition: opacity .2s;
-}
+    /* Mouse-over effects */
+    .slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+    }
 
-/* Mouse-over effects */
-.slider:hover {
-opacity: 1; /* Fully shown on mouse-over */
-}
+    .slides {
+      display: flex;
+      overflow-x: scroll;
+      position: relative;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+    }
 
-.slides {
-  display: flex;
-  overflow-x: scroll;
+    /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+    .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 50px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    border-radius: 25%;
+    background: #B9D6BC; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    }
+
+    .slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    border-radius: 50%;
+    background: #04AA6D; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    }
+
+.slider::-webkit-slider-runnable-track:after {
+  content: "";
   position: relative;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
+  height: 10px;
+  width: 270px;
+  background: rgb(247, 247, 247);
+  top: 0;
+  right: 26px;
+  transform: skew(62deg);
 }
 
-/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-.slider::-webkit-slider-thumb {
--webkit-appearance: none; /* Override default look */
-appearance: none;
-width: 25px; /* Set a specific slider handle width */
-height: 25px; /* Slider handle height */
-background: #B9D6BC; /* Green background */
-cursor: pointer; /* Cursor on hover */
+.ticks {
+  display: inline-block;
+  border: none;
+  position: relative;
+  color: B9D6BC;
+  z-index: 100;
+  opacity: .7;
+  pointer-events: none;
+  transform: scale(1, 2);
 }
 
-.slider::-moz-range-thumb {
-width: 25px; /* Set a specific slider handle width */
-height: 25px; /* Slider handle height */
-background: #04AA6D; /* Green background */
-cursor: pointer; /* Cursor on hover */
+.tick1 {
+  text-align: right;
+  width: 87px;
+  height: 5px;
+  opacity: .7;
+  display: inline-block;
 }
 
+.tick2 {
+  text-align: right;
+  border: none;
+  width: 68px;
+  height: 5px;
+  opacity: .7;
+  display: inline-block;
+}
 
-    .monsterHP p {
-      display: inline;
-    }
+.tick3 {
+  text-align: right;
+  border: none;
+  width: 67px;
+  height: 5px;
+  opacity: .7;
+  display: inline-block;
+}
 
-    .partyinput {
-      padding-bottom: 20px;
-    }
+.monsterHP p {
+  display: inline;
+}
 
-    .row:after {
-    content: "";
-    display: table;
-    clear: both;
-    }
+.partyinput {
+  padding-bottom: 20px;
+}
+
+.row:after {
+content: "";
+display: table;
+clear: both;
+}
 
 /*Styling for top bar*/
 .topbar {
