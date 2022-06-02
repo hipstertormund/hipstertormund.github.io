@@ -176,7 +176,29 @@ function resistances() {
 //Sets AoE Damage
 function aoe() {
   var difficulty = document.getElementById('difficulty').value;
+
+  var savetype = document.getElementById('saveType2').value;
+  var dexSaves = ["Acid", "Fire", "Lightning"];
+  var conSaves = ["Cold", 'Force', 'Necrotic', 'Poison', 'Thunder'];
+  var wisSaves = ['Psychic', 'Radiant'];
+
+  if (dexSaves.includes(savetype)) {
+    var save = " DEX";
+  } else if (conSaves.includes(savetype)) {
+    var save = " CON";
+  } else if (wisSaves.includes(savetype)) {
+    var save = " WIS";
+  } else {
+    var save = "";
+  }
+
   if (document.getElementById('aoe').checked) {
+    var savetype = document.getElementById('saveType');
+    savetype.style.display = 'inline-block';
+
+    var saveDC2 = document.getElementById('saveDC');
+    saveDC2.style.display = 'inline-block';
+
     aoedamage = Math.round(averagehp1*.45);
     if (difficulty <= 1) {
       aoedamage = Math.round(aoedamage*.5);
@@ -203,11 +225,16 @@ function aoe() {
     }
     var aoedice = x+xd6[0];
 
-
     element = document.createElement('p');
     element.innerHTML = "Aoe Damage: "+aoedamage+"<br>Best Dice: "+aoedice;
     document.getElementById('maoe').innerHTML = element.innerHTML;
   } else {
+    var savetype = document.getElementById('saveType');
+    savetype.style.display = 'none';
+
+    var saveDC2 = document.getElementById('saveDC');
+    saveDC2.style.display = 'none';
+
     element = document.createElement('p');
     element.innerHTML = "";
     document.getElementById('maoe').innerHTML = element.innerHTML;
@@ -659,6 +686,21 @@ function generateCR() {
     dprCR = z;
   }
 
+  var savetype = document.getElementById('saveType2').value;
+  var dexSaves = ["Acid", "Fire", "Lightning"];
+  var conSaves = ["Cold", 'Force', 'Necrotic', 'Poison', 'Thunder'];
+  var wisSaves = ['Psychic', 'Radiant'];
+
+  if (dexSaves.includes(savetype)) {
+    var save = " DEX";
+  } else if (conSaves.includes(savetype)) {
+    var save = " CON";
+  } else if (wisSaves.includes(savetype)) {
+    var save = " WIS";
+  } else {
+    var save = "";
+  }
+
   var totalCR = Number(hpCR)+Number(acCR)+Number(abCR)+Number(dprCR);
   totalCR1 = Math.round(totalCR/4);
 
@@ -1052,5 +1094,27 @@ function generateSpeed() {
   element = document.createElement('p');
   element.innerHTML = speed+" ft.";
   document.getElementById('creaturespeed').innerHTML = element.innerHTML;
+
+}
+
+function saveType() {
+  var savetype = document.getElementById('saveType2').value;
+  var dexSaves = ["Acid", "Fire", "Lightning"];
+  var conSaves = ["Cold", 'Force', 'Necrotic', 'Poison', 'Thunder'];
+  var wisSaves = ['Psychic', 'Radiant'];
+
+  if (dexSaves.includes(savetype)) {
+    var save = " DEX";
+  } else if (conSaves.includes(savetype)) {
+    var save = " CON";
+  } else if (wisSaves.includes(savetype)) {
+    var save = " WIS";
+  } else {
+    var save = "";
+  }
+
+  element = document.createElement('p');
+  element.innerHTML = save;
+  document.getElementById('saveType3').innerHTML = element.innerHTML;
 
 }

@@ -54,7 +54,7 @@ body {
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
     position: relative; bottom: 21px;
-    width: 50%; /* Full-width */
+    width: 310px; /* Full-width */
     height: 25px; /* Specified height */
     background: #5B95AA; /* Grey background */
     outline: none; /* Remove outline */
@@ -217,6 +217,10 @@ select {
   display: inline;
 }
 
+.statsOutput {
+  position: relative; bottom: 15px;
+}
+
 .creaturemisc p {
   display: inline;
 }
@@ -226,25 +230,51 @@ select {
 }
 
 .strOutput {
-  padding-left: 15px;
+  text-align: left;
+  position: absolute; left: 10px;
 }
 
 .dexOutput {
-  padding-left: 70px;
+  text-align: left;
+  position: absolute; left: 97px;
 }
 
 .conOutput {
-  padding-left: 70px;
+  text-align: left;
+  position: absolute; left: 185px;
 }
 
 .intOutput {
-  padding-left: 70px;
+  text-align: left;
+  position: absolute; left: 270px;
 }
 
 .wisOutput {
-  padding-left: 70px;
+  text-align: left;
+  position: absolute; left: 355px;
 }
 
 .chaOutput {
-  padding-left: 70px;
+  text-align: left;
+  position: absolute; left: 440px;
+}
+
+.navigation a {
+  font-size: 22px !important;
+  padding: 5px;
+  width: 100%;
+  text-decoration: none;
+  background-color: B9D6BC;
+  color: 063C52;
+  border-radius: 25px;
+}
+
+.saveType p {
+  width: 25%;
+  display: inline;
+  position: relative;
+}
+
+.saves {
+  text-align: left;
 }

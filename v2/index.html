@@ -5,7 +5,7 @@
 
 
 <div class="topbar">
-<h1> Creature Brew </h1>
+<h1>DM's Brew</h1>
 </div>
 <div class="row">
   <div class="column1">
@@ -230,13 +230,33 @@ Resistances: <input onchange="resistances()" type="checkbox" id="resistances">
   <p id='wisOutput' class='wisOutput'>0</p>
   <p id='chaOutput' class='chaOutput'>0</p>
 </div>
+<br>
   <p id='mresistances'></p>
   <p id='mconditions'></p>
-  <p id='saveDC'></p>
   <p id='mtohit'>To Hit: +1</p>
   <p id='mdamage'>Damage: -</p>
   <p id='mactions'>Actions: -</p>
-  <p id='maoe'></p>
+  <p id='maoe'>
+    <div hidden id='saveType'>
+      <select onchange='saveType()' id='saveType2'>
+        <option value="null">-</option>
+        <option value="Acid">Acid</option>
+        <option value="Cold">Cold</option>
+        <option value="Fire">Fire</option>
+        <option value="Force">Force</option>
+        <option value="Lightning">Lightning</option>
+        <option value="Necrotic">Necrotic</option>
+        <option value="Poison">Poison</option>
+        <option value="Psychic">Psychic</option>
+        <option value="Radiant">Radiant</option>
+        <option value="Thunder">Thunder</option>
+      </select>
+    </div>
+  <br>
+<div class='saveType'>
+  <p id='saveDC'></p>
+  <p class='saves' id='saveType3'></p>
+</div>
 </div>
 </div>
 </div>
