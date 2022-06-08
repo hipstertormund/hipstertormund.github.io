@@ -1,0 +1,69 @@
+.topbar {
+  font-size: 29px !important;
+/*  background-color: 5B95AA; */
+  color: 5B95AA;
+  text-align: left;
+  position: relative;
+  top: 30px;
+}
+
+.navigation a {
+  font-size: 22px !important;
+  padding: 5px;
+  width: 100%;
+  text-decoration: none;
+  background-color: B9D6BC;
+  color: 063C52;
+  border-radius: 25px;
+}
+
+.row:after {
+content: "";
+display: table;
+clear: both;
+}
+
+.column1 {
+float: left;
+word-wrap: break-word;
+background-color: 063C52;
+padding: 30px;
+border-radius: 30px;
+}
+
+.column2 {
+  float: left;
+  padding: 30px;
+  background-color: F2D2A2;
+  color: black;
+  border-radius: 30px 50px;
+  font-style: italic;
+}
+
+/*General Styling*/
+body {
+  background-color: 063C52;
+  color: EEEEEE;
+}
+
+input {
+  width: 40px;
+  position: relative;
+  z-index: 999;
+  background-color: B9D6BC;
+  border-radius: 1px 3px;
+}
+
+button {
+  background-color: 5B95AA;
+  border-radius: 5px;
+}
+
+select {
+  position: relative;
+  background-color: B9D6BC;
+}
+
+.attunement p {
+  display: inline;
+}

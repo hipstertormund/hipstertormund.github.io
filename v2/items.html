@@ -1,0 +1,268 @@
+<html>
+
+<script src="js/items.js">
+</script>
+
+<link rel="stylesheet" href="css/items.css">
+
+<div class="topbar">
+  <h1>DM's Brew</h1>
+<div class='navigation'>
+  <a href="index.html">Brew a Monster</a>
+  <a href="items.html">Brew an Item</a>
+  <a href="spells.html">Brew a Spell</a>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+
+<div class="row">
+
+  <div class="column1">
+
+    <div onchange="typeSelect()" class="typeSelect" id='typeSelect'>
+      Item Type:
+      <select class="type" name="type" id='type'>
+        <option value="null">-</option>
+        <option value="Weapon">Weapon</option>
+        <option value="Armor">Armor</option>
+        <option value="Item">Item</option>
+        <option value="Consummable">Consummable</option>
+      </select>
+      <br>
+    </div>
+
+
+    <div hidden onchange='attunementSelect()' class="attunementSelect" id='attunementSelect'>
+      Requires Attunement:
+      Yes <input type="checkbox" name="attunementYes" value="yes" id='attunementYes'>
+      No <input type="checkbox" name="attunementNo" value="no" id='attunementNo'>
+      <br>
+    </div>
+
+    <div hidden onchange='classSelect()' class='pclassSpecific' id='pclassSpecific'>
+      Class Specific?
+      Yes<input type="checkbox" name="yes" value="yes" id='classYes'>
+      No<input type="checkbox" name="no" value="no" id='classNo'>
+      <br>
+    </div>
+
+    <div hidden onchange='classSelect()' class="pclassSelect" id='pclassSelect'>
+      Select Class:
+      <select class="pclass" name="pclass" id='pclass'>
+        <option value="null">-</option>
+        <option value="Artificer">Artificer</option>
+        <option value="Barbarian">Barbarian</option>
+        <option value="Bard">Bard</option>
+        <option value="Cleric">Cleric</option>
+        <option value="Druid">Druid</option>
+        <option value="Fighter">Fighter</option>
+        <option value="Monk">Monk</option>
+        <option value="Paladin">Paladin</option>
+        <option value="Ranger">Ranger</option>
+        <option value="Rogue">Rogue</option>
+        <option value="Sorcerer">Sorcerer</option>
+        <option value="Warlock">Warlock</option>
+        <option value="Wizard">Wizard</option>
+      </select>
+      <br>
+    </div>
+
+    <div hidden class="weaponSelect" id='weaponSelect'>
+      Select Weapon:
+      <select class="weapon" name="weapon" id='weapon'>
+        <option value="null">-</option>
+        <option value="Club">Club</option>
+        <option value="Dagger">Dagger</option>
+        <option value="Greatclub">Greatclub</option>
+        <option value="Handaxe">Handaxe</option>
+        <option value="Javelin">Javelin</option>
+        <option value="Light Hammer">Light Hammer</option>
+        <option value="Mace">Mace</option>
+        <option value="Quarterstaff">Quarterstaff</option>
+        <option value="Sicke">Sickle</option>
+        <option value="Spear">Spear</option>
+        <option value="Light Crossbow">Light Crossbow</option>
+        <option value="Dart">Dart</option>
+        <option value="Shortbow">Shortbow</option>
+        <option value="Sling">Sling</option>
+        <option value="Battleaxe">Battleaxe</option>
+        <option value="Flail">Flail</option>
+        <option value="Glaive">Glaive</option>
+        <option value="Greataxe">Greataxe</option>
+        <option value="Halberd">Halberd</option>
+        <option value="Lance">Lance</option>
+        <option value="Longsword">Longsword</option>
+        <option value="Maul">Maul</option>
+        <option value="Morningstar">Morningstar</option>
+        <option value="Pike">Pike</option>
+        <option value="Rapier">Rapier</option>
+        <option value="Scimitar">Scimitar</option>
+        <option value="Shortsword">Shortsword</option>
+        <option value="Trident">Trident</option>
+        <option value="War Pick">War Pick</option>
+        <option value="Warhammer">Warhammer</option>
+        <option value="Whip">Whip</option>
+        <option value="Blowgun">Blowgun</option>
+        <option value="Hand Crossbow">Hand Crossbow</option>
+        <option value="Heavy Crossbow">Heavy Crossbow</option>
+        <option value="Longbow">Longbow</option>
+        <option value="Net">Net</option>
+        <option value="Arrows">Arrows</option>
+        <option value="Blowgun Needles">Blowgun Needles</option>
+        <option value="Crossbow Bolt">Crossbow Bolt</option>
+        <option value="Sling Bullets">Sling Bullets</option>
+      </select>
+      <br>
+    </div>
+
+    <div hidden class="armorSelect" id='armorSelect'>
+      Select Armor:
+      <select class="armor" name="armor" id='armor'>
+        <option value="null">-</option>
+        <option value="Padded">Padded</option>
+        <option value="Leather">Leather</option>
+        <option value="Studded Leather">Studded Leather</option>
+        <option value="Hide">Hide</option>
+        <option value="Chain Shirt">Chain Shirt</option>
+        <option value="Scale Mail">Scale Mail</option>
+        <option value="Spiked Armor">Spiked Armor</option>
+        <option value="Breastplate">Breastplate</option>
+        <option value="Halfplate">Halfplate</option>
+        <option value="Ring Mail">Ring Mail</option>
+        <option value="Chain Mail">Chain Mail</option>
+        <option value="Splint">Splint</option>
+        <option value="Plate">Plate</option>
+        <option value="Shield">Shield</option>
+      </select>
+      <br>
+    </div>
+
+    <div hidden class="itemSelect" id='itemSelect'>
+      Select Item:
+      <select class="item" name="item" id='item'>
+        <option value="null">-</option>
+        <option value="Ring">Ring</option>
+        <option value="Bracers">Bracers</option>
+        <option value="Cloak">Cloak</option>
+        <option value="Boots">Boots</option>
+        <option value="Arcane Focus">Arcane Focus</option>
+        <option value="Holy Symbol">Holy Symbol</option>
+        <option value="Misc">Misc</option>
+      </select>
+      <br>
+    </div>
+
+    <div hidden class="consummableSelect" id='consummableSelect'>
+      Select Consummable:
+      <select class="consummable" name="consummable">
+        <option value="null">-</option>
+        <option value="Potion">Potion</option>
+        <option value="Oil">Oil</option>
+        <option value="Water">Water</option>
+        <option value="Other">Other</option>
+      </select>
+      <br>
+    </div>
+
+    <div hidden class="damageBonuses" id='damageBonuses'>
+      Damage Bonuses:
+      <input type="number" name="damage" value="damage" id='damage'>
+      <br>
+    </div>
+
+    <div hidden class="addDamagedice" id='addDamagedice'>
+      Additional Damage Dice:
+      <input type="number" name="numberDice" value="numberDice" id='numberDice'>
+      <select class="damageDice" name="damageDice" id='damageDice'>
+        <option value="null">-</option>
+        <option value="d4">d4</option>
+        <option value="d6">d6</option>
+        <option value="d8">d8</option>
+        <option value="d10">d10</option>
+        <option value="d12">d12</option>
+      </select>
+      <br>
+      Damage Type:
+      <select class="damageType" name="damageType" id='damageType'>
+        <option value="null">-</option>
+        <option value="Acid">Acid</option>
+        <option value="Cold">Cold</option>
+        <option value="Fire">Fire</option>
+        <option value="Force">Force</option>
+        <option value="Lightning">Lightning</option>
+        <option value="Necrotic">Necrotic</option>
+        <option value="Poison">Poison</option>
+        <option value="Psychic">Psychic</option>
+        <option value="Radiant">Radiant</option>
+        <option value="Thunder">Thunder</option>
+        <option value="Bludgeoning">Bludgeoning</option>
+        <option value="Piercing">Piercing</option>
+        <option value="Slashing">Slashing</option>
+      </select>
+      <br>
+    </div>
+
+    <div hidden class="acBonuses" id='acBonuses'>
+      AC Bonuses:
+      <input type="number" name="ac" value="ac" id='ac'>
+      <br>
+    </div>
+
+    <div hidden class="skillBonuses" id='skillBonuses'>
+      Skills:
+      <select class="skills" name="skills" id='skills'>
+        <option value="null">-</option>
+        <option value="Acrobatics">Acrobatics</option>
+        <option value="Animal Handling">Animal Handling</option>
+        <option value="Arcana">Arcana</option>
+        <option value="Athletics">Athletics</option>
+        <option value="Deception">Deception</option>
+        <option value="History">History</option>
+        <option value="Insight">Insight</option>
+        <option value="Intimidation">Intimidation</option>
+        <option value="Investigation">Investigation</option>
+        <option value="Medicine">Medicine</option>
+        <option value="Nature">Nature</option>
+        <option value="Perception">Perception</option>
+        <option value="Performance">Performance</option>
+        <option value="Persuasion">Persuasion</option>
+        <option value="Religion">Religion</option>
+        <option value="Sleight of Hand">Sleight of Hand</option>
+        <option value="Stealth">Stealth</option>
+        <option value="Survival">Survival</option>
+      </select>
+      <br>
+      Flat Bonus:
+      <input type="number" name="skillBonus" value="0" id='skillBonus'>
+      <br>
+      Advantage/Disadvantage:
+      <select class="advdis" name="advdis" id='advdis'>
+        <option value="null">-</option>
+        <option value="Advantage">Advantage</option>
+        <option value="Disadvantage">Disadvantage</option>
+      </select>
+      <br>
+      Proficiency/Expertise:
+      <select class="profbonus" name="profbonus" id='profbonus'>
+        <option value="null">-</option>
+        <option value="Proficient">Proficient</option>
+        <option value="Expertise">Expertise</option>
+      </select>
+      <br>
+    </div>
+  </div>
+  <div hidden class="column2" id='column2'>
+
+    <h3 id='itemType'></h3>
+    <div class="attunement">
+      <p id='attunementStatus'></p>
+      <p id='attunementClass'></p>
+    </div>
+
+
+  </div>
+</div>
+</html>

@@ -1,1183 +1,325 @@
 <html>
-<script src="stats.js">
 
+<script src="js/creature.js">
 </script>
 
-<div class="topnav">
-	<a class="active" href="#home">Stats</a>
-	<a href="dice.html">Dice</a>
-	<a href="resistances.html">Resistances</a>
-	<h1>Stat Block Generator</h1>
+<link rel="stylesheet" href="css/creature.css">
+
+
+<div class="topbar">
+  <h1>DM's Brew</h1>
 </div>
-<p>This calculator will generate rough HP and damage for homebrew creatures based on your party composition and damage.</p>
-<link rel="stylesheet" href="mystyle.css">
-<div class="row";>
-	<div class="column";>
-<h3>Party Members</h3>
-<body>
-<div class="party";>
-<label for="party">Number of Members:</label><br>
-<input type="number" id="party" name="party" min="1" max="10" value="3">
-<br>
-<label for="level">Level: </label><br>
-<input type="number" id="level" name="level" min="1" max="20" value="1">
-<br>
-<label for="hp">Average HP: </label><br>
-<input type="number" id="hp" name="hp" min="6" max="200" value="10">
-<br>
-<label for="ac">Average AC: </label><br>
-<input type="number" id="ac" name="ac" min="5" max="30" value="10">
-<br>
-<label for="attack">Average Attack Bonus: </label><br>
-<input type="number" id="attack" name="attack" min="0" max="19" value="3">
-<br>
-<label for="damage">Average DPR (per player): </label>
-<span class="hovertext" data-hover="Damage per round, per player. Example: The fighter does 2 attacks for 10 damage each = 20 DPR">
-	 ?
-</span><br>
-<input type="number" id="damage" name="damage" min="1" max="100" value="10">
-<br>
-<label for="save">Average Save DC: </label><br>
-<input type="number" id="save" name="save" min="10" max="22" value="10">
-<br>
+
+<div class='navigation'>
+  <a href="index.html">Brew a Monster</a>
+</div>
+
+<div class="row">
+
+  <div class="column1">
+    <h3>Party Members</h3>
+    <body onload="loadData()">
+
+      <div class="partyinput">
+        <div hidden class="partyinput" id="partyinputMaster">
+
+        <label>Class:</label>
+        <select onchange="partyVariablesHP(this)" class="pclass" name="pclass" id="pclassMASTER">
+          <option value="null">-</option>
+          <option value="artificer">Artificer</option>
+          <option value="barbarian">Barbarian</option>
+          <option value="bard">Bard</option>
+          <option value="cleric">Cleric</option>
+          <option value="druid">Druid</option>
+          <option value="fighter">Fighter</option>
+          <option value="monk">Monk</option>
+          <option value="paladin">Paladin</option>
+          <option value="ranger">Ranger</option>
+          <option value="rogue">Rogue</option>
+          <option value="sorcerer">Sorcerer</option>
+          <option value="warlock">Warlock</option>
+          <option value="Wizard">Wizard</option>
+        </select>
+
+        <label>Level:</label>
+        <input onchange="partyVariablesHP(this)" type="number" name="level" value="1" min="1" max="20" id="levelMASTER">
+        <label>HP:</label>
+        <input onchange="generateHP(this)" type="number" name="hp" value="6" min="6" id="hpMASTER">
+        <label>AC:</label>
+        <input onchange="partyVariablesAC()" type="number" name="ac" value="10" min="5" max="30" id="acMASTER">
+        <div class="damage" id="damage0">
+          Damage: <input onchange="partyVariablesDamage()" type="number" name="ndice" value="1" id="ndiceMASTER">
+          <select onchange="partyVariablesDamage()" class="ddice" name="ddice" id="ddiceMASTER">
+            <option value="null">-</option>
+            <option value="oned4">d4</option>
+            <option value="oned6">d6</option>
+            <option value="oned8">d8</option>
+            <option value="oned10">d10</option>
+            <option value="oned12">d12</option>
+          </select>
+
+      +<input onchange="partyVariablesDamage()" type="number" name="modifier" value="0" min="0" max="10" id="modifierMASTER">
+      <button onclick="addDice(this)" type="button" name="button" id='0' class='addDice'>+</button>
+    </div>
+
+  </div>
+      <div class="partyinput" id="partyinput0">
+        <label>Class:</label>
+        <select onchange="partyVariablesHP(this)" class="pclass" name="pclass" id="pclass0">
+          <option value="null">-</option>
+          <option value="artificer">Artificer</option>
+          <option value="barbarian">Barbarian</option>
+          <option value="bard">Bard</option>
+          <option value="cleric">Cleric</option>
+          <option value="druid">Druid</option>
+          <option value="fighter">Fighter</option>
+          <option value="monk">Monk</option>
+          <option value="paladin">Paladin</option>
+          <option value="ranger">Ranger</option>
+          <option value="rogue">Rogue</option>
+          <option value="sorcerer">Sorcerer</option>
+          <option value="warlock">Warlock</option>
+          <option value="Wizard">Wizard</option>
+        </select>
+
+    <label>Level:</label>
+    <input onchange="partyVariablesHP(this)" type="number" name="level" value="1" min="1" max="20" id="level0">
+
+    <label>HP:</label>
+    <input onchange="generateHP(this)" type="number" name="hp" value="6" min="6" id="hp0">
+
+    <label>AC:</label>
+    <input onchange="partyVariablesAC()" type="number" name="ac" value="10" min="5" max="30" id="ac0">
+
+    <div class="damage" id="damage0">
+    Damage: <input onchange="partyVariablesDamage()" type="number" name="ndice" value="1" id="ndice0">
+
+    <select onchange="partyVariablesDamage()" class="ddice" name="ddice" id="ddice0">
+      <option value="null">-</option>
+      <option value="oned4">d4</option>
+      <option value="oned6">d6</option>
+      <option value="oned8">d8</option>
+      <option value="oned10">d10</option>
+      <option value="oned12">d12</option>
+    </select>
+
+    +<input onchange="partyVariablesDamage()" type="number" name="modifier" value="0" min="0" max="10" id="modifier0">
+    <button onclick="addDice(this)" type="button" name="button" id='0' class='addDice'>+</button>
+  </div>
+
+</div>
+
+</div>
+
+<div class="buttons">
+<button onclick="duplicate()" name="btn1" class="addMember">Add Member</button>
+
+<button onclick='saveData()' name='btn2' class="saveData">Save Party</button>
+
+<button onclick='resetData()' name='btn3' class='resetData'>Reset</button>
+</div>
+
 <h3>Encounter Variables</h3>
-<label for="combat">Rounds of Combat: </label><br>
-<input type="number" id="combat" name="combat" min="1" max="20" value="1">
+
+Difficulty:
+<a id='difficultyRating' class="difficultya">Medium</a>
 <br>
-<label for="type">Creature Type: </label><br>
-<select name="type" id="type">
-	<option value="Null">-</option>
-	<option value="Aberration">Aberration</option>
-	<option value="Beast">Beast</option>
-	<option value="Celestial">Celestial</option>
-	<option vlaue="Construct">Construct</option>
-	<option value="Dragon">Dragon</option>
-	<option value="Elemental">Elemental</option>
-	<option value="Fey">Fey</option>
-	<option value="Fiend">Fiend</option>
-	<option value="Giant">Giant</option>
-	<option value="Humaoid">Humanoid</option>
-	<option value="Monstrosity">Monstrosity</option>
-	<option value="Ooze">Ooze</option>
-	<option value="Plant">Plant</option>
-	<option value="Undead">Undead</option>
+
+<div class='ticks'>
+<p class='tick1'>|</p>
+<p class='tick2'>|</p>
+<p class='tick3'>|</p>
+</div>
+<br>
+
+<input onclick="generateDifficulty()" onchange="generateDifficulty()" type="range" class="slider" id="difficulty" step=".01" min="0" max="4" value="1.5" list='tickmarks'>
+<datalist id='tickmarks'>
+  <option value="1"></option>
+  <option value="2"></option>
+  <option value="3"></option>
+</datalist>
+<br>
+
+Creature Size:
+<select onChange="generateSize()" class="creatureSize" name="creatureSize" id="creatureSize">
+  <option value="null">-</option>
+  <option value="Tiny">Tiny</option>
+  <option value="Small">Small</option>
+  <option value="Medium">Medium</option>
+  <option value="Large">Large</option>
+  <option value="Huge">Huge</option>
+  <option value="Gargantuan">Gargantuan</option>
 </select>
-<br>
-<label for="difficulty">Difficulty: </label><br>
-<select name="difficulty" id="difficulty">
-	<option value="null">-</option>
-	<option value="easy">Easy</option>
-	<option value="medium">Medium</option>
-	<option value="hard">Hard</option>
-	<option value="deadly">Deadly</option>
+
+Creature Type:
+<select onchange="creaturetype()" class="creaturetype" name="creaturetype" id="creaturetype">
+  <option value="null">-</option>
+  <option value="Aberration">Aberration</option>
+  <option value="Beast">Beast</option>
+  <option value="Celestial">Celestial</option>
+  <option value="Construct">Construct</option>
+  <option value="Dragon">Dragon</option>
+  <option value="Elemental">Elemental</option>
+  <option value="Fey">Fey</option>
+  <option value="Fiend">Fiend</option>
+  <option value="Giant">Giant</option>
+  <option value="Humanoid">Humanoid</option>
+  <option value="Monstrosity">Monstrosity</option>
+  <option value="Ooze">Ooze</option>
+  <option value="Plant">Plant</option>
+  <option value="Undead">Undead</option>
 </select>
+
+Speed:
+<input onchange="generateSpeed()" type="number" value="30" id="speed">
 <br>
-<label for="aoe">Include Area of Effect Ability</label>
-<input type="checkbox" id="aoe" name="aoe" value="aoe">
+
+Rounds: <input onchange="generateDamage()" type="number" class="rounds" name="rounds" id="rounds" min="1" max="20" value="3">
+
+Area of Effect: <input onchange="aoe()" type="checkbox" id="aoe" name="aoe" value="aoe">
+
+Condition Immunities: <input onchange="conditions()" type="checkbox" id="conditions" name=conditions>
+
+Resistances: <input onchange="resistances()" type="checkbox" id="resistances">
 <br>
-<label for="resist">Include Resistances</label>
-<input type="checkbox" id="resist" name="resist" value="resist">
+
+<div hidden onchange="generateConditions()" id='conditionsOutput' name='conditionsOutput' class='conditionsOutput'>
+  <p style="font-weight: bold;" hidden id='conditionsTitle'>Condition Immunities</p>
+  <input type="checkbox" value="Blinded">Blinded<br>
+  <input type="checkbox" value="Charmed">Charmed<br>
+  <input type="checkbox" value="Deafened">Deafened<br>
+  <input type="checkbox" value="Exhaustion">Exhaustion<br>
+  <input type="checkbox" value="Frightened">Frightened<br>
+  <input type="checkbox" value="Grappled">Grappled<br>
+  <input type="checkbox" value="Paralyzed">Paralyzed<br>
+  <input type="checkbox" value="Petrified">Petrified<br>
+  <input type="checkbox" value="Poisoned">Poisoned<br>
+  <input type="checkbox" value="Prone">Prone<br>
+  <input type="checkbox" value="Restrained">Restrained<br>
+  <input type="checkbox" value="Stunned">Stunned<br>
+  <button type="button" onclick="randomConditions()" name="btn3">Randomize</button><br>
+  Number of Condition Immunities:<input type="number" value="3" min="1" max="12" id='randomCondit'>
+</div>
+
+<div hidden onchange="generateResistances()" id="resistancesOutput" class="resistancesOutput">
+  <p style="font-weight: bold;" hidden id='resistanceTitle'>Resistances</p>
+  <input type="checkbox" value="Acid">Acid
+  <br>
+  <input type="checkbox" value="Cold">Cold
+  <br>
+  <input type="checkbox" value="Fire">Fire
+  <br>
+  <input type="checkbox" value="Force">Force
+  <br>
+  <input type="checkbox" value="Lightning">Lightning
+  <br>
+  <input type="checkbox" value="Necrotic">Necrotic
+  <br>
+  <input type="checkbox" value="Poison">Poison<br>
+  <input type="checkbox" value="Psychic">Psychic<br>
+  <input type="checkbox" value="Radiant">Radiant<br>
+  <input type="checkbox" value="Thunder">Thunder<br>
+  <input type="checkbox" value="Non Magical Bludgeoning, Piercing or Slashing">Non Magical Bludgeoning, Piercing or Slashing<br>
+  <button type="button" onclick="randomResistances()" name="btn4">Randomize</button><br>
+  Number of Resistances:<input type="number" value="3" min="1" max="11" id='randomResist'>
+</div>
+</div>
+
+<div class="column2">
+
+<div class="statblock">
+  <h3>Statblock</h3>
+
+<div class='creaturemisc'>
+
+  <p id="sizeOutput"></p>
+
+  <p id=creatureOutput></p>
+</div>
+
+  <p id='creaturespeed'></p>
+
+  <p id="statblock"></p>
+
+<div class='monstercr'>
+
+  <p id='mcr'>CR: -</p>
+
+  <a id='examples'></a>
+</div>
 <br>
-	<button onclick="boss()" id = "btn1">Boss Monster</button>
-	<button onclick="minion()" id = "btn2">Minor Monster</button>
+
+<div class="monsterHP">
+  <p id="mhp">HP: 10</p>
+  <p id='mhitdie'></p>
+</div>
+  <p id='mac'>AC: 12</p>
+
+  <div class="stats">
+  <p id='strStats'>
+  STR <input onchange="generateSTR()" type="number" name="str" value="10" min='1' max='30' id='str'></p>
+  <p id='dexStats'>
+  DEX <input onchange="generateDEX()" type="number" name="dex" value="10" min="1" max="30" id='dex'></p>
+  <p id='conStats'>
+  CON <input onchange="generateCON()" type="number" name="con" value="10" min="1" max="30" id='con'></p>
+  <p id='intStats'>
+  INT <input onchange="generateINT()" type="number" name="int" value="10" min="1" max="30" id='int'></p>
+  <p id=wisStats>
+  WIS <input onchange="generateWIS()" type="number" name="wis" value="10" min="1" max="30" id='wis'></p>
+  <p id='chaStats'>
+  CHA <input onchange="generateCHA()" type="number" name="cha" value="10" min="1" max="30" id='cha'></p>
+  <br>
+</div>
+
+<div class='statsOutput'>
+  <p id='strOutput' class='strOutput'>0</p>
+  <p id='dexOutput' class='dexOutput'>0</p>
+  <p id='conOutput' class='conOutput'>0</p>
+  <p id='intOutput' class='intOutput'>0</p>
+  <p id='wisOutput' class='wisOutput'>0</p>
+  <p id='chaOutput' class='chaOutput'>0</p>
+</div>
+
+<br>
+  <p id='mresistances'></p>
+
+  <p id='mconditions'></p>
+
+  <p id='mtohit'>To Hit: +1</p>
+
+  <p id='mdamage'>Damage: -</p>
+
+  <p id='mactions'>Actions: -</p>
+
+  <p id='maoe'>
+
+    <div hidden id='saveType'>
+      <select onchange='saveType()' id='saveType2'>
+        <option value="null">-</option>
+        <option value="Acid">Acid</option>
+        <option value="Cold">Cold</option>
+        <option value="Fire">Fire</option>
+        <option value="Force">Force</option>
+        <option value="Lightning">Lightning</option>
+        <option value="Necrotic">Necrotic</option>
+        <option value="Poison">Poison</option>
+        <option value="Psychic">Psychic</option>
+        <option value="Radiant">Radiant</option>
+        <option value="Thunder">Thunder</option>
+      </select>
+    </div>
+  <br>
+
+<div class='saveType'>
+
+  <p id='saveDC'></p>
+
+  <p class='saves' id='saveType3'></p>
+</div>
+</div>
 </div>
 </div>
 
-<div class="column";>
-<p class="results" id="results"></p>
-</div>
-</div>
-
-<table hidden id="dicetable">
-	<thead>
-	  <tr>
-	    <th>Damage</th>
-	    <th>D4 (Quantity + Modifier)</th>
-	    <th>D6 (Quantity + Modifier)</th>
-	    <th>D8 (Quantity + Modifier)</th>
-	    <th>D10 (Quantity + Modifier)</th>
-	    <th>D12 (Quantity + Modifier)</th>
-	  </tr>
-	</thead>
-	<tbody>
-	  <tr>
-	    <td>1</td>
-	    <td>Flat Damage, 1d4-1</td>
-	    <td>Flat Damage, 1d6-2</td>
-	    <td>Flat Damage, 1d8-3</td>
-	    <td>Flat Damage, 1d10-4</td>
-	    <td>Flat Damage, 1d12-5</td>
-	  </tr>
-	  <tr>
-	    <td>2</td>
-	    <td>1d4</td>
-	    <td>1d6-1</td>
-	    <td>1d8-2</td>
-	    <td>1d10-3</td>
-	    <td>1d12-4</td>
-	  </tr>
-	  <tr>
-	    <td>3</td>
-	    <td>1d4+1</td>
-	    <td>1d6</td>
-	    <td>1d8-1</td>
-	    <td>1d10-2</td>
-	    <td>1d12-3</td>
-	  </tr>
-	  <tr>
-	    <td>4</td>
-	    <td>1d4+2</td>
-	    <td>1d6+1</td>
-	    <td>1d8</td>
-	    <td>1d10-1</td>
-	    <td>1d12-2</td>
-	  </tr>
-	  <tr>
-	    <td>5</td>
-	    <td>2d4</td>
-	    <td>1d6+1</td>
-	    <td>1d8+1</td>
-	    <td>1d10</td>
-	    <td>1d12-1</td>
-	  </tr>
-	  <tr>
-	    <td>6</td>
-	    <td>2d4+1</td>
-	    <td>1d6+1</td>
-	    <td>1d8+2</td>
-	    <td>1d10+1</td>
-	    <td>1d12</td>
-	  </tr>
-	  <tr>
-	    <td>7</td>
-	    <td>3d4</td>
-	    <td>2d6</td>
-	    <td>1d8+3</td>
-	    <td>1d10+2</td>
-	    <td>1d12+1</td>
-	  </tr>
-	  <tr>
-	    <td>8</td>
-	    <td>3d4+1</td>
-	    <td>2d6+1</td>
-	    <td>1d8+4</td>
-	    <td>1d10+3</td>
-	    <td>1d12+2</td>
-	  </tr>
-	  <tr>
-	    <td>9</td>
-	    <td>3d4+2</td>
-	    <td>2d6+2</td>
-	    <td>2d8</td>
-	    <td>1d10+4</td>
-	    <td>1d12+3</td>
-	  </tr>
-	  <tr>
-	    <td>10</td>
-	    <td>4d4</td>
-	    <td>3d6</td>
-	    <td>2d8+1</td>
-	    <td>1d10+5</td>
-	    <td>1d12+4</td>
-	  </tr>
-	  <tr>
-	    <td>11</td>
-	    <td>4d4+1</td>
-	    <td>3d6+1</td>
-	    <td>2d8+2</td>
-	    <td>2d10</td>
-	    <td>1d12+5</td>
-	  </tr>
-	  <tr>
-	    <td>12</td>
-	    <td>5d4</td>
-	    <td>3d6+2</td>
-	    <td>2d8+3</td>
-	    <td>2d10+1</td>
-	    <td>1d12+6</td>
-	  </tr>
-	  <tr>
-	    <td>13</td>
-	    <td>5d4+1</td>
-	    <td>3d6+3</td>
-	    <td>3d8</td>
-	    <td>2d10+2</td>
-	    <td>2d12</td>
-	  </tr>
-	  <tr>
-	    <td>14</td>
-	    <td>5d4+2</td>
-	    <td>4d6</td>
-	    <td>3d8+1</td>
-	    <td>2d10+3</td>
-	    <td>2d12+1</td>
-	  </tr>
-	  <tr>
-	    <td>15</td>
-	    <td>6d4</td>
-	    <td>4d6+1</td>
-	    <td>3d8+2</td>
-	    <td>2d10+4</td>
-	    <td>2d12+2</td>
-	  </tr>
-	  <tr>
-	    <td>16</td>
-	    <td>6d4+1</td>
-	    <td>4d6+2</td>
-	    <td>3d8+3</td>
-	    <td>3d10</td>
-	    <td>2d12+3</td>
-	  </tr>
-	  <tr>
-	    <td>17</td>
-	    <td>7d4</td>
-	    <td>5d6</td>
-	    <td>3d8+4</td>
-	    <td>3d10+1</td>
-	    <td>2d12+4</td>
-	  </tr>
-	  <tr>
-	    <td>18</td>
-	    <td>7d4+1</td>
-	    <td>5d6+1</td>
-	    <td>4d8</td>
-	    <td>3d10+2</td>
-	    <td>2d12+5</td>
-	  </tr>
-	  <tr>
-	    <td>19</td>
-	    <td>7d4+2</td>
-	    <td>5d6+2</td>
-	    <td>4d8+1</td>
-	    <td>3d10+3</td>
-	    <td>3d12</td>
-	  </tr>
-	  <tr>
-	    <td>20</td>
-	    <td>8d4</td>
-	    <td>5d6+3</td>
-	    <td>4d8+2</td>
-	    <td>3d10+4</td>
-	    <td>3d12+1</td>
-	  </tr>
-	  <tr>
-	    <td>21</td>
-	    <td>8d4+1</td>
-	    <td>6d6</td>
-	    <td>4d8+3</td>
-	    <td>3d10+5</td>
-	    <td>3d12+2</td>
-	  </tr>
-	  <tr>
-	    <td>22</td>
-	    <td>9d4</td>
-	    <td>6d6+1</td>
-	    <td>5d8</td>
-	    <td>4d10</td>
-	    <td>3d12+3</td>
-	  </tr>
-	  <tr>
-	    <td>23</td>
-	    <td>9d4+1</td>
-	    <td>6d6+2</td>
-	    <td>5d8+1</td>
-	    <td>4d10+1</td>
-	    <td>3d12+4</td>
-	  </tr>
-	  <tr>
-	    <td>24</td>
-	    <td>9d4+2</td>
-	    <td>7d6</td>
-	    <td>5d8+2</td>
-	    <td>4d10+2</td>
-	    <td>3d12+5</td>
-	  </tr>
-	  <tr>
-	    <td>25</td>
-	    <td>10d4</td>
-	    <td>7d6+1</td>
-	    <td>5d8+3</td>
-	    <td>4d10+3</td>
-	    <td>3d12+6</td>
-	  </tr>
-	  <tr>
-	    <td>26</td>
-	    <td>10d4+1</td>
-	    <td>7d6+2</td>
-	    <td>5d8+4</td>
-	    <td>4d10+4</td>
-	    <td>4d12</td>
-	  </tr>
-	  <tr>
-	    <td>27</td>
-	    <td>11d4</td>
-	    <td>7d6+3</td>
-	    <td>6d8</td>
-	    <td>5d10</td>
-	    <td>4d12+1</td>
-	  </tr>
-	  <tr>
-	    <td>28</td>
-	    <td>11d4+1</td>
-	    <td>8d6</td>
-	    <td>6d8+1</td>
-	    <td>5d10+1</td>
-	    <td>4d12+2</td>
-	  </tr>
-	  <tr>
-	    <td>29</td>
-	    <td>11d4+2</td>
-	    <td>8d6+1</td>
-	    <td>6d8+2</td>
-	    <td>5d10+2</td>
-	    <td>4d12+3</td>
-	  </tr>
-	  <tr>
-	    <td>30</td>
-	    <td>12d4</td>
-	    <td>8d6+2</td>
-	    <td>6d8+3</td>
-	    <td>5d10+3</td>
-	    <td>4d12+4</td>
-	  </tr>
-	  <tr>
-	    <td>31</td>
-	    <td>12d4+1</td>
-	    <td>9d6</td>
-	    <td>7d8</td>
-	    <td>5d10+4</td>
-	    <td>4d12+5</td>
-	  </tr>
-	  <tr>
-	    <td>32</td>
-	    <td>13d4</td>
-	    <td>9d6+1</td>
-	    <td>7d8+1</td>
-	    <td>5d10+5</td>
-	    <td>5d12</td>
-	  </tr>
-	  <tr>
-	    <td>33</td>
-	    <td>13d4+1</td>
-	    <td>9d6+2</td>
-	    <td>7d8+2</td>
-	    <td>6d10</td>
-	    <td>5d12+1</td>
-	  </tr>
-	  <tr>
-	    <td>34</td>
-	    <td>13d4+2</td>
-	    <td>9d6+3</td>
-	    <td>7d8+3</td>
-	    <td>6d10+1</td>
-	    <td>5d12+2</td>
-	  </tr>
-	  <tr>
-	    <td>35</td>
-	    <td>14d4</td>
-	    <td>10d6</td>
-	    <td>7d8+4</td>
-	    <td>6d10+2</td>
-	    <td>5d12+3</td>
-	  </tr>
-	  <tr>
-	    <td>36</td>
-	    <td>14d4+1</td>
-	    <td>10d6+1</td>
-	    <td>8d8</td>
-	    <td>6d10+3</td>
-	    <td>5d12+4</td>
-	  </tr>
-	  <tr>
-	    <td>37</td>
-	    <td>15d4</td>
-	    <td>10d6+2</td>
-	    <td>8d8+1</td>
-	    <td>6d10+4</td>
-	    <td>5d12+5</td>
-	  </tr>
-	  <tr>
-	    <td>38</td>
-	    <td>15d4+1</td>
-	    <td>11d6</td>
-	    <td>8d8+2</td>
-	    <td>7d10</td>
-	    <td>5d12+6</td>
-	  </tr>
-	  <tr>
-	    <td>39</td>
-	    <td>15d4+2</td>
-	    <td>11d6+1</td>
-	    <td>8d8+3</td>
-	    <td>7d10+1</td>
-	    <td>6d12</td>
-	  </tr>
-	  <tr>
-	    <td>40</td>
-	    <td>16d4</td>
-	    <td>11d6+2</td>
-	    <td>9d8</td>
-	    <td>7d10+2</td>
-	    <td>6d12+1</td>
-	  </tr>
-	  <tr>
-	    <td>41</td>
-	    <td>16d4+1</td>
-	    <td>11d6+3</td>
-	    <td>9d8+1</td>
-	    <td>7d10+3</td>
-	    <td>6d12+2</td>
-	  </tr>
-	  <tr>
-	    <td>42</td>
-	    <td>17d4</td>
-	    <td>12d6</td>
-	    <td>9d8+2</td>
-	    <td>7d10+4</td>
-	    <td>6d12+3</td>
-	  </tr>
-	  <tr>
-	    <td>43</td>
-	    <td>17d4+1</td>
-	    <td>12d6+1</td>
-	    <td>9d8+3</td>
-	    <td>7d10+5</td>
-	    <td>6d12+4</td>
-	  </tr>
-	  <tr>
-	    <td>44</td>
-	    <td>17d4+2</td>
-	    <td>12d6+2</td>
-	    <td>9d8+4</td>
-	    <td>8d10</td>
-	    <td>6d12+5</td>
-	  </tr>
-	  <tr>
-	    <td>45</td>
-	    <td>18d4</td>
-	    <td>13d6</td>
-	    <td>10d8</td>
-	    <td>8d10+1</td>
-	    <td>7d12</td>
-	  </tr>
-	  <tr>
-	    <td>46</td>
-	    <td>18d4+1</td>
-	    <td>13d6+1</td>
-	    <td>10d8+1</td>
-	    <td>8d10+2</td>
-	    <td>7d12+1</td>
-	  </tr>
-	  <tr>
-	    <td>47</td>
-	    <td>19d4</td>
-	    <td>13d6+2</td>
-	    <td>10d8+2</td>
-	    <td>8d10+3</td>
-	    <td>7d12+2</td>
-	  </tr>
-	  <tr>
-	    <td>48</td>
-	    <td>19d4+1</td>
-	    <td>13d6+3</td>
-	    <td>10d8+3</td>
-	    <td>8d10+4</td>
-	    <td>7d12+3</td>
-	  </tr>
-	  <tr>
-	    <td>49</td>
-	    <td>19d4+2</td>
-	    <td>14d6</td>
-	    <td>11d8</td>
-	    <td>9d10</td>
-	    <td>7d12+4</td>
-	  </tr>
-	  <tr>
-	    <td>50</td>
-	    <td>20d4</td>
-	    <td>14d6+1</td>
-	    <td>11d8+1</td>
-	    <td>9d10+1</td>
-	    <td>7d12+5</td>
-	  </tr>
-	  <tr>
-	    <td>51</td>
-	    <td>20d4+1</td>
-	    <td>14d6+2</td>
-	    <td>11d8+2</td>
-	    <td>9d10+2</td>
-	    <td>7d12+6</td>
-	  </tr>
-	  <tr>
-	    <td>52</td>
-	    <td>21d4</td>
-	    <td>15d6</td>
-	    <td>11d8+3</td>
-	    <td>9d10+3</td>
-	    <td>8d12</td>
-	  </tr>
-	  <tr>
-	    <td>53</td>
-	    <td>21d4+1</td>
-	    <td>15d6+1</td>
-	    <td>11d8+4</td>
-	    <td>9d10+4</td>
-	    <td>8d12+1</td>
-	  </tr>
-	  <tr>
-	    <td>54</td>
-	    <td>21d4+2</td>
-	    <td>15d6+2</td>
-	    <td>12d8</td>
-	    <td>9d10+5</td>
-	    <td>8d12+2</td>
-	  </tr>
-	  <tr>
-	    <td>55</td>
-	    <td>22d4</td>
-	    <td>15d6+3</td>
-	    <td>12d8+1</td>
-	    <td>10d10</td>
-	    <td>8d12+3</td>
-	  </tr>
-	  <tr>
-	    <td>56</td>
-	    <td>22d4+1</td>
-	    <td>16d6</td>
-	    <td>12d8+2</td>
-	    <td>10d10+1</td>
-	    <td>8d12+4</td>
-	  </tr>
-	  <tr>
-	    <td>57</td>
-	    <td>23d4</td>
-	    <td>16d6+1</td>
-	    <td>12d8+3</td>
-	    <td>10d10+2</td>
-	    <td>8d12+5</td>
-	  </tr>
-	  <tr>
-	    <td>58</td>
-	    <td>23d4+1</td>
-	    <td>16d6+2</td>
-	    <td>13d8</td>
-	    <td>10d10+3</td>
-	    <td>9d12</td>
-	  </tr>
-	  <tr>
-	    <td>59</td>
-	    <td>23d4+2</td>
-	    <td>17d6</td>
-	    <td>13d8+1</td>
-	    <td>10d10+4</td>
-	    <td>9d12+1</td>
-	  </tr>
-	  <tr>
-	    <td>60</td>
-	    <td>24d4</td>
-	    <td>17d6+1</td>
-	    <td>13d8+2</td>
-	    <td>11d10</td>
-	    <td>9d12+2</td>
-	  </tr>
-	  <tr>
-	    <td>61</td>
-	    <td>24d4+1</td>
-	    <td>17d6+2</td>
-	    <td>13d8+3</td>
-	    <td>11d10+1</td>
-	    <td>9d12+3</td>
-	  </tr>
-	  <tr>
-	    <td>62</td>
-	    <td>25d4</td>
-	    <td>17d6+3</td>
-	    <td>13d8+4</td>
-	    <td>11d10+2</td>
-	    <td>9d12+4</td>
-	  </tr>
-	  <tr>
-	    <td>63</td>
-	    <td>25d4+1</td>
-	    <td>18d6</td>
-	    <td>14d8</td>
-	    <td>11d10+3</td>
-	    <td>9d12+5</td>
-	  </tr>
-	  <tr>
-	    <td>64</td>
-	    <td>25d4+2</td>
-	    <td>18d6+1</td>
-	    <td>14d8+1</td>
-	    <td>11d10+4</td>
-	    <td>9d12+6</td>
-	  </tr>
-	  <tr>
-	    <td>65</td>
-	    <td>26d4</td>
-	    <td>18d6+2</td>
-	    <td>14d8+2</td>
-	    <td>11d10+5</td>
-	    <td>10d12</td>
-	  </tr>
-	  <tr>
-	    <td>66</td>
-	    <td>26d4+1</td>
-	    <td>19d6</td>
-	    <td>14d8+3</td>
-	    <td>12d10</td>
-	    <td>10d12+1</td>
-	  </tr>
-	  <tr>
-	    <td>67</td>
-	    <td>27d4</td>
-	    <td>19d6+1</td>
-	    <td>15d8</td>
-	    <td>12d10+1</td>
-	    <td>10d12+2</td>
-	  </tr>
-	  <tr>
-	    <td>68</td>
-	    <td>27d4+1</td>
-	    <td>19d6+2</td>
-	    <td>15d8+1</td>
-	    <td>12d10+2</td>
-	    <td>10d12+3</td>
-	  </tr>
-	  <tr>
-	    <td>69</td>
-	    <td>27d4+2</td>
-	    <td>19d6+3</td>
-	    <td>15d8+2</td>
-	    <td>12d10+3</td>
-	    <td>10d12+4</td>
-	  </tr>
-	  <tr>
-	    <td>70</td>
-	    <td>28d4</td>
-	    <td>20d6</td>
-	    <td>15d8+3</td>
-	    <td>12d10+4</td>
-	    <td>10d12+5</td>
-	  </tr>
-	  <tr>
-	    <td>71</td>
-	    <td>28d4+1</td>
-	    <td>20d6+1</td>
-	    <td>15d8+4</td>
-	    <td>13d10</td>
-	    <td>11d12</td>
-	  </tr>
-	  <tr>
-	    <td>72</td>
-	    <td>29d4</td>
-	    <td>20d6+2</td>
-	    <td>16d8</td>
-	    <td>13d10+1</td>
-	    <td>11d12+1</td>
-	  </tr>
-	  <tr>
-	    <td>73</td>
-	    <td>29d4+1</td>
-	    <td>21d6</td>
-	    <td>16d8+1</td>
-	    <td>13d10+2</td>
-	    <td>11d12+2</td>
-	  </tr>
-	  <tr>
-	    <td>74</td>
-	    <td>29d4+2</td>
-	    <td>21d6+1</td>
-	    <td>16d8+2</td>
-	    <td>13d10+3</td>
-	    <td>11d12+3</td>
-	  </tr>
-	  <tr>
-	    <td>75</td>
-	    <td>30d4</td>
-	    <td>21d6+2</td>
-	    <td>16d8+3</td>
-	    <td>13d10+4</td>
-	    <td>11d12+4</td>
-	  </tr>
-	  <tr>
-	    <td>76</td>
-	    <td>30d4+1</td>
-	    <td>21d6+3</td>
-	    <td>17d8</td>
-	    <td>13d10+5</td>
-	    <td>11d12+5</td>
-	  </tr>
-	  <tr>
-	    <td>77</td>
-	    <td>31d4</td>
-	    <td>22d6</td>
-	    <td>17d8+1</td>
-	    <td>14d10</td>
-	    <td>11d12+6</td>
-	  </tr>
-	  <tr>
-	    <td>78</td>
-	    <td>31d4+1</td>
-	    <td>22d6+1</td>
-	    <td>17d8+2</td>
-	    <td>14d10+1</td>
-	    <td>12d12</td>
-	  </tr>
-	  <tr>
-	    <td>79</td>
-	    <td>31d4+2</td>
-	    <td>22d6+2</td>
-	    <td>17d8+3</td>
-	    <td>14d10+2</td>
-	    <td>12d12+1</td>
-	  </tr>
-	  <tr>
-	    <td>80</td>
-	    <td>32d4</td>
-	    <td>23d6</td>
-	    <td>17d8+4</td>
-	    <td>14d10+3</td>
-	    <td>12d12+2</td>
-	  </tr>
-	  <tr>
-	    <td>81</td>
-	    <td>32d4+1</td>
-	    <td>23d6+1</td>
-	    <td>18d8</td>
-	    <td>14d10+4</td>
-	    <td>12d12+3</td>
-	  </tr>
-	  <tr>
-	    <td>82</td>
-	    <td>33d4</td>
-	    <td>23d6+2</td>
-	    <td>18d8+1</td>
-	    <td>15d10</td>
-	    <td>12d12+4</td>
-	  </tr>
-	  <tr>
-	    <td>83</td>
-	    <td>33d4+1</td>
-	    <td>23d6+3</td>
-	    <td>18d8+2</td>
-	    <td>15d10+1</td>
-	    <td>12d12+5</td>
-	  </tr>
-	  <tr>
-	    <td>84</td>
-	    <td>33d4+2</td>
-	    <td>24d6</td>
-	    <td>18d8+3</td>
-	    <td>15d10+2</td>
-	    <td>13d12</td>
-	  </tr>
-	  <tr>
-	    <td>85</td>
-	    <td>34d4</td>
-	    <td>24d6+1</td>
-	    <td>19d8</td>
-	    <td>15d10+3</td>
-	    <td>13d12+1</td>
-	  </tr>
-	  <tr>
-	    <td>86</td>
-	    <td>34d4+1</td>
-	    <td>24d6+2</td>
-	    <td>19d8+1</td>
-	    <td>15d10+4</td>
-	    <td>13d12+2</td>
-	  </tr>
-	  <tr>
-	    <td>87</td>
-	    <td>35d4</td>
-	    <td>25d6</td>
-	    <td>19d8+2</td>
-	    <td>15d10+5</td>
-	    <td>13d12+3</td>
-	  </tr>
-	  <tr>
-	    <td>88</td>
-	    <td>35d4+1</td>
-	    <td>25d6+1</td>
-	    <td>19d8+3</td>
-	    <td>16d10</td>
-	    <td>13d12+4</td>
-	  </tr>
-	  <tr>
-	    <td>89</td>
-	    <td>35d4+2</td>
-	    <td>25d6+2</td>
-	    <td>19d8+4</td>
-	    <td>16d10+1</td>
-	    <td>13d12+5</td>
-	  </tr>
-	  <tr>
-	    <td>90</td>
-	    <td>36d4</td>
-	    <td>25d6+3</td>
-	    <td>20d8</td>
-	    <td>16d10+2</td>
-	    <td>13d12+6</td>
-	  </tr>
-	  <tr>
-	    <td>91</td>
-	    <td>36d4+1</td>
-	    <td>26d6</td>
-	    <td>20d8+1</td>
-	    <td>16d10+3</td>
-	    <td>14d12</td>
-	  </tr>
-	  <tr>
-	    <td>92</td>
-	    <td>37d4</td>
-	    <td>26d6+1</td>
-	    <td>20d8+2</td>
-	    <td>16d10+4</td>
-	    <td>14d12+1</td>
-	  </tr>
-	  <tr>
-	    <td>93</td>
-	    <td>37d4+1</td>
-	    <td>26d6+2</td>
-	    <td>20d8+3</td>
-	    <td>17d10</td>
-	    <td>14d12+2</td>
-	  </tr>
-	  <tr>
-	    <td>94</td>
-	    <td>37d4+2</td>
-	    <td>27d6</td>
-	    <td>21d8</td>
-	    <td>17d10+1</td>
-	    <td>14d12+3</td>
-	  </tr>
-	  <tr>
-	    <td>95</td>
-	    <td>38d4</td>
-	    <td>27d6+1</td>
-	    <td>21d8+1</td>
-	    <td>17d10+2</td>
-	    <td>14d12+4</td>
-	  </tr>
-	  <tr>
-	    <td>96</td>
-	    <td>38d4+1</td>
-	    <td>27d6+2</td>
-	    <td>21d8+2</td>
-	    <td>17d10+3</td>
-	    <td>14d12+5</td>
-	  </tr>
-	  <tr>
-	    <td>97</td>
-	    <td>39d4</td>
-	    <td>27d6+3</td>
-	    <td>21d8+3</td>
-	    <td>17d10+4</td>
-	    <td>15d12</td>
-	  </tr>
-	  <tr>
-	    <td>98</td>
-	    <td>39d4+1</td>
-	    <td>28d6</td>
-	    <td>21d8+4</td>
-	    <td>17d10+5</td>
-	    <td>15d12+1</td>
-	  </tr>
-	  <tr>
-	    <td>99</td>
-	    <td>39d4+2</td>
-	    <td>28d6+1</td>
-	    <td>22d8</td>
-	    <td>18d10</td>
-	    <td>15d12+2</td>
-	  </tr>
-	  <tr>
-	    <td>100</td>
-	    <td>40d4</td>
-	    <td>28d6+2</td>
-	    <td>22d8+1</td>
-	    <td>18d10+1</td>
-	    <td>15d12+3</td>
-	  </tr>
-	</tbody>
-	</table>
-
-<table hidden id="resisttable">
-	<thead>
-	  <tr>
-	    <th></th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
-	  </tr>
-	</thead>
-	<tbody>
-	  <tr>
-	    <td>Aberration</td>
-	    <td>Blinded</td>
-	    <td>Charmed</td>
-	    <td>Frightened</td>
-	    <td>Prone</td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	  </tr>
-	  <tr>
-	    <td>Beast</td>
-	    <td>Charmed</td>
-	    <td>Frightened</td>
-	    <td>Paralyzed</td>
-	    <td>Petrified</td>
-	    <td>Prone</td>
-	    <td>Restrained</td>
-	    <td>Stunned</td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	  </tr>
-	  <tr>
-	    <td>Celestial</td>
-	    <td>Charmed</td>
-	    <td>Exhaustion</td>
-	    <td>Frightened</td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	  </tr>
-	  <tr>
-	    <td>Construct</td>
-	    <td>Blinded</td>
-	    <td>Charmed</td>
-	    <td>Deafened</td>
-	    <td>Exhaustion</td>
-	    <td>Frightened</td>
-	    <td>Paralyzed</td>
-	    <td>Petrified</td>
-	    <td>Poisoned</td>
-	    <td>Necrotic</td>
-	    <td>Poison</td>
-	    <td>Psychic</td>
-	    <td>Bludgeoning, Piercing, Slashing (non magical)</td>
-
-
-	    <td></td>
-	  </tr>
-	  <tr>
-	    <td>Dragon</td>
-	    <td>Poisoned</td>
-	    <td>Acid</td>
-	    <td>Cold</td>
-	    <td>Fire</td>
-	    <td>Lightning</td>
-	    <td>Poison</td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	  </tr>
-	  <tr>
-	    <td>Elemental</td>
-	    <td>Exhaustion</td>
-	    <td>Grappled</td>
-	    <td>Paralyzed</td>
-	    <td>Petrified</td>
-	    <td>Prone</td>
-	    <td>Restrained</td>
-	    <td>Fire</td>
-	    <td>Poison</td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	  </tr>
-	  <tr>
-	    <td>Fey</td>
-	    <td>Charmed</td>
-	    <td>Exhaustion</td>
-	    <td>Frightened</td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	  </tr>
-	  <tr>
-	    <td>Fiend</td>
-	    <td>Charmed</td>
-	    <td>Exhaustion</td>
-	    <td>Frightened</td>
-	    <td>Poisoned</td>
-	    <td>Acid</td>
-	    <td>Fire</td>
-	    <td>Poison</td>
-	    <td>Bludgeoning, Piercing, Slashing (non magical)</td>
-
-
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	  </tr>
-	  <tr>
-	    <td>Giant</td>
-	    <td>Frightened</td>
-	    <td>Cold</td>
-	    <td>Fire</td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	  </tr>
-	  <tr>
-	    <td>Humanoid</td>
-	    <td>Charmed</td>
-	    <td>Exhaustion</td>
-	    <td>Frightened</td>
-	    <td>Paralyzed</td>
-	    <td>Poisoned</td>
-	    <td>Poison</td>
-	    <td>Bludgeoning, Piercing, Slashing (non magical)</td>
-
-
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	  </tr>
-	  <tr>
-	    <td>Monstrosity</td>
-	    <td>Charmed</td>
-	    <td>Frightened</td>
-	    <td>Poisoned</td>
-	    <td>Cold</td>
-	    <td>Poison</td>
-	    <td>Bludgeoning, Piercing, Slashing (non magical)</td>
-
-
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	  </tr>
-	  <tr>
-	    <td>Ooze</td>
-	    <td>Blinded</td>
-	    <td>Charmed</td>
-	    <td>Deafened</td>
-	    <td>Exhaustion</td>
-	    <td>Prone</td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	  </tr>
-	  <tr>
-	    <td>Plant</td>
-	    <td>Blinded</td>
-	    <td>Deafened</td>
-	    <td>Frightened</td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	    <td></td>
-	  </tr>
-	  <tr>
-	    <td>Undead</td>
-	    <td>Charmed</td>
-	    <td>Exhaustion</td>
-	    <td>Frightened</td>
-	    <td>Grappled</td>
-	    <td>Paralyzed</td>
-	    <td>Petrified</td>
-	    <td>Poisoned</td>
-	    <td>Prone</td>
-	    <td>Restrained</td>
-	    <td>Cold</td>
-	    <td>Necrotic</td>
-	    <td>Poison</td>
-	    <td>Bludgeoning, Piercing, Slashing (non magical)</td>
-
-
-	  </tr>
-	</tbody>
-	</table>
 </body>
+
 </html>

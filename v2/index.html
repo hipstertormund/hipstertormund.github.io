@@ -1,44 +1,100 @@
 <html>
-<script src="scripts.js">
+
+<script src="js/creature.js">
 </script>
-<link rel="stylesheet" href="mystyle.css">
+
+<link rel="stylesheet" href="css/creature.css">
 
 
 <div class="topbar">
-<h1>DM's Brew</h1>
+  <h1>DM's Brew</h1>
 </div>
+
+<div class='navigation'>
+  <a href="index.html">Brew a Monster</a>
+</div>
+
 <div class="row">
+
   <div class="column1">
-    <h3 >Party Members</h3>
-<body onload="loadData()">
-<div class="partyinput">
-  <div hidden class="partyinput" id="partyinputMaster">
-    <label>Class:</label>
-    <select onchange="partyVariablesHP(this)" class="pclass" name="pclass" id="pclassMASTER">
-      <option value="null">-</option>
-      <option value="artificer">Artificer</option>
-      <option value="barbarian">Barbarian</option>
-      <option value="bard">Bard</option>
-      <option value="cleric">Cleric</option>
-      <option value="druid">Druid</option>
-      <option value="fighter">Fighter</option>
-      <option value="monk">Monk</option>
-      <option value="paladin">Paladin</option>
-      <option value="ranger">Ranger</option>
-      <option value="rogue">Rogue</option>
-      <option value="sorcerer">Sorcerer</option>
-      <option value="warlock">Warlock</option>
-      <option value="Wizard">Wizard</option>
-    </select>
+    <h3>Party Members</h3>
+    <body onload="loadData()">
+
+      <div class="partyinput">
+        <div hidden class="partyinput" id="partyinputMaster">
+
+        <label>Class:</label>
+        <select onchange="partyVariablesHP(this)" class="pclass" name="pclass" id="pclassMASTER">
+          <option value="null">-</option>
+          <option value="artificer">Artificer</option>
+          <option value="barbarian">Barbarian</option>
+          <option value="bard">Bard</option>
+          <option value="cleric">Cleric</option>
+          <option value="druid">Druid</option>
+          <option value="fighter">Fighter</option>
+          <option value="monk">Monk</option>
+          <option value="paladin">Paladin</option>
+          <option value="ranger">Ranger</option>
+          <option value="rogue">Rogue</option>
+          <option value="sorcerer">Sorcerer</option>
+          <option value="warlock">Warlock</option>
+          <option value="Wizard">Wizard</option>
+        </select>
+
+        <label>Level:</label>
+        <input onchange="partyVariablesHP(this)" type="number" name="level" value="1" min="1" max="20" id="levelMASTER">
+        <label>HP:</label>
+        <input onchange="generateHP(this)" type="number" name="hp" value="6" min="6" id="hpMASTER">
+        <label>AC:</label>
+        <input onchange="partyVariablesAC()" type="number" name="ac" value="10" min="5" max="30" id="acMASTER">
+        <div class="damage" id="damage0">
+          Damage: <input onchange="partyVariablesDamage()" type="number" name="ndice" value="1" id="ndiceMASTER">
+          <select onchange="partyVariablesDamage()" class="ddice" name="ddice" id="ddiceMASTER">
+            <option value="null">-</option>
+            <option value="oned4">d4</option>
+            <option value="oned6">d6</option>
+            <option value="oned8">d8</option>
+            <option value="oned10">d10</option>
+            <option value="oned12">d12</option>
+          </select>
+
+      +<input onchange="partyVariablesDamage()" type="number" name="modifier" value="0" min="0" max="10" id="modifierMASTER">
+      <button onclick="addDice(this)" type="button" name="button" id='0' class='addDice'>+</button>
+    </div>
+
+  </div>
+      <div class="partyinput" id="partyinput0">
+        <label>Class:</label>
+        <select onchange="partyVariablesHP(this)" class="pclass" name="pclass" id="pclass0">
+          <option value="null">-</option>
+          <option value="artificer">Artificer</option>
+          <option value="barbarian">Barbarian</option>
+          <option value="bard">Bard</option>
+          <option value="cleric">Cleric</option>
+          <option value="druid">Druid</option>
+          <option value="fighter">Fighter</option>
+          <option value="monk">Monk</option>
+          <option value="paladin">Paladin</option>
+          <option value="ranger">Ranger</option>
+          <option value="rogue">Rogue</option>
+          <option value="sorcerer">Sorcerer</option>
+          <option value="warlock">Warlock</option>
+          <option value="Wizard">Wizard</option>
+        </select>
+
     <label>Level:</label>
-    <input onchange="partyVariablesHP(this)" type="number" name="level" value="1" min="1" max="20" id="levelMASTER">
+    <input onchange="partyVariablesHP(this)" type="number" name="level" value="1" min="1" max="20" id="level0">
+
     <label>HP:</label>
-    <input onchange="generateHP(this)" type="number" name="hp" value="6" min="6" id="hpMASTER">
+    <input onchange="generateHP(this)" type="number" name="hp" value="6" min="6" id="hp0">
+
     <label>AC:</label>
-    <input onchange="partyVariablesAC()" type="number" name="ac" value="10" min="5" max="30" id="acMASTER">
+    <input onchange="partyVariablesAC()" type="number" name="ac" value="10" min="5" max="30" id="ac0">
+
     <div class="damage" id="damage0">
-    Damage: <input onchange="partyVariablesDamage()" type="number" name="ndice" value="1" id="ndiceMASTER">
-    <select onchange="partyVariablesDamage()" class="ddice" name="ddice" id="ddiceMASTER">
+    Damage: <input onchange="partyVariablesDamage()" type="number" name="ndice" value="1" id="ndice0">
+
+    <select onchange="partyVariablesDamage()" class="ddice" name="ddice" id="ddice0">
       <option value="null">-</option>
       <option value="oned4">d4</option>
       <option value="oned6">d6</option>
@@ -46,64 +102,36 @@
       <option value="oned10">d10</option>
       <option value="oned12">d12</option>
     </select>
-    +<input onchange="partyVariablesDamage()" type="number" name="modifier" value="0" min="0" max="10" id="modifierMASTER">
+
+    +<input onchange="partyVariablesDamage()" type="number" name="modifier" value="0" min="0" max="10" id="modifier0">
     <button onclick="addDice(this)" type="button" name="button" id='0' class='addDice'>+</button>
   </div>
-  </div>
-<div class="partyinput" id="partyinput0">
-  <label>Class:</label>
-  <select onchange="partyVariablesHP(this)" class="pclass" name="pclass" id="pclass0">
-    <option value="null">-</option>
-    <option value="artificer">Artificer</option>
-    <option value="barbarian">Barbarian</option>
-    <option value="bard">Bard</option>
-    <option value="cleric">Cleric</option>
-    <option value="druid">Druid</option>
-    <option value="fighter">Fighter</option>
-    <option value="monk">Monk</option>
-    <option value="paladin">Paladin</option>
-    <option value="ranger">Ranger</option>
-    <option value="rogue">Rogue</option>
-    <option value="sorcerer">Sorcerer</option>
-    <option value="warlock">Warlock</option>
-    <option value="Wizard">Wizard</option>
-  </select>
-  <label>Level:</label>
-  <input onchange="partyVariablesHP(this)" type="number" name="level" value="1" min="1" max="20" id="level0">
-  <label>HP:</label>
-  <input onchange="generateHP(this)" type="number" name="hp" value="6" min="6" id="hp0">
-  <label>AC:</label>
-  <input onchange="partyVariablesAC()" type="number" name="ac" value="10" min="5" max="30" id="ac0">
-  <div class="damage" id="damage0">
-  Damage: <input onchange="partyVariablesDamage()" type="number" name="ndice" value="1" id="ndice0">
-  <select onchange="partyVariablesDamage()" class="ddice" name="ddice" id="ddice0">
-    <option value="null">-</option>
-    <option value="oned4">d4</option>
-    <option value="oned6">d6</option>
-    <option value="oned8">d8</option>
-    <option value="oned10">d10</option>
-    <option value="oned12">d12</option>
-  </select>
-  +<input onchange="partyVariablesDamage()" type="number" name="modifier" value="0" min="0" max="10" id="modifier0">
-  <button onclick="addDice(this)" type="button" name="button" id='0' class='addDice'>+</button>
+
 </div>
+
 </div>
-</div>
+
 <div class="buttons">
 <button onclick="duplicate()" name="btn1" class="addMember">Add Member</button>
+
 <button onclick='saveData()' name='btn2' class="saveData">Save Party</button>
+
 <button onclick='resetData()' name='btn3' class='resetData'>Reset</button>
 </div>
+
 <h3>Encounter Variables</h3>
+
 Difficulty:
 <a id='difficultyRating' class="difficultya">Medium</a>
 <br>
+
 <div class='ticks'>
 <p class='tick1'>|</p>
 <p class='tick2'>|</p>
 <p class='tick3'>|</p>
 </div>
 <br>
+
 <input onclick="generateDifficulty()" onchange="generateDifficulty()" type="range" class="slider" id="difficulty" step=".01" min="0" max="4" value="1.5" list='tickmarks'>
 <datalist id='tickmarks'>
   <option value="1"></option>
@@ -111,6 +139,7 @@ Difficulty:
   <option value="3"></option>
 </datalist>
 <br>
+
 Creature Size:
 <select onChange="generateSize()" class="creatureSize" name="creatureSize" id="creatureSize">
   <option value="null">-</option>
@@ -121,6 +150,7 @@ Creature Size:
   <option value="Huge">Huge</option>
   <option value="Gargantuan">Gargantuan</option>
 </select>
+
 Creature Type:
 <select onchange="creaturetype()" class="creaturetype" name="creaturetype" id="creaturetype">
   <option value="null">-</option>
@@ -139,12 +169,17 @@ Creature Type:
   <option value="Plant">Plant</option>
   <option value="Undead">Undead</option>
 </select>
+
 Speed:
 <input onchange="generateSpeed()" type="number" value="30" id="speed">
 <br>
+
 Rounds: <input onchange="generateDamage()" type="number" class="rounds" name="rounds" id="rounds" min="1" max="20" value="3">
+
 Area of Effect: <input onchange="aoe()" type="checkbox" id="aoe" name="aoe" value="aoe">
+
 Condition Immunities: <input onchange="conditions()" type="checkbox" id="conditions" name=conditions>
+
 Resistances: <input onchange="resistances()" type="checkbox" id="resistances">
 <br>
 
@@ -165,6 +200,7 @@ Resistances: <input onchange="resistances()" type="checkbox" id="resistances">
   <button type="button" onclick="randomConditions()" name="btn3">Randomize</button><br>
   Number of Condition Immunities:<input type="number" value="3" min="1" max="12" id='randomCondit'>
 </div>
+
 <div hidden onchange="generateResistances()" id="resistancesOutput" class="resistancesOutput">
   <p style="font-weight: bold;" hidden id='resistanceTitle'>Resistances</p>
   <input type="checkbox" value="Acid">Acid
@@ -188,25 +224,37 @@ Resistances: <input onchange="resistances()" type="checkbox" id="resistances">
   Number of Resistances:<input type="number" value="3" min="1" max="11" id='randomResist'>
 </div>
 </div>
+
 <div class="column2">
+
 <div class="statblock">
   <h3>Statblock</h3>
+
 <div class='creaturemisc'>
+
   <p id="sizeOutput"></p>
+
   <p id=creatureOutput></p>
 </div>
+
   <p id='creaturespeed'></p>
+
   <p id="statblock"></p>
+
 <div class='monstercr'>
+
   <p id='mcr'>CR: -</p>
+
   <a id='examples'></a>
 </div>
 <br>
+
 <div class="monsterHP">
   <p id="mhp">HP: 10</p>
   <p id='mhitdie'></p>
 </div>
   <p id='mac'>AC: 12</p>
+
   <div class="stats">
   <p id='strStats'>
   STR <input onchange="generateSTR()" type="number" name="str" value="10" min='1' max='30' id='str'></p>
@@ -222,6 +270,7 @@ Resistances: <input onchange="resistances()" type="checkbox" id="resistances">
   CHA <input onchange="generateCHA()" type="number" name="cha" value="10" min="1" max="30" id='cha'></p>
   <br>
 </div>
+
 <div class='statsOutput'>
   <p id='strOutput' class='strOutput'>0</p>
   <p id='dexOutput' class='dexOutput'>0</p>
@@ -230,13 +279,20 @@ Resistances: <input onchange="resistances()" type="checkbox" id="resistances">
   <p id='wisOutput' class='wisOutput'>0</p>
   <p id='chaOutput' class='chaOutput'>0</p>
 </div>
+
 <br>
   <p id='mresistances'></p>
+
   <p id='mconditions'></p>
+
   <p id='mtohit'>To Hit: +1</p>
+
   <p id='mdamage'>Damage: -</p>
+
   <p id='mactions'>Actions: -</p>
+
   <p id='maoe'>
+
     <div hidden id='saveType'>
       <select onchange='saveType()' id='saveType2'>
         <option value="null">-</option>
@@ -253,12 +309,17 @@ Resistances: <input onchange="resistances()" type="checkbox" id="resistances">
       </select>
     </div>
   <br>
+
 <div class='saveType'>
+
   <p id='saveDC'></p>
+
   <p class='saves' id='saveType3'></p>
 </div>
 </div>
 </div>
 </div>
+
 </body>
+
 </html>
