@@ -1118,3 +1118,15 @@ function saveType() {
   document.getElementById('saveType3').innerHTML = element.innerHTML;
 
 }
+
+function nameCreature() {
+  var creatureName = document.getElementById('creaturename').value;
+
+  if (creatureName == "") {
+    creatureName = "Statblock";
+  }
+
+  element = document.createElement('h3');
+  element.innerHTML = creatureName;
+  document.getElementById('statblockheader').innerHTML = element.innerHTML;
+}

@@ -12,6 +12,7 @@
 
 <div class='navigation'>
   <a href="index.html">Brew a Monster</a>
+  <a href='initiative.html'>Initiative Tracker</a>
 </div>
 
 <div class="row">
@@ -139,7 +140,9 @@ Difficulty:
   <option value="3"></option>
 </datalist>
 <br>
-
+Creature Name:
+<input onchange="nameCreature()" style='width: 100px' type="text" name="" value="" id='creaturename'>
+<br>
 Creature Size:
 <select onChange="generateSize()" class="creatureSize" name="creatureSize" id="creatureSize">
   <option value="null">-</option>
@@ -228,7 +231,7 @@ Resistances: <input onchange="resistances()" type="checkbox" id="resistances">
 <div class="column2">
 
 <div class="statblock">
-  <h3>Statblock</h3>
+  <h3 id='statblockheader'>Statblock</h3>
 
 <div class='creaturemisc'>
 
