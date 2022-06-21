@@ -14,6 +14,7 @@ body {
     background-color: 063C52;
     padding: 30px;
     border-radius: 30px;
+    box-shadow: 10px 5px 5px black;
     }
 
     .column2 {
@@ -22,6 +23,7 @@ body {
       background-color: F2D2A2;
       color: black;
       border-radius: 30px 50px;
+      box-shadow: 10px 5px 5px black;
     }
     .damage {
       padding-left: 15px;
@@ -82,7 +84,8 @@ body {
     .slider::-webkit-slider-thumb {
     -webkit-appearance: none; /* Override default look */
     appearance: none;
-    width: 50px; /* Set a specific slider handle width */
+    width: 25px; /* Set a specific slider handle width */
+
     height: 25px; /* Slider handle height */
     border-radius: 25%;
     background: #B9D6BC; /* Green background */
@@ -167,6 +170,10 @@ clear: both;
   text-align: left;
   position: relative;
   top: 30px;
+}
+
+.navigation a {
+  box-shadow: 10px 5px 5px black;
 }
 
 .conditionsOutput {

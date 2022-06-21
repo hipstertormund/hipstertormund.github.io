@@ -767,7 +767,7 @@ if (creatureSize != "null") {
   } else {
     var creatureSize = "";
     var mhitdie = 0;
-    var mdexmod = mAC-10;
+    var mdexmod = 10;
     var monsterHitdie = "";
     var strmmodifier = 10;
   }
